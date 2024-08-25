@@ -1,11 +1,10 @@
-package test.java.MoveGeneratorTests;
+package tests.java.MoveGeneratorTests;
 
 import main.java.*;
-import main.util.*;
+import main.utilities.*;
 
-import java.util.*;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.BeforeEach;
 
 public class PerftTest {

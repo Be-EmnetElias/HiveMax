@@ -1,4 +1,4 @@
-package main.util;
+package main.utilities;
 
 public record Move(
     int fromSquare,

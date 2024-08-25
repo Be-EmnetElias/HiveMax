@@ -1,4 +1,4 @@
-package test.java.MoveGeneratorTests.PsuedoLegalMoves;
+package tests.java.MoveGeneratorTests.PsuedoLegalMoves;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,10 +7,10 @@ import java.util.HashSet;
 import org.junit.Test;
 
 import main.java.Board;
-import main.util.Move;
-import main.util.MoveGenerator;
-import main.util.MoveType;
-import main.util.PieceType;
+import main.utilities.Move;
+import main.utilities.MoveGenerator;
+import main.utilities.MoveType;
+import main.utilities.PieceType;
 
 public class AllPiecesPsuedoLegalTest {
     
@@ -74,7 +74,7 @@ public class AllPiecesPsuedoLegalTest {
         Board board = new Board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - ");
 
         HashSet<Move> expectedWhiteMoves = new HashSet<>();
-        HashSet<Move> expectedBlackMoves = new HashSet<>();
+
 
         expectedWhiteMoves.add(new Move(48,32,PieceType.WHITE_PAWN,PieceType.EMPTY, PieceType.EMPTY,MoveType.DEFAULT));
         expectedWhiteMoves.add(new Move(48,40,PieceType.WHITE_PAWN,PieceType.EMPTY, PieceType.EMPTY,MoveType.DEFAULT));

@@ -1,4 +1,4 @@
-package test.java.MoveGeneratorTests.PsuedoLegalMoves;
+package tests.java.MoveGeneratorTests.PsuedoLegalMoves;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,11 +7,11 @@ import java.util.HashSet;
 import org.junit.Test;
 
 import main.java.Board;
-import main.util.BoardUtil;
-import main.util.Move;
-import main.util.MoveGenerator;
-import main.util.MoveType;
-import main.util.PieceType;
+import main.utilities.BoardUtil;
+import main.utilities.Move;
+import main.utilities.MoveGenerator;
+import main.utilities.MoveType;
+import main.utilities.PieceType;
 
 public class KingMovesTest {
     public HashSet<Move> GenerateKingMoves(Board board, boolean isWhite){

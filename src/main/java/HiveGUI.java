@@ -2,9 +2,10 @@ package main.java;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import main.utilities.*;
 
 import java.util.EnumMap;
 
@@ -19,7 +20,6 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import main.util.*;
 
 
 public class HiveGUI extends JPanel{
@@ -32,7 +32,7 @@ public class HiveGUI extends JPanel{
 
     public static void main(String[] args) throws IOException{
 
-        board = new Board(" 8/8/8/8/8/8/8/8 w KQkq - 0 0");
+        board = new Board();
         // board = new Board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - ");
 
         BoardUtil.printBoard(board);

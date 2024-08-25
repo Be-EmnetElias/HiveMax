@@ -1,4 +1,4 @@
-package main.util;
+package main.utilities;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -35,20 +35,6 @@ public class BoardUtil {
     }};
 
     public BoardUtil(){}
-
-    /*
-     * Almost every move can be made by simply replacing the target location with the current piece, and the previous location to empty
-     * Enpassant: In addition to the normal move, also empty the enpassant square +|- 1
-     * Promotion: In addition to the normal move, change the piece type to the promotion type
-     * Castle: In addition to the normal move, apply a normal move to the corresponding rook to +|- 1 from the king
-     */
-    public static Board makeMove(Board board, Move move){
-        throw new UnsupportedOperationException("Method incomplete");
-    }
-
-    public static Board unmakeMove(Board board, Move move){
-        throw new UnsupportedOperationException("Method incomplete");
-    }
 
     public static long[] getTeamBoards(Board board, boolean isWhite){
         if(isWhite){
@@ -136,8 +122,6 @@ public class BoardUtil {
         return (boardFromSquare & enemyPieces) != 0; 
     }
 
-    
-
     public static boolean checkValidSquare(int square){
         return square >= 0 && square < 64;
     }
@@ -147,8 +131,6 @@ public class BoardUtil {
         return (boardFromSquare & board) != 0; 
     }
 
-
-    
     /** 
      * Checks if the piece at this square can move in this direction against the pinned pieces map
      * Returns true if the piece is pinned in this direction or if the piece isn't pinned at all, false otherwise
@@ -171,16 +153,37 @@ public class BoardUtil {
     }
 
     public static boolean squareValidInCaptureAndPushMasks(int square, int captureMask, long pushMask){
-        return true;
-    }
 
+        //neither mask available
+        if(captureMask == NULL_CAPTURE_MASK && pushMask == NULL_PUSH_MASK){
+            return true;
+        }
+
+        //both masks available
+        else if(captureMask != NULL_CAPTURE_MASK && pushMask != NULL_PUSH_MASK){
+            return square == captureMask && isSquareOnBoard(square, pushMask);
+        }
+        
+        //capture mask available
+        else if(captureMask != NULL_CAPTURE_MASK && pushMask == NULL_PUSH_MASK){
+            return square == captureMask;
+        }
+
+        //push mask available captureMask == NULL_CAPTURE_MASK && pushMask != NULL_PUSH_MASK
+        else{
+            return isSquareOnBoard(square, pushMask);
+        }
+
+
+    }
+               
     public static boolean canKingSideCastle(Board board, boolean isWhite, HashSet<Integer> dangerSquares){
         if(isWhite){
-            if((board.CASTLING_RIGHTS & 1) != 0 && getPieceTypeAtSquare(board, 61) == PieceType.EMPTY && getPieceTypeAtSquare(board, 62) == PieceType.EMPTY && !dangerSquares.contains(61) && !dangerSquares.contains(62)){
+            if((board.CASTLING_RIGHTS & 8) != 0 && getPieceTypeAtSquare(board, 61) == PieceType.EMPTY && getPieceTypeAtSquare(board, 62) == PieceType.EMPTY && !dangerSquares.contains(61) && !dangerSquares.contains(62)){
                 return true;
             }
         }else{
-            if((board.CASTLING_RIGHTS & 4) != 0 && getPieceTypeAtSquare(board, 5) == PieceType.EMPTY && getPieceTypeAtSquare(board, 6) == PieceType.EMPTY && !dangerSquares.contains(5) && !dangerSquares.contains(6)){
+            if((board.CASTLING_RIGHTS & 2) != 0 && getPieceTypeAtSquare(board, 5) == PieceType.EMPTY && getPieceTypeAtSquare(board, 6) == PieceType.EMPTY && !dangerSquares.contains(5) && !dangerSquares.contains(6)){
                 return true;
             }
         }
@@ -190,18 +193,17 @@ public class BoardUtil {
 
     public static boolean canQueenSideCastle(Board board, boolean isWhite, HashSet<Integer> dangerSquares){
         if(isWhite){
-            if((board.CASTLING_RIGHTS & 2) != 0 && getPieceTypeAtSquare(board, 59) == PieceType.EMPTY && getPieceTypeAtSquare(board, 58) == PieceType.EMPTY && getPieceTypeAtSquare(board, 57) == PieceType.EMPTY && !dangerSquares.contains(59) && !dangerSquares.contains(58) && !dangerSquares.contains(57)){
+            if((board.CASTLING_RIGHTS & 4) != 0 && getPieceTypeAtSquare(board, 59) == PieceType.EMPTY && getPieceTypeAtSquare(board, 58) == PieceType.EMPTY && getPieceTypeAtSquare(board, 57) == PieceType.EMPTY && !dangerSquares.contains(59) && !dangerSquares.contains(58) && !dangerSquares.contains(57)){
                 return true;
             }
         }else{
-            if((board.CASTLING_RIGHTS & 8) != 0 && getPieceTypeAtSquare(board, 3) == PieceType.EMPTY && getPieceTypeAtSquare(board, 2) == PieceType.EMPTY  && getPieceTypeAtSquare(board, 1) == PieceType.EMPTY&& !dangerSquares.contains(3) && !dangerSquares.contains(2) && !dangerSquares.contains(1)){
+            if((board.CASTLING_RIGHTS & 1) != 0 && getPieceTypeAtSquare(board, 3) == PieceType.EMPTY && getPieceTypeAtSquare(board, 2) == PieceType.EMPTY  && getPieceTypeAtSquare(board, 1) == PieceType.EMPTY&& !dangerSquares.contains(3) && !dangerSquares.contains(2) && !dangerSquares.contains(1)){
                 return true;
             }
         }
 
         return false;
     }
-
 
     public static String pieceTypeToString(PieceType piece){
         switch(piece){
@@ -264,10 +266,21 @@ public class BoardUtil {
             }
             if(row == 0) System.out.print("\t TURN: " + (board.IS_WHITE_TURN ? "WHITE":"BLACK"));
             if(row == 1) System.out.print("\t CASTLE RIGHTS: " + 
-            ((board.CASTLING_RIGHTS & 1) != 0 ? "K":"") +
-            ((board.CASTLING_RIGHTS & 2) != 0 ? "Q":"") +
-            ((board.CASTLING_RIGHTS & 3) != 0 ? "k":"") + 
-            ((board.CASTLING_RIGHTS & 4) != 0 ? "q":""));
+            ((board.CASTLING_RIGHTS & 8) != 0 ? "K":"") +
+            ((board.CASTLING_RIGHTS & 4) != 0 ? "Q":"") +
+            ((board.CASTLING_RIGHTS & 2) != 0 ? "k":"") + 
+            ((board.CASTLING_RIGHTS & 1) != 0 ? "q ":" ") + 
+
+            ((board.CASTLING_RIGHTS & 8) != 0 ? "1":"0") + 
+            ((board.CASTLING_RIGHTS & 4) != 0 ? "1":"0") + 
+            ((board.CASTLING_RIGHTS & 2) != 0 ? "1":"0") + 
+            ((board.CASTLING_RIGHTS & 1) != 0 ? "1 ":"0 ") +
+
+            board.CASTLING_RIGHTS
+
+
+            
+            );
             if(row == 2) System.out.print("\t AVAILABLE ENPASSANT CAPTURE: " + (enpasantSquare.equals("a0")?"NONE":enpasantSquare));
 
             if(row != 7) System.out.println("\n  | ");

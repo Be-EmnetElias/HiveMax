@@ -1,11 +1,9 @@
 package main.java;
 
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Map;
 
-import main.util.*;
-
-import main.java.*;
+import main.utilities.*;
 
 
 public class Board {
@@ -17,6 +15,8 @@ public class Board {
     public int ENPASSANT_SQUARE;
 
     public int CASTLING_RIGHTS;
+
+    private int PREVIOUS_CASTLING_RIGHTS;
 
     public boolean IS_WHITE_TURN;
 
@@ -30,6 +30,40 @@ public class Board {
 
     public Board(String fenPosition){
         setBoard(this, fenPosition);
+    }
+
+    public Board(
+        long WHITE_PAWNS, 
+        long WHITE_KNIGHTS, 
+        long WHITE_BISHOPS, 
+        long WHITE_ROOKS, 
+        long WHITE_QUEENS, 
+        long WHITE_KINGS,
+        long BLACK_PAWNS, 
+        long BLACK_KNIGHTS, 
+        long BLACK_BISHOPS, 
+        long BLACK_ROOKS, 
+        long BLACK_QUEENS, 
+        long BLACK_KINGS,
+        int ENPASSANT_SQUARE,
+        int CASTLING_RIGHTS,
+        boolean IS_WHITE_TURN
+    ){
+        this.WHITE_PAWNS = WHITE_PAWNS; 
+        this.WHITE_KNIGHTS = WHITE_KNIGHTS; 
+        this.WHITE_BISHOPS = WHITE_BISHOPS; 
+        this.WHITE_ROOKS = WHITE_ROOKS; 
+        this.WHITE_QUEENS = WHITE_QUEENS; 
+        this.WHITE_KINGS = WHITE_KINGS;
+        this.BLACK_PAWNS = BLACK_PAWNS; 
+        this.BLACK_KNIGHTS = BLACK_KNIGHTS; 
+        this.BLACK_BISHOPS = BLACK_BISHOPS; 
+        this.BLACK_ROOKS = BLACK_ROOKS; 
+        this.BLACK_QUEENS = BLACK_QUEENS; 
+        this.BLACK_KINGS = BLACK_KINGS;
+        this.ENPASSANT_SQUARE = ENPASSANT_SQUARE;
+        this.CASTLING_RIGHTS = CASTLING_RIGHTS;
+        this.IS_WHITE_TURN = IS_WHITE_TURN;    
     }
 
     public void setBoard(Board board, String fenposition){
@@ -96,10 +130,10 @@ public class Board {
         }
 
         // Set castling rights
-        if (castleRights.contains("K")) board.CASTLING_RIGHTS |= 1;  // White King-side
-        if (castleRights.contains("Q")) board.CASTLING_RIGHTS |= 2;  // White Queen-side
-        if (castleRights.contains("k")) board.CASTLING_RIGHTS |= 4;  // Black King-side
-        if (castleRights.contains("q")) board.CASTLING_RIGHTS |= 8;  // Black Queen-side
+        if (castleRights.contains("K")) board.CASTLING_RIGHTS |= 8;  // White King-side
+        if (castleRights.contains("Q")) board.CASTLING_RIGHTS |= 4;  // White Queen-side
+        if (castleRights.contains("k")) board.CASTLING_RIGHTS |= 2;  // Black King-side
+        if (castleRights.contains("q")) board.CASTLING_RIGHTS |= 1;  // Black Queen-side
     }
 
     public String getFenString(Board board){
@@ -138,8 +172,350 @@ public class Board {
         return fenPosition;
     }
 
+    /**
+     * Almost every move can be made by simply replacing the target location with the current piece, and the previous location to empty
+     * Enpassant: In addition to the default move, also empty the enpassant square +|- 1
+     * Promotion: In addition to the default move, remove the piece, add the new promoted piece
+     * Castle: In addition to the default move, apply a default move to the corresponding rook to +|- 1 from the king
+     */
+    public void makeMove(Move move){
+        this.PREVIOUS_CASTLING_RIGHTS = CASTLING_RIGHTS;
+        int fromSquare = move.fromSquare();
+        int toSquare = move.toSquare();
+        PieceType pieceType = move.pieceType();
+        PieceType capturedPieceType = move.capturedPieceType();
+        PieceType promotedPieceType = move.promotionName();
+        MoveType moveType = move.moveType();
 
+        HashMap<PieceType, Long> boardsMap = makeBoardMap();
+
+        // move the piece type
+        long pieceBoard = boardsMap.get(pieceType);
+        pieceBoard = BoardUtil.clearBit(pieceBoard, fromSquare);
+        pieceBoard = BoardUtil.setBit(pieceBoard, toSquare);
+        boardsMap.put(pieceType, pieceBoard);
+
+        // clear the capture type
+        if(capturedPieceType != PieceType.EMPTY){
+            long capturedBoard = boardsMap.get(capturedPieceType);
+            capturedBoard = BoardUtil.clearBit(capturedBoard, toSquare);
+            boardsMap.put(capturedPieceType, capturedBoard);
+        }
+
+        // handle enpassant
+        if(moveType == MoveType.ENPASSANT){
+            long capturedBoard = boardsMap.get(capturedPieceType);
+            capturedBoard = BoardUtil.clearBit(capturedBoard, toSquare + (IS_WHITE_TURN ? 8 : -8));
+            boardsMap.put(capturedPieceType, capturedBoard);
+            ENPASSANT_SQUARE = -1;
+        }
+
+        // handle castling
+        if(moveType == MoveType.CASTLE){
+            switch(toSquare){
+                case 62:
+                    // white king side castle
+                    long newRooks1 = BoardUtil.setBit(BoardUtil.clearBit(WHITE_ROOKS,63), 61);
+                    boardsMap.put(PieceType.WHITE_ROOK, newRooks1);
     
+                    break;
+                case 58:
+                    // white queen side castle
+                    long newRooks2 = BoardUtil.setBit(BoardUtil.clearBit(WHITE_ROOKS,56), 59);
+                    boardsMap.put(PieceType.WHITE_ROOK, newRooks2);
+
+                    break;
+                case 6:
+                    // black king side castle
+                    long newRooks3 = BoardUtil.setBit(BoardUtil.clearBit(BLACK_ROOKS,7), 5);
+                    boardsMap.put(PieceType.BLACK_ROOK, newRooks3);
+                    break;
+                case 2:
+                    // black queen side castle
+                    long newRooks4 = BoardUtil.setBit(BoardUtil.clearBit(BLACK_ROOKS,0), 3);
+                    boardsMap.put(PieceType.BLACK_ROOK, newRooks4);
+                    break;
+            }
+        }
+        
+        // handle promotion
+        if(moveType == MoveType.PROMOTION){
+            pieceBoard = BoardUtil.clearBit(pieceBoard, toSquare);
+            long promotedBoard = boardsMap.get(promotedPieceType);
+            promotedBoard = BoardUtil.setBit(promotedBoard, toSquare);
+
+            boardsMap.put(pieceType, pieceBoard);
+            boardsMap.put(promotedPieceType, promotedBoard);
+        }
+
+        // update enpassant
+        if((pieceType == PieceType.WHITE_PAWN || pieceType == PieceType.BLACK_PAWN) && Math.abs(fromSquare - toSquare) == 16 ){
+            ENPASSANT_SQUARE = toSquare + (IS_WHITE_TURN ? 8 : -8);
+        }else{
+            ENPASSANT_SQUARE = -1;
+        }
+
+        // update castling rights
+        if(pieceType == PieceType.WHITE_KING){
+            CASTLING_RIGHTS &= 3;
+        }
+
+        if(pieceType == PieceType.BLACK_KING){
+            CASTLING_RIGHTS &= 12;
+        }
+
+        if(pieceType == PieceType.WHITE_ROOK){
+            if(fromSquare == 63){
+                CASTLING_RIGHTS &= 7;
+            }
+
+            if(fromSquare == 56){
+                CASTLING_RIGHTS &= 11;
+            }
+        }
+
+        if(pieceType == PieceType.BLACK_ROOK){
+            if(fromSquare == 7){
+                CASTLING_RIGHTS &= 13;
+            }
+
+            if(fromSquare == 0){
+                CASTLING_RIGHTS &= 14;
+            }
+        }
+
+        // update piece boards
+        for(Map.Entry<PieceType, Long> entry : boardsMap.entrySet()){
+            PieceType piece = entry.getKey();
+            long pieceTypeBoard = entry.getValue();
+            
+            switch(piece){
+                case BLACK_BISHOP:
+                    this.BLACK_BISHOPS = pieceTypeBoard;
+                    break;
+                case BLACK_KING:
+                    this.BLACK_KINGS = pieceTypeBoard;
+                    break;
+                case BLACK_KNIGHT:
+                    this.BLACK_KNIGHTS = pieceTypeBoard;
+                    break;
+                case BLACK_PAWN:
+                    this.BLACK_PAWNS = pieceTypeBoard;
+                    break;
+                case BLACK_QUEEN:
+                    this.BLACK_QUEENS = pieceTypeBoard;
+                    break;
+                case BLACK_ROOK:
+                    this.BLACK_ROOKS = pieceTypeBoard;
+                    break;
+                case WHITE_BISHOP:
+                    this.WHITE_BISHOPS = pieceTypeBoard;
+                    break;
+                case WHITE_KING:
+                    this.WHITE_KINGS = pieceTypeBoard;
+                    break;
+                case WHITE_KNIGHT:
+                    this.WHITE_KNIGHTS = pieceTypeBoard;
+                    break;
+                case WHITE_PAWN:
+                    this.WHITE_PAWNS = pieceTypeBoard;
+                    break;
+                case WHITE_QUEEN:
+                    this.WHITE_QUEENS = pieceTypeBoard;
+                    break;
+                case WHITE_ROOK:
+                    this.WHITE_ROOKS = pieceTypeBoard;
+                    break;
+                default:
+                    break;
+                
+            }
+        }
+
+        // update turn
+        this.IS_WHITE_TURN = !this.IS_WHITE_TURN;
+        
+    }
+
+    /**
+     * Almost every move can be undone by simply replacing the target location with the captured piece, and the previous location to the current piece
+     * Enpassant: Instead, replace the enpassant square with empty, enpassant +/- 8 with the captured piece, and the previous with the current piece
+     * Promotion: In addition to the default move, remove the piece, add the new promoted piece
+     * Castle: In addition, return the rooks to their spot and update castling rights 
+     */
+    public void undoMove(Move move){
+        this.CASTLING_RIGHTS = PREVIOUS_CASTLING_RIGHTS;
+        this.PREVIOUS_CASTLING_RIGHTS = -1; //todo move this to the move type
+        int fromSquare = move.fromSquare();
+        int toSquare = move.toSquare();
+        PieceType pieceType = move.pieceType();
+        PieceType capturedPieceType = move.capturedPieceType();
+        PieceType promotedPieceType = move.promotionName();
+        MoveType moveType = move.moveType();
+
+        HashMap<PieceType, Long> boardsMap = makeBoardMap();
+
+        ENPASSANT_SQUARE = -1;
+        // move the piece type
+        long pieceBoard = boardsMap.get(pieceType);
+        pieceBoard = BoardUtil.clearBit(pieceBoard, toSquare);
+        pieceBoard = BoardUtil.setBit(pieceBoard, fromSquare);
+        boardsMap.put(pieceType, pieceBoard);
+
+        // clear the capture type
+        if(capturedPieceType != PieceType.EMPTY && moveType != MoveType.ENPASSANT){
+            long capturedBoard = boardsMap.get(capturedPieceType);
+            capturedBoard = BoardUtil.setBit(capturedBoard, toSquare);
+            boardsMap.put(capturedPieceType, capturedBoard);
+        }
+
+        // handle enpassant
+        if(moveType == MoveType.ENPASSANT){
+            long capturedBoard = boardsMap.get(capturedPieceType);
+            capturedBoard = BoardUtil.setBit(capturedBoard, toSquare + (IS_WHITE_TURN ? -8 : 8));
+            boardsMap.put(capturedPieceType, capturedBoard);
+            ENPASSANT_SQUARE = toSquare;
+        }
+
+        // handle castling
+        if(moveType == MoveType.CASTLE){
+            switch(toSquare){
+                case 62:
+                    // white king side castle
+                    long newRooks1 = BoardUtil.setBit(BoardUtil.clearBit(WHITE_ROOKS,61), 63);
+                    boardsMap.put(PieceType.WHITE_ROOK, newRooks1);
+                    break;
+                case 58:
+                    // white queen side castle
+                    long newRooks2 = BoardUtil.setBit(BoardUtil.clearBit(WHITE_ROOKS,59), 56);
+                    boardsMap.put(PieceType.WHITE_ROOK, newRooks2);
+                    break;
+                case 6:
+                    // black king side castle
+                    long newRooks3 = BoardUtil.setBit(BoardUtil.clearBit(BLACK_ROOKS,5), 7);
+                    boardsMap.put(PieceType.BLACK_ROOK, newRooks3);
+                    break;
+                case 2:
+                    // black queen side castle
+                    long newRooks4 = BoardUtil.setBit(BoardUtil.clearBit(BLACK_ROOKS,3), 0);
+                    boardsMap.put(PieceType.BLACK_ROOK, newRooks4);
+                    break;
+            }
+        }
+        
+        // handle promotion
+        if(moveType == MoveType.PROMOTION){
+            pieceBoard = BoardUtil.setBit(pieceBoard, fromSquare);
+            long promotedBoard = boardsMap.get(promotedPieceType);
+            promotedBoard = BoardUtil.clearBit(promotedBoard, toSquare);
+
+            boardsMap.put(pieceType, pieceBoard);
+            boardsMap.put(promotedPieceType, promotedBoard);
+        }
+
+        // update enpassant
+        //todo: idk
+
+        // update piece boards
+        for(Map.Entry<PieceType, Long> entry : boardsMap.entrySet()){
+            PieceType piece = entry.getKey();
+            long pieceTypeBoard = entry.getValue();
+            
+            switch(piece){
+                case BLACK_BISHOP:
+                    this.BLACK_BISHOPS = pieceTypeBoard;
+                    break;
+                case BLACK_KING:
+                    this.BLACK_KINGS = pieceTypeBoard;
+                    break;
+                case BLACK_KNIGHT:
+                    this.BLACK_KNIGHTS = pieceTypeBoard;
+                    break;
+                case BLACK_PAWN:
+                    this.BLACK_PAWNS = pieceTypeBoard;
+                    break;
+                case BLACK_QUEEN:
+                    this.BLACK_QUEENS = pieceTypeBoard;
+                    break;
+                case BLACK_ROOK:
+                    this.BLACK_ROOKS = pieceTypeBoard;
+                    break;
+                case WHITE_BISHOP:
+                    this.WHITE_BISHOPS = pieceTypeBoard;
+                    break;
+                case WHITE_KING:
+                    this.WHITE_KINGS = pieceTypeBoard;
+                    break;
+                case WHITE_KNIGHT:
+                    this.WHITE_KNIGHTS = pieceTypeBoard;
+                    break;
+                case WHITE_PAWN:
+                    this.WHITE_PAWNS = pieceTypeBoard;
+                    break;
+                case WHITE_QUEEN:
+                    this.WHITE_QUEENS = pieceTypeBoard;
+                    break;
+                case WHITE_ROOK:
+                    this.WHITE_ROOKS = pieceTypeBoard;
+                    break;
+                default:
+                    break;
+                
+            }
+        }
+
+        // update turn
+        this.IS_WHITE_TURN = !this.IS_WHITE_TURN;
+    }
+
+    public HashMap<PieceType, Long> makeBoardMap(){
+        return new HashMap<>(){{
+            put(PieceType.WHITE_PAWN, WHITE_PAWNS);
+            put(PieceType.WHITE_KNIGHT, WHITE_KNIGHTS);
+            put(PieceType.WHITE_BISHOP, WHITE_BISHOPS);
+            put(PieceType.WHITE_ROOK, WHITE_ROOKS);
+            put(PieceType.WHITE_QUEEN, WHITE_QUEENS);
+            put(PieceType.WHITE_KING, WHITE_KINGS);
+            put(PieceType.BLACK_PAWN, BLACK_PAWNS);
+            put(PieceType.BLACK_KNIGHT, BLACK_KNIGHTS);
+            put(PieceType.BLACK_BISHOP, BLACK_BISHOPS);
+            put(PieceType.BLACK_ROOK, BLACK_ROOKS);
+            put(PieceType.BLACK_QUEEN, BLACK_QUEENS);
+            put(PieceType.BLACK_KING, BLACK_KINGS);
+    
+        }};
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null){
+            return false;
+        }
+
+        if(obj.getClass() != this.getClass()){
+            return false;
+        }
+
+        final Board other = (Board)obj;
+
+        return( 
+            this.WHITE_PAWNS == other.WHITE_PAWNS && 
+            this.WHITE_KNIGHTS == other.WHITE_KNIGHTS && 
+            this.WHITE_BISHOPS == other.WHITE_BISHOPS && 
+            this.WHITE_ROOKS == other.WHITE_ROOKS && 
+            this.WHITE_QUEENS == other.WHITE_QUEENS && 
+            this.WHITE_KINGS == other.WHITE_KINGS && 
+            this.BLACK_PAWNS == other.BLACK_PAWNS && 
+            this.BLACK_KNIGHTS == other.BLACK_KNIGHTS && 
+            this.BLACK_BISHOPS == other.BLACK_BISHOPS && 
+            this.BLACK_ROOKS == other.BLACK_ROOKS && 
+            this.BLACK_QUEENS == other.BLACK_QUEENS && 
+            this.BLACK_KINGS == other.BLACK_KINGS && 
+            this.ENPASSANT_SQUARE == other.ENPASSANT_SQUARE &&
+            this.CASTLING_RIGHTS == other.CASTLING_RIGHTS && 
+            this.IS_WHITE_TURN == other.IS_WHITE_TURN
+        );
+    }
 
 
 

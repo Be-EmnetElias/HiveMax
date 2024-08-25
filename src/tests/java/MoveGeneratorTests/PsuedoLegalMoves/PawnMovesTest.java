@@ -1,33 +1,12 @@
-package test.java.MoveGeneratorTests.PsuedoLegalMoves;
+package tests.java.MoveGeneratorTests.PsuedoLegalMoves;
 
 import main.java.*;
-import main.util.*;
+import main.utilities.*;
 
 import java.util.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeAll;
 
-/*
- 
-    8 |   0  1  2  3  4  5  6  7     TURN: WHITE
-
-    7 |   8  9 10 11 12 13 14 15     CASTLE RIGHTS: KQkq
-    
-    6 |  16 17 18 19 20 21 22 23     AVAILABLE ENPASSANT CAPTURE: NONE
-    
-    5 |  24 25 26 27 28 29 30 31
-    
-    4 |  32 33 34 35 36 37 38 39
-    
-    3 |  40 41 42 43 44 45 46 47
-    
-    2 |  48 49 50 51 52 53 54 55
-    
-    1 |  56 57 58 59 60 61 62 63
-        ------------------------
-         a  b  c  d  e  f  g  h
- */
 public class PawnMovesTest {
     
 

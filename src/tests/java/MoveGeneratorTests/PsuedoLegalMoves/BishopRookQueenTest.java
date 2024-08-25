@@ -1,7 +1,7 @@
-package test.java.MoveGeneratorTests.PsuedoLegalMoves;
+package tests.java.MoveGeneratorTests.PsuedoLegalMoves;
 
 import main.java.*;
-import main.util.*;
+import main.utilities.*;
 
 import java.util.*;
 import org.junit.jupiter.api.Test;
@@ -203,6 +203,9 @@ public class BishopRookQueenTest {
         expectedMoves.add(new Move(28,46,PieceType.WHITE_BISHOP,PieceType.BLACK_PAWN, PieceType.EMPTY, MoveType.CAPTURE));
         expectedMoves.add(new Move(28,35,PieceType.WHITE_BISHOP,PieceType.EMPTY, PieceType.EMPTY,MoveType.DEFAULT));
         expectedMoves.add(new Move(28,42,PieceType.WHITE_BISHOP,PieceType.BLACK_PAWN, PieceType.EMPTY, MoveType.CAPTURE));
+
+        assertEquals(expectedMoves, GenerateSlidingPieceMove(board,true,PieceType.WHITE_BISHOP,board.WHITE_BISHOPS));
+
     }
   
 }

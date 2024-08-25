@@ -1,4 +1,4 @@
-package test.java.MoveGeneratorTests.PinnedPiecesTest;
+package tests.java.MoveGeneratorTests.PinnedPiecesCalculationTest;
 
 import java.util.HashMap;
 
@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import main.java.*;
-import main.util.BoardUtil;
-import main.util.MoveGenerator;
+import main.utilities.BoardUtil;
+import main.utilities.MoveGenerator;
 
 public class CalculatePinnedPiecesTest {
 
