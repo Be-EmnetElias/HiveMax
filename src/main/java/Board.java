@@ -136,7 +136,7 @@ public class Board {
         if (castleRights.contains("q")) board.CASTLING_RIGHTS |= 1;  // Black Queen-side
     }
 
-    public String getFenString(Board board){
+    public String getFenString(){
         String fenPosition = "";
 
         int emptyPieces = 0;
@@ -148,7 +148,7 @@ public class Board {
                 emptyPieces = 0;
             }
 
-            PieceType curr = BoardUtil.getPieceTypeAtSquare(board, i);
+            PieceType curr = BoardUtil.getPieceTypeAtSquare(this, i);
             if(curr != PieceType.EMPTY){
                 if(emptyPieces > 0){
                     fenPosition += "" + emptyPieces;
@@ -164,9 +164,10 @@ public class Board {
             
         }
 
-        fenPosition += " " + (board.IS_WHITE_TURN ? "w":"b");
-        fenPosition += " KQkq";
-        fenPosition += " -";
+        fenPosition += " " + (this.IS_WHITE_TURN ? "w":"b");
+        fenPosition += " KQkq ";
+        String enpasantSquare = (this.ENPASSANT_SQUARE == -1) ? "- ":"" + (char)('a' + this.ENPASSANT_SQUARE%8) + (8-this.ENPASSANT_SQUARE/8) + " ";
+        fenPosition += enpasantSquare;
         fenPosition += " 0 0";
 
         return fenPosition;

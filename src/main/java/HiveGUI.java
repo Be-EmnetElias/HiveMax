@@ -101,7 +101,7 @@ class InfoPanel extends JPanel{
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         infoArea = new JTextArea();
-        infoArea.setText(board.getFenString(board));
+        infoArea.setText(board.getFenString());
 
         fenInput = new JTextField();
         fenInput.setMaximumSize(new Dimension(Integer.MAX_VALUE, fenInput.getPreferredSize().height));
@@ -126,7 +126,7 @@ class InfoPanel extends JPanel{
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        infoArea.setText(board.getFenString(board));
+        infoArea.setText(board.getFenString());
 
 
     }
@@ -263,7 +263,6 @@ class DragPanel extends JPanel{
     private class DragListener extends MouseMotionAdapter{
 
         public void mouseDragged(MouseEvent e){
-            // System.out.println("Mouse dragging:" + e.getX() + ", " + e.getY());
         }
     }
 }
@@ -271,17 +270,25 @@ class DragPanel extends JPanel{
 class ChessPanel extends JPanel{
 
     public Board board;
+    public HashSet<Move> legalMoves = new HashSet<>();
 
     public static Image boardImage;
     public static BufferedImage allPieces;
     public static EnumMap<PieceType,Image> pieceImages = new EnumMap<>(PieceType.class);
     public static final String BG_PATH = "src\\main\\assets\\boards\\bg_brown.png";
     public static final String PIECES_PATH = "src\\main\\assets\\pieces\\pieces.png";
+
+    public PieceType selectedPiece = PieceType.EMPTY;
+    public int[] dragCoor = new int[]{-1, -1};
+    public HashSet<Move> moveHints = new HashSet<>();
+
     int toSquare = -1;
     int fromSquare = -1;
 
     public ChessPanel(Board board) throws IOException{
         this.board = board;
+        legalMoves = MoveGenerator.getCurrentLegalMoves(board);
+
         ClickListener clickListener = new ClickListener();
         DragListener dragListener = new DragListener();
         this.addMouseListener(clickListener);
@@ -310,24 +317,67 @@ class ChessPanel extends JPanel{
     private class ClickListener extends MouseAdapter{
 
         public void mousePressed(MouseEvent e){
-            if(fromSquare == -1){
-                fromSquare = BoardUtil.rowColToSquare(e.getY()/100, e.getX()/100);
-            }else{
-                toSquare = BoardUtil.rowColToSquare(e.getY()/100, e.getX()/100);
-                PieceType from = BoardUtil.getPieceTypeAtSquare(board, fromSquare);
-                PieceType to = BoardUtil.getPieceTypeAtSquare(board, toSquare);
-                String moveType = (BoardUtil.isOccupiedByFriendly(toSquare, BoardUtil.getTeamBoard(board, true)) || to == PieceType.EMPTY) ? "MoveType.DEFAULT" : " MoveType.CAPTURE";
-                System.out.println("new Move(" + fromSquare + "," + toSquare + "," + "PieceType." + from + "," + "PieceType." +to + ", PieceType.EMPTY," + moveType + ")");
-                fromSquare = -1;
-                toSquare = -1;
+            fromSquare = BoardUtil.rowColToSquare(e.getY()/100, e.getX()/100);
+            selectedPiece = BoardUtil.getPieceTypeAtSquare(board, fromSquare);
+            HashSet<Move> hints = new HashSet<>();
+
+            for(Move move: legalMoves){
+                if(move.fromSquare() == fromSquare){
+                    hints.add(move);
+                }
             }
+
+            moveHints = hints;
+
+            // if(fromSquare == -1){
+                
+
+            // }else{
+            //     toSquare = BoardUtil.rowColToSquare(e.getY()/100, e.getX()/100);
+            //     PieceType from = BoardUtil.getPieceTypeAtSquare(board, fromSquare);
+            //     PieceType to = BoardUtil.getPieceTypeAtSquare(board, toSquare);
+            //     String moveType = (BoardUtil.isOccupiedByFriendly(toSquare, BoardUtil.getTeamBoard(board, true)) || to == PieceType.EMPTY) ? "MoveType.DEFAULT" : " MoveType.CAPTURE";
+            //     // System.out.println("new Move(" + fromSquare + "," + toSquare + "," + "PieceType." + from + "," + "PieceType." +to + ", PieceType.EMPTY," + moveType + ")");
+            //     fromSquare = -1;
+            //     toSquare = -1;
+            // }
+
+            repaint();
+        }
+
+        public void mouseReleased(MouseEvent e) {
+            selectedPiece = PieceType.EMPTY;
+            toSquare = BoardUtil.rowColToSquare(e.getY()/100, e.getX()/100);
+
+            for(Move move: legalMoves){
+                if(move.toSquare() == toSquare && move.fromSquare() == fromSquare){
+                    board.makeMove(move);
+                    legalMoves = MoveGenerator.getCurrentLegalMoves(board);
+                    break;
+                }
+            }
+            fromSquare = -1;
+            toSquare = -1;
+            moveHints = new HashSet<>();
+
+            repaint();
         }
     }
 
     private class DragListener extends MouseMotionAdapter{
 
+        public void mouseMoved(MouseEvent e){
+            dragCoor[0] = e.getX();
+            dragCoor[1] = e.getY();
+
+            repaint();
+        }
+
         public void mouseDragged(MouseEvent e){
-            // System.out.println("Mouse dragging:" + e.getX() + ", " + e.getY());
+            dragCoor[0] = e.getX();
+            dragCoor[1] = e.getY();
+
+            repaint();
         }
     }
 
@@ -338,16 +388,34 @@ class ChessPanel extends JPanel{
         // Draw the board
         g.drawImage(boardImage, 0, 0, 800, 800, null);
 
+        // drag highlight
+        g.setColor(new Color(255,255,255,100));
+        g.fillRect(dragCoor[0] / 100 * 100, dragCoor[1] / 100 * 100,100,100);
+
+        for(Move move : moveHints){
+            int moveHintX = (move.toSquare() % 8) * 100;
+            int moveHintY = (move.toSquare() / 8) * 100;
+
+            g.setColor(new Color(250,175,2)); // yellow 
+            g.fillRect(moveHintX,moveHintY, 100,100);
+        }
         //draw all pieces
+        g.setColor(Color.WHITE);
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
                 int square = row * 8 + col;
-                PieceType current = BoardUtil.getPieceTypeAtSquare(board, square);
-                g.setColor(Color.WHITE);
                 g.drawString((row*8 + col) + "", col*100,row*100 + 100);
-                g.drawImage(pieceImages.get(current), col * 100, row * 100, null);
-                
+
+                if(square != fromSquare){
+                    PieceType current = BoardUtil.getPieceTypeAtSquare(board, square);
+                    g.drawImage(pieceImages.get(current), col * 100, row * 100, null);
+                } 
             }
+        }
+
+        if(selectedPiece != PieceType.EMPTY){
+            g.drawImage(pieceImages.get(selectedPiece), dragCoor[0] - 50, dragCoor[1] - 50 , null);
+
         }
     }
 }

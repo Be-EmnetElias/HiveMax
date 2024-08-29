@@ -140,16 +140,16 @@ public class BoardUtil {
      * @return boolean
      */
     public static boolean isValidPinDirection(int fromSquare, int displacement, HashMap<Integer, Integer> pinnedPieces){
-        if(pinnedPieces == null || pinnedPieces.isEmpty()){
+        if(pinnedPieces == null || pinnedPieces.isEmpty() || !pinnedPieces.containsKey(fromSquare)){
             return true;
         }
         
+        
         int pinnedDisplacement = pinnedPieces.get(fromSquare);
-        boolean notPinned = !pinnedPieces.containsKey(fromSquare);
-        boolean pawnDoubleException = Math.abs(displacement) == 16 && Math.abs(pinnedDisplacement) == 8; // double jump displacement is in the same direction as a normal move
-        boolean containsPinDirection =  pinnedDisplacement == displacement || pawnDoubleException;
-
-        return notPinned || containsPinDirection; 
+        boolean pawnDoubleException = pinnedDisplacement == displacement * 2; // double jump displacement is in the same direction as a normal move
+        // System.out.println(fromSquare + " IS PINNED IN " + pinnedDisplacement + " DIRECTION");
+        // System.out.println("IS: " + displacement + " VALID?");
+        return  (pinnedDisplacement == displacement) || pawnDoubleException;
     }
 
     public static boolean squareValidInCaptureAndPushMasks(int square, int captureMask, long pushMask){
@@ -157,22 +157,24 @@ public class BoardUtil {
         //neither mask available
         if(captureMask == NULL_CAPTURE_MASK && pushMask == NULL_PUSH_MASK){
             return true;
+        }else{
+            return square == captureMask || isSquareOnBoard(square, pushMask);
         }
 
-        //both masks available
-        else if(captureMask != NULL_CAPTURE_MASK && pushMask != NULL_PUSH_MASK){
-            return square == captureMask && isSquareOnBoard(square, pushMask);
-        }
+        // //both masks available
+        // else if(captureMask != NULL_CAPTURE_MASK && pushMask != NULL_PUSH_MASK){
+        //     return square == captureMask || isSquareOnBoard(square, pushMask);
+        // }
         
-        //capture mask available
-        else if(captureMask != NULL_CAPTURE_MASK && pushMask == NULL_PUSH_MASK){
-            return square == captureMask;
-        }
+        // //capture mask available
+        // else if(captureMask != NULL_CAPTURE_MASK && pushMask == NULL_PUSH_MASK){
+        //     return square == captureMask;
+        // }
 
-        //push mask available captureMask == NULL_CAPTURE_MASK && pushMask != NULL_PUSH_MASK
-        else{
-            return isSquareOnBoard(square, pushMask);
-        }
+        // //push mask available captureMask == NULL_CAPTURE_MASK && pushMask != NULL_PUSH_MASK
+        // else{
+        //     return isSquareOnBoard(square, pushMask);
+        // }
 
 
     }
@@ -204,6 +206,7 @@ public class BoardUtil {
 
         return false;
     }
+
 
     public static String pieceTypeToString(PieceType piece){
         switch(piece){
@@ -296,4 +299,8 @@ public class BoardUtil {
         System.out.println("\n");
     }
 
+    public static String squareToString(int square){
+        return "" + (char)('a' + square%8) + (8-square/8);
+
+    }
 }

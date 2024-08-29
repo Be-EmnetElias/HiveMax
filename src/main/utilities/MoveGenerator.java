@@ -1,5 +1,6 @@
 package main.utilities;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -11,7 +12,9 @@ public class MoveGenerator{
     public MoveGenerator(){}
     
     
-    
+    public static HashSet<Move> getCurrentLegalMoves(Board board){
+        return getCurrentLegalMoves(board, board.IS_WHITE_TURN);
+    }
     /** 
      * * To get current legal moves:
      * * (1) calculate enemy attacking pseudo legal moves
@@ -26,13 +29,14 @@ public class MoveGenerator{
     public static HashSet<Move> getCurrentLegalMoves(Board board, boolean isWhite){
         int kingPosition = BoardUtil.getKingSquare(board, isWhite);
         HashSet<Integer> dangerSquares = new HashSet<>();
+        HashMap<Integer, Integer> emptyPinnedPieces = new HashMap<>();
         boolean singleCheck = false;
         boolean doubleCheck = false;
         int captureMask = BoardUtil.NULL_CAPTURE_MASK;
         long pushMask = BoardUtil.NULL_PUSH_MASK;
 
         // get enemy psuedo legal moves
-        HashSet<Move> enemyPsuedoLegalMoves = getPsuedoLegalMoves(board, BoardUtil.getTeamBoards(board, !isWhite),!isWhite, true, null, dangerSquares, captureMask, pushMask);
+        HashSet<Move> enemyPsuedoLegalMoves = getPsuedoLegalMoves(board, BoardUtil.getTeamBoards(board, !isWhite),!isWhite, true, emptyPinnedPieces, dangerSquares, captureMask, pushMask);
 
         // extract danger squares and determine if single or double check
         // king is in single check if the enemy move attacks the king
@@ -59,12 +63,16 @@ public class MoveGenerator{
             return getKingMoves(board, kingPosition, BoardUtil.getTeamBoard(board, isWhite), dangerSquares, isWhite);
         }else{
             //calculate pinned pieces
-            long slidingPieces = isWhite ? (board.WHITE_QUEENS | board.WHITE_ROOKS | board. WHITE_BISHOPS) : (board.BLACK_QUEENS | board.BLACK_ROOKS | board.BLACK_BISHOPS);
-            HashMap<Integer, Integer> pinnedPieces = calculatePinnedPieces(BoardUtil.getTeamBoard(board, isWhite), BoardUtil.getTeamBoard(board, !isWhite), slidingPieces, kingPosition, isWhite);
+            long enemySlidingPieces = isWhite ? (board.BLACK_QUEENS | board.BLACK_ROOKS | board.BLACK_BISHOPS) : (board.WHITE_QUEENS | board.WHITE_ROOKS | board. WHITE_BISHOPS);
+            HashMap<Integer, Integer> pinnedPieces = calculatePinnedPieces(BoardUtil.getTeamBoard(board, isWhite), BoardUtil.getTeamBoard(board, !isWhite), enemySlidingPieces, kingPosition, isWhite);
             
-
+            System.out.println("PINNED PIECES");
+            System.out.println(pinnedPieces);
             
             if(singleCheck){
+                // System.out.println("CAPTURE: " + captureMask);
+                // System.out.print("PUSH MASK: ");
+
                 //calculate push masks, which are the squares from the capture mask to the kingPosition
                 pushMask = 0L;
                 int dy = (kingPosition / 8) - (captureMask / 8);
@@ -77,10 +85,15 @@ public class MoveGenerator{
                 int current = captureMask + displacement;
                 while(current != kingPosition){
                     pushMask = BoardUtil.setBit(pushMask, current);
+                    // System.out.print(current + " ");
                     current += displacement;
                 }
+                // System.out.println();
 
             }
+
+            
+            
 
             return getPsuedoLegalMoves(board, BoardUtil.getTeamBoards(board, isWhite), isWhite, false, pinnedPieces, dangerSquares, captureMask, pushMask);
             
@@ -102,30 +115,45 @@ public class MoveGenerator{
     }
 
     /** 
+     * TODO: change this method to iterate from sliding pieces to king
+     * ! currently if any sliding piece is found in any pinned direction it counts, which is incorrect, a bishop cannot attack like a rook
      * Calculates the pieces pinned to this color's king:
      * @return HashMap<Integer, Integer> key: piece square, value: pinned direction 
      */
     public static HashMap<Integer, Integer> calculatePinnedPieces(long teamBoard, long enemyBoard, long enemySlidingPieces, int kingPosition, boolean isWhite){
         HashMap<Integer, Integer> pinnedPieces = new HashMap<>();
 
-        int[] directions = {-8, 8, -1, 1, -9, 9, -7, 7};
+        int[] directions = BoardUtil.QUEEN_DISPLACEMENTS;
 
-
+        // System.out.println("PIECES THAT ARE PINNED TO " + (isWhite ? "WHITE_KING":"BLACK_KING" ) + " at " + kingPosition);
         for(int dir: directions){
+            // System.out.println("\t DIRECTION: " + dir);
             int currentSquare = kingPosition + dir;
+
             int pieceSquareMaybePinned = -1;
 
-            while(BoardUtil.checkValidSquare(currentSquare)){
+            while(BoardUtil.checkValidSquare(currentSquare) && (Math.abs(((currentSquare - dir) % 8) - (currentSquare % 8)) < 2)){
+                
+                // 
+                // System.out.println("\t\t SQUARE: " + currentSquare);
+
+                // System.out.println("\t\t\t VALID ");
 
                 if(BoardUtil.isOccupiedByFriendly(currentSquare, teamBoard)){
                     if(pieceSquareMaybePinned == -1){
+                        // System.out.println("\t\t\t OCC BY FRIENDLY ");
+
                         pieceSquareMaybePinned = currentSquare;
                     }else{
+                        // System.out.println("\t\t\t OCC BY FRIENDLY AGAIN, SAFE ");
+
                         break;
                     }
                 }   
                 
                 if(BoardUtil.isOccupiedByEnemy(currentSquare, enemyBoard)){
+                    // System.out.println("\t\t\t OCC BY ENEMY ");
+
                     if(BoardUtil.isSquareOnBoard(currentSquare, enemySlidingPieces) && pieceSquareMaybePinned != -1){
                         pinnedPieces.put(pieceSquareMaybePinned, dir);
                     }
@@ -162,7 +190,7 @@ public class MoveGenerator{
 
                 boolean overflowed = Math.abs(fromFile - toFile) > 2 || Math.abs(fromRank - toRank) > 2;
                 boolean validSquare = BoardUtil.checkValidSquare(toSquare);
-                boolean validPinDirection = BoardUtil.isValidPinDirection(toSquare, displacement, pinnedPieces);
+                boolean validPinDirection = BoardUtil.isValidPinDirection(fromSquare, displacement, pinnedPieces);
                 boolean validInCaptureAndPushMasks = BoardUtil.squareValidInCaptureAndPushMasks(toSquare, captureMask, pushMask);
 
                 boolean validPrereqs = !overflowed && validSquare && validPinDirection && validInCaptureAndPushMasks;
@@ -175,10 +203,10 @@ public class MoveGenerator{
                     PieceType enpassantCapturedPieceType = BoardUtil.getPieceTypeAtSquare(board, board.ENPASSANT_SQUARE + (isWhite ? 8 : -8));
                     
                     boolean defaultValid = (absDisplacement == 8) && (defaultCapturedPieceType == PieceType.EMPTY);
-                    boolean doubleJumpValid = absDisplacement == 16 && (isWhite ? fromRank == 6 : fromRank == 1) && defaultCapturedPieceType == PieceType.EMPTY && jumpedOver == PieceType.EMPTY;
+                    boolean doubleJumpValid = absDisplacement == 16 && (isWhite ? fromSquare > 47 : fromSquare < 16) && defaultCapturedPieceType == PieceType.EMPTY && jumpedOver == PieceType.EMPTY;
 
                     boolean captureValid = (absDisplacement%2 != 0) && BoardUtil.isOccupiedByEnemy(toSquare, enemyBoard);
-                    boolean enpassantValid = (toSquare == board.ENPASSANT_SQUARE) && !captureValid && !BoardUtil.isOccupiedByFriendly(toSquare, teamBoard);
+                    boolean enpassantValid = (absDisplacement%2 != 0) && (toSquare == board.ENPASSANT_SQUARE) && !captureValid && !BoardUtil.isOccupiedByFriendly(toSquare, teamBoard);
                     boolean promotionValid = isWhite ? toRank == 0 : toRank == 7;
 
                     PieceType capturedPieceType = enpassantValid ? enpassantCapturedPieceType : defaultCapturedPieceType;
