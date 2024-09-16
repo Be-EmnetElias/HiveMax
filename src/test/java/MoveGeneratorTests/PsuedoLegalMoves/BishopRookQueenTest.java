@@ -1,4 +1,4 @@
-package tests.java.MoveGeneratorTests.PsuedoLegalMoves;
+package test.java.MoveGeneratorTests.PsuedoLegalMoves;
 
 import main.java.*;
 import main.utilities.*;
@@ -23,6 +23,7 @@ public class BishopRookQueenTest {
             isWhite ? whiteBoard : blackBoard,
             isWhite ? blackBoard : whiteBoard,
             isWhite,
+            false,
             BoardUtil.NULL_CAPTURE_MASK,
             BoardUtil.NULL_PUSH_MASK,
             null

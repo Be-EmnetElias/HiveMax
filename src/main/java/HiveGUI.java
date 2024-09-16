@@ -35,8 +35,6 @@ public class HiveGUI extends JPanel{
         board = new Board();
         // board = new Board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - ");
 
-        BoardUtil.printBoard(board);
-
         JFrame frame = new JFrame();
 
         frame.setUndecorated(true);
@@ -281,13 +279,18 @@ class ChessPanel extends JPanel{
     public PieceType selectedPiece = PieceType.EMPTY;
     public int[] dragCoor = new int[]{-1, -1};
     public HashSet<Move> moveHints = new HashSet<>();
+    public HashSet<Integer> dangerSquares = new HashSet<>();
 
     int toSquare = -1;
     int fromSquare = -1;
+    int depth = 4;
+    
+    public Move bestMove = null;
 
     public ChessPanel(Board board) throws IOException{
         this.board = board;
         legalMoves = MoveGenerator.getCurrentLegalMoves(board);
+        bestMove = HiveEvaluator.bestMove(board, legalMoves, depth, board.IS_WHITE_TURN);
 
         ClickListener clickListener = new ClickListener();
         DragListener dragListener = new DragListener();
@@ -329,18 +332,21 @@ class ChessPanel extends JPanel{
 
             moveHints = hints;
 
-            // if(fromSquare == -1){
-                
+            if(selectedPiece == PieceType.WHITE_KING){
+                long[] boards = BoardUtil.getTeamBoardsWithoutKing(board, true);
+                long enemyBoard = 0L;
+                for(long b: boards){
+                    enemyBoard |= b;
+                }
+                HashSet<Move> dangerMoves = MoveGenerator.getPsuedoLegalMoves(board, BoardUtil.getTeamBoards(board, false), enemyBoard , false, true, BoardUtil.NULL_PINNED_PIECES, BoardUtil.NULL_DANGER_SQUARES, BoardUtil.NULL_CAPTURE_MASK, BoardUtil.NULL_PUSH_MASK);
+                for(Move m : dangerMoves){
+                    dangerSquares.add(m.toSquare());
+                }
 
-            // }else{
-            //     toSquare = BoardUtil.rowColToSquare(e.getY()/100, e.getX()/100);
-            //     PieceType from = BoardUtil.getPieceTypeAtSquare(board, fromSquare);
-            //     PieceType to = BoardUtil.getPieceTypeAtSquare(board, toSquare);
-            //     String moveType = (BoardUtil.isOccupiedByFriendly(toSquare, BoardUtil.getTeamBoard(board, true)) || to == PieceType.EMPTY) ? "MoveType.DEFAULT" : " MoveType.CAPTURE";
-            //     // System.out.println("new Move(" + fromSquare + "," + toSquare + "," + "PieceType." + from + "," + "PieceType." +to + ", PieceType.EMPTY," + moveType + ")");
-            //     fromSquare = -1;
-            //     toSquare = -1;
-            // }
+            }else{
+                dangerSquares.clear();
+
+            }
 
             repaint();
         }
@@ -353,12 +359,17 @@ class ChessPanel extends JPanel{
                 if(move.toSquare() == toSquare && move.fromSquare() == fromSquare){
                     board.makeMove(move);
                     legalMoves = MoveGenerator.getCurrentLegalMoves(board);
+                    bestMove = HiveEvaluator.bestMove(board, legalMoves, depth, board.IS_WHITE_TURN);
+                    System.out.println("BeST MOVE: " + bestMove);
                     break;
                 }
             }
             fromSquare = -1;
             toSquare = -1;
             moveHints = new HashSet<>();
+            dangerSquares.clear();
+
+
 
             repaint();
         }
@@ -399,6 +410,25 @@ class ChessPanel extends JPanel{
             g.setColor(new Color(250,175,2)); // yellow 
             g.fillRect(moveHintX,moveHintY, 100,100);
         }
+
+        g.setColor(new Color(255,0,0,100));
+        
+        // draw danger squares
+        for(int square : dangerSquares){
+            int moveHintX = (square % 8) * 100;
+            int moveHintY = (square / 8) * 100;
+            g.fillRect(moveHintX,moveHintY, 100,100);
+
+        }
+
+        if(bestMove != null){
+            g.setColor(new Color(0,255,0,100));
+            g.fillRect((bestMove.fromSquare() % 8) * 100,(bestMove.fromSquare() / 8) * 100, 100,100);
+            g.fillRect((bestMove.toSquare() % 8) * 100,(bestMove.toSquare() / 8) * 100, 100,100);
+
+
+        }
+
         //draw all pieces
         g.setColor(Color.WHITE);
         for (int row = 0; row < 8; row++) {

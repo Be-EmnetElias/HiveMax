@@ -1,4 +1,4 @@
-package tests.java.MoveGeneratorTests.PsuedoLegalMoves;
+package test.java.MoveGeneratorTests.PsuedoLegalMoves;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

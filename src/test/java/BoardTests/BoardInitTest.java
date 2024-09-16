@@ -1,4 +1,4 @@
-package tests.java.BoardTests;
+package test.java.BoardTests;
 
 import main.java.*;
 import main.utilities.*;

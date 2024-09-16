@@ -1,4 +1,4 @@
-package tests.java.BoardTests;
+package test.java.BoardTests;
 
 import main.java.*;
 import main.utilities.*;
@@ -62,24 +62,24 @@ public class BoardUtilsTest {
     }
 
     @Test
-    public void squareValidInCaptureAndPushMasks_CaptureMaskOnly_EqualsFalse(){
+    public void squareValidInCaptureAndPushMasks_CaptureMaskOnly_EqualsTrue(){
         long pushMask = 0L;
         for(int i=0; i<64; i+=9){
             pushMask = BoardUtil.setBit(pushMask, i);
         }
         int captureMask = 41;
-        assertFalse(BoardUtil.squareValidInCaptureAndPushMasks(41, captureMask, pushMask));
+        assertTrue(BoardUtil.squareValidInCaptureAndPushMasks(41, captureMask, pushMask));
 
     }
 
     @Test
-    public void squareValidInCaptureAndPushMasks_PushMaskOnly_EqualsFalse(){
+    public void squareValidInCaptureAndPushMasks_PushMaskOnly_EqualsTrue(){
         long pushMask = 0L;
         for(int i=0; i<64; i+=9){
             pushMask = BoardUtil.setBit(pushMask, i);
         }
         int captureMask = 41;
-        assertFalse(BoardUtil.squareValidInCaptureAndPushMasks(9, captureMask, pushMask));
+        assertTrue(BoardUtil.squareValidInCaptureAndPushMasks(9, captureMask, pushMask));
     }
 
     @Test

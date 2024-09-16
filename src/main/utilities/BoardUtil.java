@@ -13,6 +13,10 @@ public class BoardUtil {
 
     public static final int NULL_CAPTURE_MASK = -1;
 
+    public static final HashSet<Integer> NULL_DANGER_SQUARES = new HashSet<>();
+
+    public static final HashMap<Integer, Integer> NULL_PINNED_PIECES = new HashMap<>();
+
     public static final int[] WHITE_PAWN_DISPLACEMENTS = new int[]{-16, -8, -7, -9};
 
     public static final int[] BLACK_PAWN_DISPLACEMENTS = new int[]{16, 8, 7, 9};
@@ -25,6 +29,16 @@ public class BoardUtil {
 
     public static final int[] QUEEN_DISPLACEMENTS = new int[]{-9, -8, -7, -1, 1, 7, 8, 9};
 
+    public static final HashSet<PieceType> SLIDING_PIECES = new HashSet<>(){{
+        add(PieceType.BLACK_BISHOP);
+        add(PieceType.BLACK_QUEEN);
+        add(PieceType.BLACK_ROOK);
+
+        add(PieceType.WHITE_ROOK);
+        add(PieceType.WHITE_BISHOP);
+        add(PieceType.WHITE_QUEEN);
+
+    }};
     public static final HashMap<PieceType, int[]> SLIDING_DISPLACEMENTS = new HashMap<PieceType, int[]>() {{
         put(PieceType.WHITE_BISHOP, BISHOP_DISPLACEMENTS);
         put(PieceType.BLACK_BISHOP, BISHOP_DISPLACEMENTS);
@@ -140,42 +154,26 @@ public class BoardUtil {
      * @return boolean
      */
     public static boolean isValidPinDirection(int fromSquare, int displacement, HashMap<Integer, Integer> pinnedPieces){
+
         if(pinnedPieces == null || pinnedPieces.isEmpty() || !pinnedPieces.containsKey(fromSquare)){
             return true;
         }
-        
-        
+
         int pinnedDisplacement = pinnedPieces.get(fromSquare);
-        boolean pawnDoubleException = pinnedDisplacement == displacement * 2; // double jump displacement is in the same direction as a normal move
-        // System.out.println(fromSquare + " IS PINNED IN " + pinnedDisplacement + " DIRECTION");
-        // System.out.println("IS: " + displacement + " VALID?");
+        boolean pawnDoubleException = pinnedDisplacement * 2 == displacement ; // double jump displacement is in the same direction as a normal move
         return  (pinnedDisplacement == displacement) || pawnDoubleException;
     }
 
     public static boolean squareValidInCaptureAndPushMasks(int square, int captureMask, long pushMask){
-
-        //neither mask available
         if(captureMask == NULL_CAPTURE_MASK && pushMask == NULL_PUSH_MASK){
             return true;
+        }else if(captureMask == NULL_CAPTURE_MASK){
+            return isSquareOnBoard(square, pushMask);
+        }else if(pushMask == NULL_PUSH_MASK){
+            return square == captureMask;
         }else{
             return square == captureMask || isSquareOnBoard(square, pushMask);
         }
-
-        // //both masks available
-        // else if(captureMask != NULL_CAPTURE_MASK && pushMask != NULL_PUSH_MASK){
-        //     return square == captureMask || isSquareOnBoard(square, pushMask);
-        // }
-        
-        // //capture mask available
-        // else if(captureMask != NULL_CAPTURE_MASK && pushMask == NULL_PUSH_MASK){
-        //     return square == captureMask;
-        // }
-
-        // //push mask available captureMask == NULL_CAPTURE_MASK && pushMask != NULL_PUSH_MASK
-        // else{
-        //     return isSquareOnBoard(square, pushMask);
-        // }
-
 
     }
                
@@ -205,6 +203,10 @@ public class BoardUtil {
         }
 
         return false;
+    }
+
+    public static boolean canPieceSlide(PieceType pieceType){
+        return SLIDING_PIECES.contains(pieceType);
     }
 
 

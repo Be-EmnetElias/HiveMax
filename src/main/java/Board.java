@@ -66,6 +66,24 @@ public class Board {
         this.IS_WHITE_TURN = IS_WHITE_TURN;    
     }
 
+    public Board(Board other){
+        this.WHITE_PAWNS = other.WHITE_PAWNS; 
+        this.WHITE_KNIGHTS = other.WHITE_KNIGHTS; 
+        this.WHITE_BISHOPS = other.WHITE_BISHOPS; 
+        this.WHITE_ROOKS = other.WHITE_ROOKS; 
+        this.WHITE_QUEENS = other.WHITE_QUEENS; 
+        this.WHITE_KINGS = other.WHITE_KINGS;
+        this.BLACK_PAWNS = other.BLACK_PAWNS; 
+        this.BLACK_KNIGHTS = other.BLACK_KNIGHTS; 
+        this.BLACK_BISHOPS = other.BLACK_BISHOPS; 
+        this.BLACK_ROOKS = other.BLACK_ROOKS; 
+        this.BLACK_QUEENS = other.BLACK_QUEENS; 
+        this.BLACK_KINGS = other.BLACK_KINGS;
+        this.ENPASSANT_SQUARE = other.ENPASSANT_SQUARE;
+        this.CASTLING_RIGHTS = other.CASTLING_RIGHTS;
+        this.IS_WHITE_TURN = other.IS_WHITE_TURN;   
+    }
+
     public void setBoard(Board board, String fenposition){
         
         String[] boardInformation = fenposition.split("\\s+");

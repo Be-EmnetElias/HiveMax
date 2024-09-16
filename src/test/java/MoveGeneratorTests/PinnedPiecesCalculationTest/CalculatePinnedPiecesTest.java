@@ -1,4 +1,4 @@
-package tests.java.MoveGeneratorTests.PinnedPiecesCalculationTest;
+package test.java.MoveGeneratorTests.PinnedPiecesCalculationTest;
 
 import java.util.HashMap;
 
@@ -31,9 +31,8 @@ public class CalculatePinnedPiecesTest {
 
         long team = BoardUtil.getTeamBoard(board, true);
         long enemies = BoardUtil.getTeamBoard(board, false);
-        long enemySlidingPieces = board.BLACK_BISHOPS | board.BLACK_ROOKS | board.BLACK_QUEENS;
 
-        HashMap<Integer, Integer> pinnedPieces = MoveGenerator.calculatePinnedPieces(team, enemies, enemySlidingPieces, BoardUtil.getKingSquare(board, true), true);
+        HashMap<Integer, Integer> pinnedPieces = MoveGenerator.calculatePinnedPieces(team, enemies, new long[]{board.BLACK_BISHOPS, board.BLACK_ROOKS, board.BLACK_QUEENS}, BoardUtil.getKingSquare(board, true), true);
         HashMap<Integer, Integer> expectedPinnedPieces = new HashMap<>();
 
         expectedPinnedPieces.put(18, -9);
@@ -72,7 +71,7 @@ public class CalculatePinnedPiecesTest {
         long enemies = BoardUtil.getTeamBoard(board, false);
         long enemySlidingPieces = board.BLACK_BISHOPS | board.BLACK_ROOKS | board.BLACK_QUEENS;
 
-        HashMap<Integer, Integer> pinnedPieces = MoveGenerator.calculatePinnedPieces(team, enemies, enemySlidingPieces, BoardUtil.getKingSquare(board, true), true);
+        HashMap<Integer, Integer> pinnedPieces = MoveGenerator.calculatePinnedPieces(team, enemies, new long[]{board.BLACK_BISHOPS, board.BLACK_ROOKS, board.BLACK_QUEENS}, BoardUtil.getKingSquare(board, true), true);
         HashMap<Integer, Integer> expectedPinnedPieces = new HashMap<>();
 
 
@@ -103,7 +102,7 @@ public class CalculatePinnedPiecesTest {
         long enemies = BoardUtil.getTeamBoard(board, false);
         long enemySlidingPieces = board.BLACK_BISHOPS | board.BLACK_ROOKS | board.BLACK_QUEENS;
 
-        HashMap<Integer, Integer> pinnedPieces = MoveGenerator.calculatePinnedPieces(team, enemies, enemySlidingPieces, BoardUtil.getKingSquare(board, true), true);
+        HashMap<Integer, Integer> pinnedPieces = MoveGenerator.calculatePinnedPieces(team, enemies, new long[]{board.BLACK_BISHOPS, board.BLACK_ROOKS, board.BLACK_QUEENS}, BoardUtil.getKingSquare(board, true), true);
         HashMap<Integer, Integer> expectedPinnedPieces = new HashMap<>();
 
         assertEquals(expectedPinnedPieces, pinnedPieces);
