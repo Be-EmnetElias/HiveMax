@@ -1,7 +1,7 @@
-package test.java.MoveGeneratorTests.PsuedoLegalMoves;
+package tests.java.MoveGeneratorTests.PsuedoLegalMoves;
 
 import main.java.*;
-import main.utilities.*;
+import main.java.utilities.*;
 
 import java.util.*;
 import org.junit.jupiter.api.Test;

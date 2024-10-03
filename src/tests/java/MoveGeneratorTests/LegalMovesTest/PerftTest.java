@@ -1,7 +1,8 @@
-package test.java.MoveGeneratorTests;
+package tests.java.MoveGeneratorTests.LegalMovesTest;
 
 import main.java.*;
-import main.utilities.*;
+import main.java.hive.HiveSearch;
+import main.java.utilities.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,38 +40,38 @@ public class PerftTest {
 
     @Test
     public void PerftDepth0(){
-        assertEquals(PerftPosition[0].nodes(), HiveEvaluator.nodeCount(0, 0, new Board()).nodes());
+        assertEquals(PerftPosition[0].nodes(), HiveSearch.nodeCount(0, 0, new Board()).nodes());
     }
 
     @Test
     public void PerftDepth1(){
-        assertEquals(PerftPosition[1].nodes(), HiveEvaluator.nodeCount(1, 1, new Board()).nodes());
+        assertEquals(PerftPosition[1].nodes(), HiveSearch.nodeCount(1, 1, new Board()).nodes());
     }
 
     @Test
     public void PerftDepth2(){
-        assertEquals(PerftPosition[2].nodes(), HiveEvaluator.nodeCount(2, 2, new Board()).nodes());
+        assertEquals(PerftPosition[2].nodes(), HiveSearch.nodeCount(2, 2, new Board()).nodes());
     }
 
     @Test
     public void PerftDepth3(){
-        assertEquals(PerftPosition[3].nodes(), HiveEvaluator.nodeCount(3, 3, new Board()).nodes());
+        assertEquals(PerftPosition[3].nodes(), HiveSearch.nodeCount(3, 3, new Board()).nodes());
     }
 
     @Test
     public void PerftDepth4(){
-        assertEquals(PerftPosition[4].nodes(), HiveEvaluator.nodeCount(4, 4, new Board()).nodes());
+        assertEquals(PerftPosition[4].nodes(), HiveSearch.nodeCount(4, 4, new Board()).nodes());
         
     }
 
     @Test
     public void PerftDepth5(){
-        assertEquals(PerftPosition[5].nodes(), HiveEvaluator.nodeCount(5, 5, new Board()).nodes());
+        assertEquals(PerftPosition[5].nodes(), HiveSearch.nodeCount(5, 5, new Board()).nodes());
     }
 
     @Test
     public void PerftDepth6(){
-        assertEquals(PerftPosition[6].nodes(), HiveEvaluator.nodeCount(6, 6, new Board()).nodes());
+        assertEquals(PerftPosition[6].nodes(), HiveSearch.nodeCount(6, 6, new Board()).nodes());
         // System.out.println(HiveEvaluator.nodeCount(3, 3, new Board("rnbqkbnr/pppp1ppp/8/3Pp3/8/8/PPP1PPPP/RNBQKBNR b KQkq -  0 0")));
     }
 

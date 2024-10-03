@@ -1,4 +1,4 @@
-package test.java.MoveGeneratorTests.PsuedoLegalMoves;
+package tests.java.MoveGeneratorTests.PsuedoLegalMoves;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,10 +7,10 @@ import java.util.HashSet;
 import org.junit.Test;
 
 import main.java.Board;
-import main.utilities.Move;
-import main.utilities.MoveGenerator;
-import main.utilities.MoveType;
-import main.utilities.PieceType;
+import main.java.utilities.Move;
+import main.java.utilities.MoveGenerator;
+import main.java.utilities.MoveType;
+import main.java.utilities.PieceType;
 
 public class AllPiecesPsuedoLegalTest {
     

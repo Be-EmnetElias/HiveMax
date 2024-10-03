@@ -1,4 +1,4 @@
-package main.utilities;
+package main.java.utilities;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -105,8 +105,12 @@ public class BoardUtil {
         return Long.numberOfTrailingZeros(isWhite ? board.WHITE_KINGS : board.BLACK_KINGS);
     }
 
-    public static int rowColToSquare(int row, int col){
-        return (row * 8) + col;
+    public static int rowColToSquare(int row, int col, boolean isWhite){
+        if(isWhite){
+            return (row * 8) + col;
+        }else{
+            return 63 - ((row * 8) + col);
+        }
     }
 
     public static PieceType getPieceTypeAtSquare(Board board, int square){
@@ -304,5 +308,97 @@ public class BoardUtil {
     public static String squareToString(int square){
         return "" + (char)('a' + square%8) + (8-square/8);
 
+    }
+
+    public static PieceType stringToPieceType(String pieceType){
+        switch(pieceType){
+            case "BLACK_BISHOP":
+                return PieceType.BLACK_BISHOP;
+            case "BLACK_KING":
+                return PieceType.BLACK_KING;
+            case "BLACK_KNIGHT":
+                return PieceType.BLACK_KNIGHT;
+            case "BLACK_PAWN":
+                return PieceType.BLACK_PAWN;
+            case "BLACK_QUEEN":
+                return PieceType.BLACK_QUEEN;
+            case "BLACK_ROOK":
+                return PieceType.BLACK_ROOK;
+            case "WHITE_BISHOP":
+                return PieceType.WHITE_BISHOP;
+            case "WHITE_KING":
+                return PieceType.WHITE_KING;
+            case "WHITE_KNIGHT":
+                return PieceType.WHITE_KNIGHT;
+            case "WHITE_PAWN":
+                return PieceType.WHITE_PAWN;
+            case "WHITE_QUEEN":
+                return PieceType.WHITE_QUEEN;
+            case "WHITE_ROOK":
+                return PieceType.WHITE_ROOK;
+            default:
+                return PieceType.EMPTY;
+        }
+    }
+    
+    public static MoveType stringToMoveType(String moveType){
+        switch(moveType){
+            case "CAPTURE":
+                return MoveType.CAPTURE;
+            case "CHECK":
+                return MoveType.CHECK;
+            case "CASTLE":
+                return MoveType.CASTLE;
+            case "PROMOTION":
+                return MoveType.PROMOTION;
+            case "ENPASSANT":
+                return MoveType.ENPASSANT;
+            default:
+                return MoveType.DEFAULT; 
+        }
+    }
+
+    public static Move rawStringToMove(String rawMove){
+        String[] splitString = rawMove.split("\\s+");
+        return new Move(
+            Integer.parseInt(splitString[0]),
+            Integer.parseInt(splitString[1]),
+            stringToPieceType(splitString[2]),
+            stringToPieceType(splitString[3]),
+            stringToPieceType(splitString[4]),
+            stringToMoveType(splitString[5])
+
+        );
+    }
+
+    public static boolean getPieceTypeTeam(PieceType piece){
+        switch(piece){
+            case BLACK_BISHOP:
+                return false;
+            case BLACK_KING:
+                return false;
+            case BLACK_KNIGHT:
+                return false;
+            case BLACK_PAWN:
+                return false;
+            case BLACK_QUEEN:
+                return false;
+            case BLACK_ROOK:
+                return false;
+            case WHITE_BISHOP:
+                return true;
+            case WHITE_KING:
+                return true;
+            case WHITE_KNIGHT:
+                return true;
+            case WHITE_PAWN:
+                return true;
+            case WHITE_QUEEN:
+                return true;
+            case WHITE_ROOK:
+                return true;
+            default:
+                throw new IllegalArgumentException("Cannot get team of PieceType Empty!"); 
+        }
     }
 }

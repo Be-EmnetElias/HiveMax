@@ -1,4 +1,4 @@
-package main.utilities;
+package main.java.utilities;
 /** 
  * Represents a move type
  * 

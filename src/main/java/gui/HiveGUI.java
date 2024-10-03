@@ -1,14 +1,11 @@
-package main.java;
+package main.java.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import main.utilities.*;
-
-import java.util.EnumMap;
-
+import main.java.utilities.*;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,24 +18,26 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+import main.java.Board;
+import main.java.network.Client;
+
 
 public class HiveGUI extends JPanel{
-    
-    static Board board;
-    static MoveGenerator moveGenerator;
-    static ChessPanel chessPanel;
-    static DragPanel dragPanel;
-    static InfoPanel infoPanel;
 
+
+    Client client;
+    boolean playingOnline = false;
     public static void main(String[] args) throws IOException{
+        new HiveGUI();        
+    }
 
-        board = new Board();
-        // board = new Board("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - ");
-
+    public HiveGUI() throws IOException {
+        Board board = new Board();
+        
         JFrame frame = new JFrame();
 
-        frame.setUndecorated(true);
-        frame.setSize(1300, 800);
+        // frame.setUndecorated(true);
+        frame.setSize(1300, 840);
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
         frame.setResizable(false);
@@ -48,41 +47,72 @@ public class HiveGUI extends JPanel{
         ImageIcon HIVE_MAX_ICON = new ImageIcon("src\\main\\assets\\HIVE_MAX_LOGO.png");
         frame.setIconImage(HIVE_MAX_ICON.getImage());
 
-        chessPanel = new ChessPanel(board);
+        ChessPanel chessPanel = new ChessPanel(board);
+        client = new Client(chessPanel);
+        chessPanel.client = client;
         chessPanel.setBounds(0,0, 800, 800);
 
         
 
-        infoPanel = new InfoPanel(board, chessPanel);
+        InfoPanel infoPanel = new InfoPanel(board, chessPanel);
         infoPanel.setBounds(800,600, 500, 200);
 
-        dragPanel = new DragPanel(board, chessPanel, infoPanel);
+        DragPanel dragPanel = new DragPanel(board, chessPanel, infoPanel);
         dragPanel.setBounds(800, 0, 200, 600);
 
-        JButton clearButton = new JButton("Clear Board");
-        clearButton.addActionListener(new ActionListener() {
+        JButton playOnlineButton = new JButton(("Play Online"));
+        playOnlineButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // chessPanel.board.setBoard("8/8/8/8/8/8/8/8 w - - 0 0");
-                chessPanel.repaint();
+                playingOnline = !playingOnline;
+                
+                if(playingOnline){
+                    System.out.println("Searching for server...");
+                    Thread thread = new Thread(client);
+                    thread.start();
+                    chessPanel.sendMoveToClient = true;
+                    playOnlineButton.setText("Leave");
+                }else{
 
-            
+                    chessPanel.sendMoveToClient = false;
+                    playOnlineButton.setText("Play Online");
+
+                }
+                revalidate();
             }
         });
-
-
         
+        playOnlineButton.setBounds(800, 0, 100, 100);
+
+        JButton singlePlayerButton = new JButton("Vs. Computer");
+        singlePlayerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Starting single player");
+            }
+        });
+        
+        singlePlayerButton.setBounds(800, 100, 100, 100);
+
+        frame.add(playOnlineButton);
+        frame.add(singlePlayerButton);
+
+
         frame.setLayout(null);
         frame.add(chessPanel);
-        frame.add(dragPanel);
-        frame.add(infoPanel);
+        // frame.add(dragPanel);
+        // frame.add(infoPanel);
 
         
 
         frame.setVisible(true);
     }
 
+
+
+
 }
+
 
 class InfoPanel extends JPanel{
 
@@ -208,7 +238,7 @@ class DragPanel extends JPanel{
             int x = 7 - (Math.abs(e.getX()) / 100);
             if(e.getX() < 0){
                 int y = Math.abs(e.getY()) / 100;
-                int square = BoardUtil.rowColToSquare(y, x);
+                int square = BoardUtil.rowColToSquare(y, x, true);
 
                 switch(selected){
                     case BLACK_BISHOP:
@@ -261,191 +291,6 @@ class DragPanel extends JPanel{
     private class DragListener extends MouseMotionAdapter{
 
         public void mouseDragged(MouseEvent e){
-        }
-    }
-}
-
-class ChessPanel extends JPanel{
-
-    public Board board;
-    public HashSet<Move> legalMoves = new HashSet<>();
-
-    public static Image boardImage;
-    public static BufferedImage allPieces;
-    public static EnumMap<PieceType,Image> pieceImages = new EnumMap<>(PieceType.class);
-    public static final String BG_PATH = "src\\main\\assets\\boards\\bg_brown.png";
-    public static final String PIECES_PATH = "src\\main\\assets\\pieces\\pieces.png";
-
-    public PieceType selectedPiece = PieceType.EMPTY;
-    public int[] dragCoor = new int[]{-1, -1};
-    public HashSet<Move> moveHints = new HashSet<>();
-    public HashSet<Integer> dangerSquares = new HashSet<>();
-
-    int toSquare = -1;
-    int fromSquare = -1;
-    int depth = 4;
-    
-    public Move bestMove = null;
-
-    public ChessPanel(Board board) throws IOException{
-        this.board = board;
-        legalMoves = MoveGenerator.getCurrentLegalMoves(board);
-        bestMove = HiveEvaluator.bestMove(board, legalMoves, depth, board.IS_WHITE_TURN);
-
-        ClickListener clickListener = new ClickListener();
-        DragListener dragListener = new DragListener();
-        this.addMouseListener(clickListener);
-        this.addMouseMotionListener(dragListener);
-
-        boardImage = ImageIO.read(new File(BG_PATH));
-        allPieces = ImageIO.read(new File(PIECES_PATH));
-        boardImage = boardImage.getScaledInstance(800, 800, BufferedImage.SCALE_SMOOTH);
-        
-
-        // Slice the allPieces image into individual piece images
-        PieceType[] pieceLetters = new PieceType[]{
-            PieceType.WHITE_KING, PieceType.WHITE_QUEEN, PieceType.WHITE_BISHOP, PieceType.WHITE_KNIGHT, PieceType.WHITE_ROOK, PieceType.WHITE_PAWN,
-            PieceType.BLACK_KING, PieceType.BLACK_QUEEN, PieceType.BLACK_BISHOP, PieceType.BLACK_KNIGHT, PieceType.BLACK_ROOK, PieceType.BLACK_PAWN
-        };
-        int ind = 0;
-        for (int y = 0; y < 400; y += 200) {
-            for (int x = 0; x < 1200; x += 200) {
-                pieceImages.put(pieceLetters[ind],allPieces.getSubimage(x, y, 200, 200).getScaledInstance(100, 100, BufferedImage.SCALE_SMOOTH));
-                ind++;
-                
-            }
-        }
-    }
-
-    private class ClickListener extends MouseAdapter{
-
-        public void mousePressed(MouseEvent e){
-            fromSquare = BoardUtil.rowColToSquare(e.getY()/100, e.getX()/100);
-            selectedPiece = BoardUtil.getPieceTypeAtSquare(board, fromSquare);
-            HashSet<Move> hints = new HashSet<>();
-
-            for(Move move: legalMoves){
-                if(move.fromSquare() == fromSquare){
-                    hints.add(move);
-                }
-            }
-
-            moveHints = hints;
-
-            if(selectedPiece == PieceType.WHITE_KING){
-                long[] boards = BoardUtil.getTeamBoardsWithoutKing(board, true);
-                long enemyBoard = 0L;
-                for(long b: boards){
-                    enemyBoard |= b;
-                }
-                HashSet<Move> dangerMoves = MoveGenerator.getPsuedoLegalMoves(board, BoardUtil.getTeamBoards(board, false), enemyBoard , false, true, BoardUtil.NULL_PINNED_PIECES, BoardUtil.NULL_DANGER_SQUARES, BoardUtil.NULL_CAPTURE_MASK, BoardUtil.NULL_PUSH_MASK);
-                for(Move m : dangerMoves){
-                    dangerSquares.add(m.toSquare());
-                }
-
-            }else{
-                dangerSquares.clear();
-
-            }
-
-            repaint();
-        }
-
-        public void mouseReleased(MouseEvent e) {
-            selectedPiece = PieceType.EMPTY;
-            toSquare = BoardUtil.rowColToSquare(e.getY()/100, e.getX()/100);
-
-            for(Move move: legalMoves){
-                if(move.toSquare() == toSquare && move.fromSquare() == fromSquare){
-                    board.makeMove(move);
-                    legalMoves = MoveGenerator.getCurrentLegalMoves(board);
-                    bestMove = HiveEvaluator.bestMove(board, legalMoves, depth, board.IS_WHITE_TURN);
-                    System.out.println("BeST MOVE: " + bestMove);
-                    break;
-                }
-            }
-            fromSquare = -1;
-            toSquare = -1;
-            moveHints = new HashSet<>();
-            dangerSquares.clear();
-
-
-
-            repaint();
-        }
-    }
-
-    private class DragListener extends MouseMotionAdapter{
-
-        public void mouseMoved(MouseEvent e){
-            dragCoor[0] = e.getX();
-            dragCoor[1] = e.getY();
-
-            repaint();
-        }
-
-        public void mouseDragged(MouseEvent e){
-            dragCoor[0] = e.getX();
-            dragCoor[1] = e.getY();
-
-            repaint();
-        }
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        // Draw the board
-        g.drawImage(boardImage, 0, 0, 800, 800, null);
-
-        // drag highlight
-        g.setColor(new Color(255,255,255,100));
-        g.fillRect(dragCoor[0] / 100 * 100, dragCoor[1] / 100 * 100,100,100);
-
-        for(Move move : moveHints){
-            int moveHintX = (move.toSquare() % 8) * 100;
-            int moveHintY = (move.toSquare() / 8) * 100;
-
-            g.setColor(new Color(250,175,2)); // yellow 
-            g.fillRect(moveHintX,moveHintY, 100,100);
-        }
-
-        g.setColor(new Color(255,0,0,100));
-        
-        // draw danger squares
-        for(int square : dangerSquares){
-            int moveHintX = (square % 8) * 100;
-            int moveHintY = (square / 8) * 100;
-            g.fillRect(moveHintX,moveHintY, 100,100);
-
-        }
-
-        if(bestMove != null){
-            g.setColor(new Color(0,255,0,100));
-            g.fillRect((bestMove.fromSquare() % 8) * 100,(bestMove.fromSquare() / 8) * 100, 100,100);
-            g.fillRect((bestMove.toSquare() % 8) * 100,(bestMove.toSquare() / 8) * 100, 100,100);
-
-
-        }
-
-        //draw all pieces
-        g.setColor(Color.WHITE);
-        for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 8; col++) {
-                int square = row * 8 + col;
-                g.drawString((row*8 + col) + "", col*100,row*100 + 100);
-
-                if(square != fromSquare){
-                    PieceType current = BoardUtil.getPieceTypeAtSquare(board, square);
-                    g.drawImage(pieceImages.get(current), col * 100, row * 100, null);
-                } 
-            }
-        }
-
-        if(selectedPiece != PieceType.EMPTY){
-            g.drawImage(pieceImages.get(selectedPiece), dragCoor[0] - 50, dragCoor[1] - 50 , null);
-
         }
     }
 }

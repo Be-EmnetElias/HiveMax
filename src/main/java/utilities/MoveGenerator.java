@@ -1,4 +1,4 @@
-package main.utilities;
+package main.java.utilities;
 
 import java.math.BigInteger;
 import java.util.HashMap;

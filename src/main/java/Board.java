@@ -2,11 +2,11 @@ package main.java;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.io.*;
+import main.java.utilities.*;
 
-import main.utilities.*;
 
-
-public class Board {
+public class Board implements Serializable{
     
     public long WHITE_PAWNS, WHITE_KNIGHTS, WHITE_BISHOPS, WHITE_ROOKS, WHITE_QUEENS, WHITE_KINGS;
 
@@ -352,7 +352,7 @@ public class Board {
         }
 
         // update turn
-        this.IS_WHITE_TURN = !this.IS_WHITE_TURN;
+        this.IS_WHITE_TURN = !BoardUtil.getPieceTypeTeam(pieceType);
         
     }
 
@@ -504,6 +504,7 @@ public class Board {
     
         }};
     }
+
 
     @Override
     public boolean equals(Object obj){

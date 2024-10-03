@@ -1,4 +1,4 @@
-package main.utilities;
+package main.java.utilities;
 
 public enum PieceType {
     WHITE_PAWN,

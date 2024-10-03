@@ -1,7 +1,7 @@
-package test.java.BoardTests;
+package tests.java.BoardTests;
 
 import main.java.*;
-import main.utilities.*;
+import main.java.utilities.*;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

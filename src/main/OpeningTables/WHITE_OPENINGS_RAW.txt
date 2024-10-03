@@ -1,0 +1,5500 @@
+Alekhine Defense, Balogh Variation
+ 
+916
+B03
+2024-08-06
+2226
+2196
+41.5%
+22.2%
+36.4%
+1.e4 Nf6 2.e5 Nd5 3.d4 d6 4.Bc4
+Alekhine Defense, Exchange Variation
+ 
+9265
+B03
+2024-08-13
+2216
+2169
+41.1%
+24.7%
+34.2%
+1.e4 Nf6 2.e5 Nd5 3.d4 d6 4.c4 Nb6 5.exd6
+Alekhine Defense, Four Pawns Attack
+ 
+1393
+B03
+2024-08-06
+2176
+2140
+41.2%
+18.9%
+39.9%
+1.e4 Nf6 2.e5 Nd5 3.d4 d6 4.c4 Nb6 5.f4
+Alekhine Defense, Four Pawns Attack, Main Line
+ 
+1625
+B03
+2024-08-10
+2228
+2176
+42.5%
+23.6%
+33.9%
+1.e4 Nf6 2.e5 Nd5 3.d4 d6 4.c4 Nb6 5.f4 dxe5 6.fxe5 Nc6 7.Be3
+Alekhine Defense, Hunt Variation, Lasker Simul Gambit
+ 
+387
+B02
+2024-08-03
+2198
+2173
+35.9%
+22.5%
+41.6%
+1.e4 Nf6 2.e5 Nd5 3.c4 Nb6 4.c5 Nd5 5.Nc3 e6 6.Bc4
+Alekhine Defense, Maroczy Variation
+ 
+1290
+B02
+2024-08-06
+2143
+2141
+37.8%
+22.1%
+40.1%
+1.e4 Nf6 2.d3
+Alekhine Defense, Modern Variation
+ 
+598
+B04
+2024-07-09
+2388
+2321
+45.3%
+29.4%
+25.3%
+1.e4 Nf6 2.e5 Nd5 3.d4 d6 4.Nf3
+Alekhine Defense, Modern Variation, Alekhine Gambit
+ 
+142
+B04
+2024-07-30
+2093
+2073
+38.0%
+21.1%
+40.9%
+1.e4 Nf6 2.e5 Nd5 3.d4 d6 4.Nf3 Bg4 5.c4 Nb6 6.Be2
+Alekhine Defense, Modern Variation, Keres Variation
+ 
+307
+B04
+2024-06-12
+2436
+2373
+46.6%
+35.5%
+17.9%
+1.e4 Nf6 2.e5 Nd5 3.d4 d6 4.Nf3 g6 5.Bc4 Nb6 6.Bb3 Bg7 7.a4
+Alekhine Defense, Modern Variation, Panov Variation
+ 
+241
+B05
+2024-08-04
+2281
+2260
+44.0%
+21.2%
+34.9%
+1.e4 Nf6 2.e5 Nd5 3.d4 d6 4.Nf3 Bg4 5.h3
+Alekhine Defense, Saemisch Attack
+ 
+2027
+B02
+2024-08-06
+2245
+2207
+40.8%
+25.7%
+33.5%
+1.e4 Nf6 2.e5 Nd5 3.Nc3
+Alekhine Defense, Spielmann Gambit
+ 
+208
+B02
+2024-07-29
+2223
+2199
+39.9%
+13.9%
+46.1%
+1.e4 Nf6 2.Nc3 d5 3.e5 Nfd7 4.e6
+Alekhine Defense, Steiner Variation
+ 
+108
+B02
+2024-07-30
+2218
+2244
+37.0%
+18.5%
+44.4%
+1.e4 Nf6 2.e5 Nd5 3.c4 Nb6 4.b3
+Alekhine Defense, Two Pawn Attack
+ 
+618
+B02
+2024-08-03
+1998
+1967
+38.8%
+14.7%
+46.4%
+1.e4 Nf6 2.e5 Nd5 3.c4
+Alekhine Defense, Two Pawn Attack, Lasker Variation
+ 
+1209
+B02
+2024-08-06
+2205
+2192
+35.2%
+27.8%
+37.0%
+1.e4 Nf6 2.e5 Nd5 3.c4 Nb6 4.c5
+Amar Opening, General
+ 
+244
+A00
+2024-08-06
+2236
+2248
+47.5%
+17.2%
+35.3%
+1.Nh3
+Anderssen Opening, General
+ 
+3622
+A00
+2024-08-09
+2246
+2245
+47.3%
+17.1%
+35.6%
+1.a3
+Barnes Opening, General
+ 
+251
+A00
+2024-07-23
+2128
+2218
+41.0%
+11.2%
+47.8%
+1.f3
+Benko Gambit, Accepted, Central Storming Variation
+ 
+220
+A57
+2023-02-20
+2250
+2235
+38.6%
+22.7%
+38.6%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6 5.bxa6 g6 6.Nc3 Bxa6 7.f4
+Benko Gambit, Accepted, Dlugy Variation
+ 
+1797
+A57
+2024-08-06
+2274
+2253
+42.4%
+24.3%
+33.3%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6 5.f3
+Benko Gambit, Accepted, Fianchetto Variation
+ 
+3228
+A58
+2024-08-11
+2263
+2247
+42.5%
+27.8%
+29.7%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6 5.bxa6 Bxa6 6.Nc3 g6 7.Nf3 d6 8.g3 Bg7 9.Bg2
+Benko Gambit, Accepted, Fully Accepted Variation
+ 
+7007
+A58
+2024-08-12
+2247
+2235
+39.4%
+26.2%
+34.4%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6 5.bxa6
+Benko Gambit, Accepted, King Walk Variation
+ 
+2611
+A59
+2024-08-07
+2286
+2242
+44.6%
+28.7%
+26.7%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6 5.bxa6 Bxa6 6.Nc3 d6 7.e4 Bxf1 8.Kxf1 g6 9.g3 Bg7 10.Kg2 O-O 11.Nf3
+Benko Gambit, Accepted, Modern Variation
+ 
+3252
+A57
+2024-08-11
+2318
+2275
+47.0%
+23.6%
+29.4%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6 5.e3
+Benko Gambit, Accepted, Pawn Return Variation
+ 
+4738
+A57
+2024-08-06
+2220
+2201
+40.1%
+24.6%
+35.3%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6 5.b6
+Benko Gambit, Accepted, Yugoslav with 7...Bxf1, Nge2
+ 
+207
+A59
+2024-08-01
+2194
+2190
+39.1%
+20.8%
+40.1%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6 5.bxa6 Bxa6 6.Nc3 d6 7.e4 Bxf1 8.Kxf1 g6 9.Nge2
+Benko Gambit, Accepted, Yugoslav without 7...Bxf1
+ 
+497
+A59
+2024-08-06
+2143
+2119
+40.2%
+23.7%
+36.0%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6 5.bxa6 Bxa6 6.Nc3 d6 7.e4
+Benko Gambit, Declined, Bishop Attack
+ 
+187
+A57
+2024-06-25
+2277
+2239
+42.3%
+26.7%
+31.0%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.Bg5
+Benko Gambit, Declined, Main Line
+ 
+3821
+A57
+2024-08-08
+2333
+2302
+45.6%
+25.3%
+29.1%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.Nf3
+Benko Gambit, Declined, Pseudo-Saemisch
+ 
+264
+A57
+2024-08-06
+2190
+2190
+43.9%
+15.2%
+40.9%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.f3
+Benko Gambit, Declined, Quiet Line
+ 
+921
+A57
+2024-08-06
+2272
+2244
+43.5%
+21.9%
+34.5%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.Nd2
+Benko Gambit, Declined, Sosonko Variation
+ 
+837
+A57
+2024-08-06
+2207
+2201
+37.0%
+23.8%
+39.2%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.a4
+Benko Gambit, Zaitsev System
+ 
+953
+A58
+2024-08-06
+2078
+2077
+33.5%
+17.8%
+48.7%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6 5.Nc3
+Benko Gambit, Zaitsev Variation, Nescafe Frappe Attack
+ 
+808
+A57
+2024-08-09
+2221
+2225
+38.4%
+15.7%
+45.9%
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6 5.Nc3 axb5 6.e4 b4 7.Nb5
+Benoni Defense, Benoni Gambit Accepted
+ 
+951
+A43
+2024-08-06
+2071
+2070
+33.1%
+20.2%
+46.7%
+1.d4 c5 2.dxc5
+Benoni Defense, Benoni-Indian Defense, Kingside move order
+ 
+5237
+A43
+2024-08-12
+2324
+2286
+46.1%
+25.8%
+28.2%
+1.d4 c5 2.d5 Nf6 3.Nf3
+Benoni Defense, Classical Variation, Averbakh-Grivas Attack
+ 
+647
+A71
+2024-08-06
+2320
+2276
+46.7%
+19.9%
+33.4%
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3 Bg7 8.Bg5
+Benoni Defense, Classical Variation, Czerniak Defense
+ 
+504
+A79
+2024-08-05
+2407
+2358
+43.9%
+27.0%
+29.2%
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3 Bg7 8.Be2 O-O 9.O-O Re8 10.Nd2 Na6 11.f3
+Benoni Defense, Classical Variation, Czerniak Defense, Tal Line
+ 
+1215
+A77
+2024-08-03
+2349
+2321
+43.7%
+23.9%
+32.4%
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3 Bg7 8.Be2 O-O 9.O-O Re8 10.Nd2
+Benoni Defense, Classical Variation, Full line
+ 
+242
+A74
+2024-08-06
+2189
+2148
+43.4%
+21.5%
+35.1%
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3 Bg7 8.Be2 O-O 9.O-O a6 10.a4
+Benoni Defense, Classical Variation, General
+ 
+2504
+A70
+2024-08-06
+2238
+2205
+36.0%
+22.5%
+41.5%
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3
+Benoni Defense, Classical Variation, Main line
+ 
+690
+A73
+2024-08-05
+2264
+2250
+35.6%
+28.4%
+35.9%
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3 Bg7 8.Be2 O-O 9.O-O
+Benoni Defense, Classical Variation, New York Variation
+ 
+3572
+A70
+2024-08-11
+2354
+2298
+45.5%
+27.7%
+26.7%
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3 Bg7 8.h3
+Benoni Defense, Classical Variation, Traditional Variation
+ 
+384
+A72
+2024-08-06
+2282
+2265
+40.4%
+25.0%
+34.6%
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3 Bg7 8.Be2
+Benoni Defense, Franco-Sicilian Defense
+ 
+1019
+A43
+2024-07-07
+2233
+2185
+45.7%
+24.6%
+29.6%
+1.d4 c5 2.d5 e6 3.e4
+Benoni Defense, King Pawn lines
+ 
+4480
+A65
+2024-08-11
+2245
+2205
+44.7%
+20.4%
+34.9%
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4
+Benoni Defense, Knight's Tour Variation
+ 
+2547
+A61
+2024-08-11
+2377
+2343
+46.7%
+25.1%
+28.3%
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.Nf3 g6 7.Nd2
+Benoni Defense, Mikenas Variation
+ 
+262
+A66
+2024-04-30
+2303
+2242
+48.5%
+17.2%
+34.4%
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.f4 Bg7 8.e5
+Benoni Defense, Pawn Storm Variation
+ 
+207
+A66
+2024-08-04
+2212
+2133
+55.6%
+15.0%
+29.5%
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.f4
+Benoni Defense, Taimanov Variation
+ 
+3345
+A67
+2024-08-06
+2335
+2278
+50.4%
+18.6%
+31.1%
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.f4 Bg7 8.Bb5+
+Benoni Defense, Uhlmann Variation
+ 
+683
+A61
+2024-07-21
+2349
+2316
+43.5%
+24.3%
+32.2%
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.Nf3 g6 7.Bg5
+Bird Opening, General
+ 
+9437
+A02
+2024-08-11
+2105
+2094
+36.7%
+22.1%
+41.2%
+1.f4
+Bishop's Opening, Boden-Kieseritsky Gambit
+ 
+427
+C27
+2024-07-18
+2159
+2125
+42.9%
+23.4%
+33.7%
+1.e4 e5 2.Nc3 Nf6 3.Bc4 Nxe4 4.Nf3
+Bishop's Opening, General
+ 
+1327
+C23
+2024-08-06
+2066
+2055
+49.1%
+18.9%
+32.0%
+1.e4 e5 2.Bc4
+Bishop's Opening, Ponziani Gambit
+ 
+271
+C24
+2024-07-29
+1991
+1941
+57.2%
+14.0%
+28.8%
+1.e4 e5 2.Bc4 Nf6 3.d4
+Bishop's Opening, Urusov Gambit
+ 
+101
+C24
+2010-05-19
+2184
+2150
+45.5%
+21.8%
+32.7%
+1.e4 e5 2.Bc4 Nf6 3.d4 exd4 4.Nf3
+Bishop's Opening, Urusov Gambit, Keidansky Gambit
+ 
+171
+C24
+2024-07-30
+2211
+2146
+43.3%
+19.3%
+37.4%
+1.e4 e5 2.Bc4 Nf6 3.d4 exd4 4.Nf3 Nxe4 5.Qxd4
+Bishop's Opening, Vienna Hybrid
+ 
+5394
+C28
+2024-08-12
+2234
+2214
+40.3%
+27.4%
+32.4%
+1.e4 e5 2.Bc4 Nf6 3.d3 Nc6 4.Nc3
+Bishop's Opening, Vienna Hybrid, Hromadka Variation
+ 
+765
+C28
+2024-08-06
+2291
+2263
+38.2%
+29.8%
+32.0%
+1.e4 e5 2.Bc4 Nf6 3.d3 Nc6 4.Nc3 Bb4 5.Ne2
+Bishop's Opening, Vienna Hybrid, Spielmann Attack
+ 
+2105
+C26
+2024-08-07
+2178
+2144
+47.4%
+21.8%
+30.8%
+1.e4 e5 2.Bc4 Nf6 3.d3 Bc5 4.Nc3
+Blackmar-Diemer Gambit, General
+ 
+124
+D00
+2024-08-02
+1953
+1969
+42.7%
+19.4%
+37.9%
+1.d4 d5 2.e4
+Blackmar-Diemer Gambit, Ryder Gambit
+ 
+118
+D00
+2024-08-06
+1908
+1919
+39.0%
+10.2%
+50.9%
+1.d4 d5 2.e4 dxe4 3.Nc3 Nf6 4.f3 exf3 5.Qxf3
+Blackmar-Diemer Gambit, Von Popiel Gambit
+ 
+179
+D00
+2024-05-28
+2038
+2077
+35.2%
+17.9%
+46.9%
+1.d4 d5 2.e4 dxe4 3.Nc3 Nf6 4.Bg5
+Blumenfeld Countergambit, Dus-Chotimursky Variation
+ 
+1254
+E10
+2024-08-09
+2372
+2337
+42.5%
+27.1%
+30.4%
+1.d4 Nf6 2.c4 e6 3.Nf3 c5 4.d5 b5 5.Bg5
+Bogo-Indian Defense, GrÃ¼nfeld Variation
+ 
+12120
+E11
+2024-08-12
+2397
+2364
+43.3%
+32.4%
+24.3%
+1.d4 Nf6 2.c4 e6 3.Nf3 Bb4+ 4.Nbd2
+Budapest Defense, Adler Variation
+ 
+3858
+A52
+2024-08-10
+2114
+2097
+43.1%
+23.9%
+32.9%
+1.d4 Nf6 2.c4 e5 3.dxe5 Ng4 4.Nf3
+Budapest Defense, Alekhine Variation
+ 
+460
+A52
+2024-08-11
+2201
+2148
+55.2%
+17.6%
+27.2%
+1.d4 Nf6 2.c4 e5 3.dxe5 Ng4 4.e4
+Budapest Defense, Fajarowicz - Steiner Variation
+ 
+102
+A51
+2024-07-23
+2108
+2166
+42.2%
+14.7%
+43.1%
+1.d4 Nf6 2.c4 e5 3.dxe5 Ne4 4.Qc2
+Budapest Defense, Rubinstein Variation
+ 
+3467
+A52
+2024-08-11
+2239
+2200
+50.7%
+26.1%
+23.2%
+1.d4 Nf6 2.c4 e5 3.dxe5 Ng4 4.Bf4
+Caro-Kann Defense, Accelerated Panov Attack
+ 
+884
+B10
+2024-08-06
+2219
+2191
+47.9%
+22.1%
+30.1%
+1.e4 c6 2.c4
+Caro-Kann Defense, Advance Variation
+ 
+9921
+B12
+2024-08-11
+2236
+2216
+42.0%
+24.7%
+33.4%
+1.e4 c6 2.d4 d5 3.e5
+Caro-Kann Defense, Advance Variation, Bayonet Attack
+ 
+1302
+B12
+2024-08-07
+2093
+2087
+44.1%
+17.7%
+38.2%
+1.e4 c6 2.d4 d5 3.e5 Bf5 4.g4
+Caro-Kann Defense, Advance Variation, Bronstein Variation
+ 
+951
+B12
+2024-08-06
+2176
+2136
+44.0%
+19.2%
+36.8%
+1.e4 c6 2.d4 d5 3.e5 Bf5 4.Ne2
+Caro-Kann Defense, Advance Variation, Short Variation
+ 
+14677
+B12
+2024-08-11
+2318
+2300
+42.1%
+26.5%
+31.5%
+1.e4 c6 2.d4 d5 3.e5 Bf5 4.Nf3
+Caro-Kann Defense, Advance Variation, Tal Variation
+ 
+9270
+B12
+2024-08-12
+2290
+2248
+44.3%
+22.0%
+33.7%
+1.e4 c6 2.d4 d5 3.e5 Bf5 4.h4
+Caro-Kann Defense, Advance Variation, Van der Wiel Attack
+ 
+3203
+B12
+2024-08-05
+2217
+2203
+40.6%
+21.6%
+37.8%
+1.e4 c6 2.d4 d5 3.e5 Bf5 4.Nc3
+Caro-Kann Defense, Advance Variation, Van der Wiel Attack, Bishop Hunt
+ 
+1009
+B12
+2024-08-01
+2260
+2240
+40.5%
+21.5%
+38.0%
+1.e4 c6 2.d4 d5 3.e5 Bf5 4.Nc3 e6 5.g4 Bg6 6.Nge2 c5 7.h4
+Caro-Kann Defense, Breyer Variation
+ 
+6027
+B10
+2024-08-09
+2243
+2222
+40.8%
+27.4%
+31.8%
+1.e4 c6 2.d3
+Caro-Kann Defense, Breyer Variation, Stein Attack
+ 
+112
+B10
+2024-07-14
+2421
+2416
+34.8%
+33.0%
+32.1%
+1.e4 c6 2.d3 d5 3.Nd2 g6 4.g3 Bg7 5.Bg2 e5 6.Ngf3 Ne7 7.O-O O-O 8.b4
+Caro-Kann Defense, Classical Variation, Flohr Variation
+ 
+1796
+B18
+2024-08-09
+2313
+2273
+37.8%
+35.9%
+26.4%
+1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Bf5 5.Ng3 Bg6 6.Nh3
+Caro-Kann Defense, Classical Variation, Main lines
+ 
+5810
+B18
+2024-08-09
+2247
+2209
+36.6%
+32.0%
+31.4%
+1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Bf5 5.Ng3 Bg6 6.h4
+Caro-Kann Defense, Classical Variation, Maroczy Attack
+ 
+321
+B18
+2024-07-16
+2165
+2112
+45.2%
+24.0%
+30.8%
+1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Bf5 5.Ng3 Bg6 6.f4
+Caro-Kann Defense, Classical Variation, Seirawan Variation
+ 
+9369
+B19
+2024-08-11
+2257
+2214
+36.9%
+38.6%
+24.5%
+1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Bf5 5.Ng3 Bg6 6.h4 h6 7.Nf3 Nd7 8.h5 Bh7 9.Bd3 Bxd3 10.Qxd3
+Caro-Kann Defense, Euwe Attack
+ 
+323
+B10
+2024-08-09
+2141
+2161
+39.3%
+16.7%
+44.0%
+1.e4 c6 2.b3
+Caro-Kann Defense, Exchange Variation, Rubinstein Variation
+ 
+5835
+B13
+2024-08-12
+2174
+2137
+37.1%
+30.0%
+33.0%
+1.e4 c6 2.d4 d5 3.exd5 cxd5 4.Bd3 Nc6 5.c3 Nf6 6.Bf4
+Caro-Kann Defense, Exchange Variation
+ 
+17336
+B13
+2024-08-11
+2118
+2088
+34.7%
+25.3%
+40.0%
+1.e4 c6 2.d4 d5 3.exd5
+Caro-Kann Defense, Forgacs Variation
+ 
+1345
+B15
+2024-08-06
+2280
+2255
+33.5%
+38.1%
+28.3%
+1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Nf6 5.Nxf6+ exf6 6.Bc4
+Caro-Kann Defense, Goldman Variation
+ 
+1154
+B12
+2024-08-06
+2228
+2199
+40.5%
+23.2%
+36.3%
+1.e4 c6 2.Nc3 d5 3.Qf3
+Caro-Kann Defense, Hillbilly Attack
+ 
+251
+B00
+2024-07-08
+1790
+1805
+27.9%
+10.8%
+61.4%
+1.e4 c6 2.Bc4
+Caro-Kann Defense, Hillbilly Attack, Schaeffer Gambit
+ 
+122
+B10
+2024-08-09
+2139
+2138
+34.4%
+17.2%
+48.4%
+1.e4 c6 2.Bc4 d5 3.Bb3 dxe4 4.Qh5
+Caro-Kann Defense, Karpov Variation, Modern Main Line
+ 
+1864
+B17
+2024-08-10
+2413
+2356
+40.0%
+39.6%
+20.3%
+1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Nd7 5.Ng5 Ngf6 6.Bd3 e6 7.N1f3 Bd6 8.Qe2 h6 9.Ne4 Nxe4 10.Qxe4
+Caro-Kann Defense, Karpov Variation, Modern Variation
+ 
+1135
+B17
+2024-08-06
+2290
+2237
+47.1%
+25.3%
+27.6%
+1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Nd7 5.Ng5
+Caro-Kann Defense, Karpov Variation, Modern Variation, Kasparov Attack
+ 
+1985
+B17
+2024-08-04
+2198
+2160
+38.1%
+31.6%
+30.3%
+1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Nd7 5.Nf3 Ngf6 6.Ng3
+Caro-Kann Defense, Karpov Variation, Smyslov Variation, Main Line
+ 
+803
+B17
+2024-08-03
+2354
+2310
+40.2%
+34.7%
+25.0%
+1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Nd7 5.Bc4 Ngf6 6.Ng5 e6 7.Qe2 Nb6 8.Bb3
+Caro-Kann Defense, Main Line
+ 
+2275
+B15
+2024-08-08
+2105
+2081
+38.2%
+21.9%
+40.0%
+1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4
+Caro-Kann Defense, Maroczy Variation
+ 
+5521
+B12
+2024-08-10
+2223
+2191
+42.8%
+21.4%
+35.8%
+1.e4 c6 2.d4 d5 3.f3
+Caro-Kann Defense, Maroczy Variation, Maroczy Gambit
+ 
+409
+B12
+2024-07-31
+2227
+2120
+65.5%
+14.7%
+19.8%
+1.e4 c6 2.d4 d5 3.f3 dxe4 4.fxe4 e5 5.Nf3 exd4 6.Bc4
+Caro-Kann Defense, Modern Variation
+ 
+1215
+B12
+2024-08-12
+2297
+2239
+41.7%
+28.1%
+30.2%
+1.e4 c6 2.d4 d5 3.Nd2
+Caro-Kann Defense, Panov Attack
+ 
+1176
+B13
+2024-08-06
+2049
+2012
+49.3%
+22.6%
+28.1%
+1.e4 c6 2.d4 d5 3.exd5 cxd5 4.c4
+Caro-Kann Defense, Panov Attack
+ 
+496
+B13
+2024-08-09
+2096
+2046
+52.8%
+22.2%
+25.0%
+1.e4 c6 2.d4 d5 3.exd5 cxd5 4.c4 Nf6 5.Nc3
+Caro-Kann Defense, Panov Attack, Gunderam Attack
+ 
+135
+B13
+2024-07-23
+2064
+2007
+37.8%
+20.7%
+41.5%
+1.e4 c6 2.d4 d5 3.exd5 cxd5 4.c4 Nf6 5.c5
+Caro-Kann Defense, Rasa-Studier Gambit
+ 
+179
+B15
+2024-08-05
+2047
+2042
+34.1%
+19.6%
+46.4%
+1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.f3
+Caro-Kann Defense, Standard, Unorthodox Replies
+ 
+1216
+B15
+2024-08-12
+2086
+2038
+45.1%
+17.3%
+37.6%
+1.e4 c6 2.d4 d5 3.Nc3
+Caro-Kann Defense, Two Knights Attack
+ 
+10751
+B10
+2024-08-11
+2247
+2224
+42.1%
+24.1%
+33.8%
+1.e4 c6 2.Nc3 d5 3.Nf3
+Caro-Kann Defense, Von Hennig Gambit
+ 
+231
+B15
+2024-08-10
+2119
+2121
+42.0%
+13.8%
+44.2%
+1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Bc4
+Catalan Opening, Closed Variation
+ 
+1910
+E08
+2024-08-09
+2334
+2290
+55.8%
+28.5%
+15.8%
+1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2 Be7 5.Nf3 O-O 6.O-O Nbd7 7.Qc2
+Catalan Opening, Closed Variation
+ 
+21303
+E06
+2024-08-12
+2357
+2330
+42.4%
+35.3%
+22.3%
+1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2 Be7 5.Nf3
+Catalan Opening, Closed Variation
+ 
+4631
+E01
+2024-08-12
+2307
+2271
+41.3%
+30.0%
+28.7%
+1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2
+Catalan Opening, Closed Variation, Botvinnik Variation
+ 
+662
+E07
+2024-08-01
+2359
+2336
+51.5%
+27.0%
+21.4%
+1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2 Be7 5.Nf3 O-O 6.O-O Nbd7 7.Nc3 c6 8.Qd3
+Catalan Opening, General
+ 
+15690
+E00
+2024-08-10
+2331
+2300
+36.8%
+32.3%
+30.9%
+1.d4 Nf6 2.c4 e6 3.g3
+Catalan Opening, Open Defense
+ 
+13410
+E04
+2024-08-12
+2375
+2351
+36.6%
+33.8%
+29.5%
+1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2 dxc4 5.Nf3
+Catalan Opening, Open Defense
+ 
+549
+E02
+2024-07-29
+2370
+2347
+32.4%
+39.5%
+28.1%
+1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2 dxc4 5.Qa4+
+Catalan Opening, Open Defense
+ 
+185
+E03
+2024-08-06
+2397
+2361
+33.5%
+38.4%
+28.1%
+1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2 dxc4 5.Qa4+ Nbd7 6.Qxc4
+Center Game, Paulsen Attack Variation
+ 
+1621
+C22
+2024-08-12
+2094
+2041
+52.7%
+17.3%
+30.0%
+1.e4 e5 2.d4 exd4 3.Qxd4 Nc6 4.Qe3
+Clemenz Opening, General
+ 
+567
+A00
+2024-08-06
+2292
+2264
+51.1%
+15.3%
+33.5%
+1.h3
+Colle System
+ 
+3774
+D05
+2024-08-13
+2059
+2051
+44.5%
+25.1%
+30.4%
+1.d4 d5 2.Nf3 Nf6 3.e3 e6 4.Bd3
+Colle System, Traditional Colle
+ 
+2356
+D05
+2024-08-11
+2075
+2038
+37.1%
+27.0%
+35.8%
+1.d4 d5 2.Nf3 Nf6 3.e3 e6 4.Bd3 c5 5.c3
+Danish Gambit, General
+ 
+768
+C21
+2024-08-02
+1957
+1959
+47.3%
+13.8%
+38.9%
+1.e4 e5 2.d4 exd4 3.c3
+Dutch Defense, Blackburne Variation
+ 
+399
+A81
+2024-07-27
+2274
+2271
+41.1%
+29.8%
+29.1%
+1.d4 f5 2.g3 Nf6 3.Bg2 e6 4.Nh3
+Dutch Defense, Blackmar's Second Gambit
+ 
+307
+A80
+2024-07-16
+2188
+2182
+38.8%
+19.2%
+42.0%
+1.d4 f5 2.e4 fxe4 3.Nc3 Nf6 4.f3
+Dutch Defense, Classical Variation
+ 
+2693
+A90
+2024-08-09
+2317
+2276
+44.5%
+29.2%
+26.3%
+1.d4 f5 2.c4 Nf6 3.g3 e6 4.Bg2
+Dutch Defense, Classical Variation, Blackburne Attack
+ 
+306
+A91
+2024-08-09
+2313
+2256
+51.6%
+23.9%
+24.5%
+1.d4 f5 2.c4 Nf6 3.g3 e6 4.Bg2 Be7 5.Nh3
+Dutch Defense, Classical Variation, Ilyin-Zhenevsky Variation, Alatortsev-Lisitsyn Line
+ 
+352
+A98
+2024-06-11
+2259
+2234
+41.2%
+27.6%
+31.3%
+1.d4 f5 2.c4 Nf6 3.g3 e6 4.Bg2 Be7 5.Nf3 O-O 6.O-O d6 7.Nc3 Qe8 8.Qc2
+Dutch Defense, Classical Variation, Ilyin-Zhenevsky Variation, Modern Main Line
+ 
+461
+A99
+2024-08-09
+2374
+2320
+51.8%
+26.7%
+21.5%
+1.d4 f5 2.c4 Nf6 3.g3 e6 4.Bg2 Be7 5.Nf3 O-O 6.O-O d6 7.Nc3 Qe8 8.b3
+Dutch Defense, Classical Variation, Stonewall Variation
+ 
+444
+A94
+2024-07-09
+2325
+2269
+52.3%
+30.6%
+17.1%
+1.d4 f5 2.c4 Nf6 3.g3 e6 4.Bg2 Be7 5.Nf3 O-O 6.O-O d5 7.b3 c6 8.Ba3
+Dutch Defense, Classical Variation, Stonewall Variation, Botvinnik Variation
+ 
+363
+A93
+2024-07-30
+2371
+2308
+41.0%
+33.6%
+25.3%
+1.d4 f5 2.c4 Nf6 3.g3 e6 4.Bg2 Be7 5.Nf3 O-O 6.O-O d5 7.b3
+Dutch Defense, Fianchetto Attack
+ 
+2422
+A81
+2024-08-06
+2296
+2269
+44.7%
+28.0%
+27.3%
+1.d4 f5 2.g3
+Dutch Defense, Fianchetto Variation
+ 
+197
+A86
+2024-07-09
+2239
+2205
+43.1%
+25.9%
+31.0%
+1.d4 f5 2.c4 Nf6 3.g3
+Dutch Defense, Hopton Attack
+ 
+4662
+A80
+2024-08-08
+2255
+2210
+47.3%
+21.8%
+30.9%
+1.d4 f5 2.Bg5
+Dutch Defense, Janzen-Korchnoi Gambit
+ 
+160
+A80
+2024-08-04
+2128
+2151
+42.5%
+20.0%
+37.5%
+1.d4 f5 2.h3 Nf6 3.g4
+Dutch Defense, Kmoch Attack
+ 
+161
+A80
+2024-07-30
+2269
+2218
+44.7%
+19.9%
+35.4%
+1.d4 f5 2.Qd3
+Dutch Defense, Korchnoi Attack
+ 
+266
+A80
+2024-08-02
+2212
+2208
+42.9%
+18.8%
+38.4%
+1.d4 f5 2.h3
+Dutch Defense, Krejcik Gambit
+ 
+449
+A80
+2024-08-09
+2181
+2176
+48.5%
+14.7%
+36.8%
+1.d4 f5 2.g4
+Dutch Defense, Leningrad Variation
+ 
+2288
+A87
+2024-08-12
+2291
+2251
+39.9%
+29.6%
+30.6%
+1.d4 f5 2.c4 Nf6 3.g3 g6 4.Bg2 Bg7 5.Nf3
+Dutch Defense, Queen's Knight Variation
+ 
+5491
+A85
+2024-08-11
+2154
+2127
+39.5%
+22.1%
+38.4%
+1.d4 f5 2.c4 Nf6 3.Nc3
+Dutch Defense, Raphael Variation
+ 
+4032
+A80
+2024-08-09
+2283
+2240
+48.0%
+24.0%
+28.0%
+1.d4 f5 2.Nc3
+Dutch Defense, Rubinstein Variation
+ 
+3343
+A84
+2024-08-06
+2153
+2124
+41.6%
+24.1%
+34.3%
+1.d4 f5 2.c4 e6 3.Nc3
+Dutch Defense, Staunton Gambit, General Variation
+ 
+1802
+A83
+2024-08-09
+2182
+2152
+42.1%
+22.7%
+35.2%
+1.d4 f5 2.e4 fxe4 3.Nc3 Nf6 4.Bg5
+Dutch Defense, Staunton Gambit, Lasker Variation
+ 
+185
+A83
+2024-07-07
+2284
+2222
+47.0%
+21.1%
+31.9%
+1.d4 f5 2.e4 fxe4 3.Nc3 Nf6 4.Bg5 g6 5.f3
+English Opening, Agincourt Defense, Agincourt Variation
+ 
+3457
+A13
+2024-08-11
+2338
+2317
+39.1%
+31.0%
+29.9%
+1.c4 e6 2.Nf3 d5 3.g3
+English Opening, Agincourt Defense, Neo Catalan Declined
+ 
+13796
+A14
+2024-08-11
+2355
+2346
+42.2%
+33.3%
+24.5%
+1.c4 e6 2.Nf3 d5 3.g3 Nf6 4.Bg2 Be7 5.O-O
+English Opening, Agincourt Defense, Wimpy System
+ 
+1795
+A13
+2024-08-07
+2306
+2312
+41.1%
+28.0%
+30.9%
+1.c4 e6 2.Nf3 d5 3.b3 Nf6 4.Bb2 c5 5.e3
+English Opening, Anglo-Indian Defense, Anglo-GrÃ¼nfeld Variation
+ 
+1229
+A16
+2024-08-06
+2307
+2276
+50.3%
+28.1%
+21.6%
+1.c4 Nf6 2.Nc3 d5 3.cxd5 Nxd5 4.Nf3
+English Opening, Anglo-Indian Defense, Anti-Anti-GrÃ¼nfeld
+ 
+1168
+A17
+2024-08-08
+2377
+2357
+40.1%
+31.7%
+28.2%
+1.c4 Nf6 2.Nc3 g6 3.Nf3 Bg7 4.e4
+English Opening, Anglo-Indian Defense, Flohr-Mikenas-Carls Variation
+ 
+2238
+A18
+2024-08-07
+2263
+2227
+55.6%
+22.1%
+22.3%
+1.c4 Nf6 2.Nc3 e6 3.e4
+English Opening, Anglo-Indian Defense, Flohr-Mikenas-Carls Variation
+ 
+3007
+A18
+2024-08-08
+2325
+2302
+46.3%
+29.4%
+24.3%
+1.c4 Nf6 2.Nc3 e6 3.e4 d5 4.e5
+English Opening, Anglo-Indian Defense, King's Knight Variation
+ 
+20405
+A15
+2024-08-11
+2334
+2321
+41.2%
+33.3%
+25.5%
+1.c4 Nf6 2.Nf3
+English Opening, Anglo-Indian Defense, Queen's Knight Variation
+ 
+15372
+A16
+2024-08-13
+2191
+2172
+41.0%
+26.8%
+32.2%
+1.c4 Nf6 2.Nc3
+English Opening, Anglo-Indian Defense, Queens Indian Variation
+ 
+225
+A17
+2024-08-06
+2487
+2433
+52.0%
+29.8%
+18.2%
+1.c4 Nf6 2.Nc3 e6 3.Nf3 b6 4.e4 Bb7 5.Bd3
+English Opening, Anglo-Indian Defense, Zviagintsev-Krasenkov Attack
+ 
+314
+A18
+2024-07-10
+2432
+2424
+46.5%
+24.8%
+28.7%
+1.c4 Nf6 2.Nc3 e6 3.Nf3 Bb4 4.g4
+English Opening, General
+ 
+7383
+A10
+2024-08-12
+2233
+2195
+38.6%
+24.4%
+37.0%
+1.c4
+English Opening, King's English Variation, Botvinnik System
+ 
+1084
+A26
+2024-07-29
+2290
+2273
+32.9%
+36.2%
+30.9%
+1.c4 e5 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.d3 d6 6.e4
+English Opening, King's English Variation, Closed System
+ 
+682
+A25
+2024-07-27
+2247
+2230
+37.8%
+30.6%
+31.5%
+1.c4 e5 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.d3
+English Opening, King's English Variation, Four Knights Variation, Botvinnik Line
+ 
+2719
+A28
+2024-08-10
+2317
+2297
+41.6%
+25.3%
+33.1%
+1.c4 e5 2.Nc3 Nc6 3.Nf3 Nf6 4.e4
+English Opening, King's English Variation, Four Knights Variation, Fianchetto Lines
+ 
+7223
+A29
+2024-08-10
+2365
+2345
+37.4%
+34.6%
+27.9%
+1.c4 e5 2.Nc3 Nc6 3.Nf3 Nf6 4.g3
+English Opening, King's English Variation, Four Knights Variation, Flexible Line
+ 
+1637
+A28
+2024-08-06
+2341
+2316
+40.1%
+33.1%
+26.8%
+1.c4 e5 2.Nc3 Nc6 3.Nf3 Nf6 4.d3
+English Opening, King's English Variation, Four Knights Variation, Korchnoi Line
+ 
+1410
+A28
+2024-08-11
+2401
+2387
+39.4%
+34.4%
+26.2%
+1.c4 e5 2.Nc3 Nc6 3.Nf3 Nf6 4.a3
+English Opening, King's English Variation, Four Knights Variation, Quiet Line
+ 
+3401
+A28
+2024-08-04
+2332
+2320
+41.3%
+29.4%
+29.3%
+1.c4 e5 2.Nc3 Nc6 3.Nf3 Nf6 4.e3
+English Opening, King's English Variation, Four Knights Variation, Quiet Line
+ 
+272
+A28
+2024-07-23
+2418
+2342
+39.3%
+31.6%
+29.0%
+1.c4 e5 2.Nc3 Nc6 3.Nf3 Nf6 4.e3 Bb4 5.Qc2 O-O 6.Nd5 Re8 7.Qf5
+English Opening, King's English Variation, General Variation
+ 
+1427
+A21
+2024-08-06
+2256
+2251
+37.4%
+26.0%
+36.6%
+1.c4 e5 2.Nc3 d6 3.Nf3
+English Opening, King's English Variation, Hungarian Attack
+ 
+1288
+A25
+2024-08-03
+2400
+2380
+41.3%
+33.2%
+25.5%
+1.c4 e5 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.Rb1
+English Opening, King's English Variation, Nimzowitsch Variation, General
+ 
+410
+A20
+2024-08-06
+2353
+2318
+46.3%
+24.6%
+29.0%
+1.c4 e5 2.Nf3
+English Opening, King's English Variation, Reversed Sicilian
+ 
+5106
+A21
+2024-08-12
+2179
+2149
+42.4%
+24.2%
+33.4%
+1.c4 e5 2.Nc3
+English Opening, King's English Variation, Three Knights System, General
+ 
+3830
+A27
+2024-08-11
+2244
+2238
+40.9%
+24.9%
+34.2%
+1.c4 e5 2.Nc3 Nc6 3.Nf3
+English Opening, King's English Variation, Two Knights' Variation, Fianchetto Line
+ 
+3087
+A22
+2024-08-06
+2075
+2042
+47.0%
+23.7%
+29.3%
+1.c4 e5 2.Nc3 Nf6 3.g3
+English Opening, Symmetrical Variation, Anti-Benoni Variation
+ 
+8782
+A31
+2024-08-09
+2217
+2198
+38.8%
+26.4%
+34.8%
+1.c4 c5 2.Nf3 Nf6 3.d4
+English Opening, Symmetrical Variation, Botvinnik System
+ 
+3259
+A36
+2024-08-12
+2167
+2131
+30.2%
+27.9%
+41.9%
+1.c4 c5 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.e4
+English Opening, Symmetrical Variation, Double Fianchetto
+ 
+151
+A38
+2024-08-06
+2108
+2119
+30.5%
+33.1%
+36.4%
+1.c4 c5 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.Nf3 Nf6 6.O-O O-O 7.b3
+English Opening, Symmetrical Variation, Duchamp Variation
+ 
+1954
+A38
+2024-08-06
+2122
+2115
+29.6%
+42.4%
+28.0%
+1.c4 c5 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.Nf3 Nf6 6.O-O O-O 7.d3
+English Opening, Symmetrical Variation, Fianchetto Variation
+ 
+846
+A36
+2024-08-09
+2025
+2004
+50.8%
+23.9%
+25.3%
+1.c4 c5 2.Nc3 Nc6 3.g3
+English Opening, Symmetrical Variation, Fianchetto Variation
+ 
+3066
+A34
+2024-08-06
+2225
+2203
+42.2%
+27.4%
+30.4%
+1.c4 c5 2.Nc3 Nf6 3.g3
+English Opening, Symmetrical Variation, Mecking Variation
+ 
+3456
+A39
+2024-08-10
+2259
+2228
+44.5%
+35.2%
+20.3%
+1.c4 c5 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.Nf3 Nf6 6.O-O O-O 7.d4
+English Opening, Symmetrical Variation, Normal Variation
+ 
+2394
+A34
+2024-08-06
+2127
+2116
+37.5%
+28.3%
+34.2%
+1.c4 c5 2.Nc3
+English Opening, Symmetrical Variation, Two Knights Line
+ 
+8227
+A37
+2024-08-07
+2277
+2270
+28.5%
+35.1%
+36.4%
+1.c4 c5 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.Nf3
+English Opening, The Whale
+ 
+506
+C20
+2024-07-10
+1802
+1800
+35.6%
+13.2%
+51.2%
+1.e4 e5 2.c4
+Englund Gambit Complex, Declined
+ 
+110
+A40
+2024-05-21
+1831
+1857
+37.3%
+16.4%
+46.4%
+1.d4 e5 2.d5
+Englund Gambit Complex, Stockholm Variation
+ 
+144
+A40
+2024-07-30
+2113
+2062
+61.8%
+7.6%
+30.6%
+1.d4 e5 2.dxe5 Nc6 3.Nf3 Qe7 4.Qd5
+Englund Gambit, Declined, Reversed French
+ 
+259
+A40
+2024-08-06
+2072
+2005
+44.0%
+19.7%
+36.3%
+1.d4 e5 2.e3
+Four Knights Game, Double Spanish Misc. with 5.O-O
+ 
+132
+C49
+2024-06-11
+2284
+2216
+49.2%
+26.5%
+24.2%
+1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.Bb5 Bb4 5.O-O O-O 6.d3
+Four Knights Game, Gunsberg Variation
+ 
+1941
+C46
+2024-08-11
+2232
+2219
+43.2%
+25.0%
+31.8%
+1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.a3
+Four Knights Game, Halloween Gambit
+ 
+185
+C46
+2024-08-06
+2107
+2077
+40.5%
+11.9%
+47.6%
+1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.Nxe5
+Four Knights Game, Italian Variation
+ 
+2643
+C46
+2024-08-09
+1752
+1755
+29.1%
+19.0%
+51.9%
+1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.Bc4
+Four Knights Game, Italian Variation, Noa Gambit
+ 
+497
+C47
+2024-07-30
+1745
+1808
+23.3%
+13.7%
+63.0%
+1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.Bc4 Nxe4 5.Bxf7+
+Four Knights Game, Janowski Variation
+ 
+232
+C49
+2024-07-20
+2378
+2390
+36.6%
+32.8%
+30.6%
+1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.Bb5 Bb4 5.O-O O-O 6.d3 Bxc3 7.bxc3 d6 8.Re1
+Four Knights Game, Nimzowitsch (Paulsen)
+ 
+537
+C49
+2024-08-12
+2402
+2368
+31.5%
+44.0%
+24.6%
+1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.Bb5 Bb4 5.O-O O-O 6.Bxc6
+Four Knights Game, Ranken Variation
+ 
+282
+C48
+2024-08-06
+1952
+1934
+52.8%
+22.3%
+24.8%
+1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.Bb5 a6 5.Bxc6
+Four Knights Game, Scotch Variation
+ 
+692
+C47
+2024-08-05
+2017
+1990
+44.2%
+20.2%
+35.5%
+1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.d4
+Four Knights Game, Scotch Variation, Belgrade Gambit
+ 
+988
+C47
+2024-07-30
+2211
+2191
+37.1%
+27.0%
+35.8%
+1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.d4 exd4 5.Nd5
+Four Knights Game, Scotch Variation, Krause Gambit
+ 
+423
+C47
+2024-08-08
+2333
+2256
+36.2%
+33.8%
+30.0%
+1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.d4 Bb4 5.Nxe5
+Four Knights Game, Spanish Variation
+ 
+3159
+C48
+2024-08-12
+2164
+2136
+38.4%
+26.9%
+34.7%
+1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.Bb5
+Four Knights Game, Spanish Variation, Rubinstein Variation, Accepted
+ 
+838
+C48
+2024-08-09
+2356
+2318
+17.8%
+61.3%
+20.9%
+1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.Bb5 Nd4 5.Nxd4
+Four Knights Game, Spanish Variation, Symmetrical Variation
+ 
+555
+C49
+2024-08-06
+2413
+2395
+38.0%
+39.6%
+22.3%
+1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.Bb5 Bb4 5.O-O O-O 6.d3 d6 7.Ne2
+French Defense, Advance Variation
+ 
+2784
+C02
+2024-08-12
+2102
+2080
+40.9%
+20.6%
+38.5%
+1.e4 e6 2.d4 d5 3.e5 c5 4.c3
+French Defense, Advance Variation
+ 
+2367
+C02
+2024-08-10
+2067
+2052
+39.6%
+20.8%
+39.5%
+1.e4 e6 2.d4 d5 3.e5
+French Defense, Advance Variation, Main Line
+ 
+7045
+C02
+2024-08-09
+2179
+2159
+44.1%
+23.4%
+32.5%
+1.e4 e6 2.d4 d5 3.e5 c5 4.c3 Nc6 5.Nf3 Qb6 6.a3
+French Defense, Advance Variation, Milner-Barry Gambit
+ 
+3717
+C02
+2024-08-11
+2050
+2049
+43.0%
+16.8%
+40.2%
+1.e4 e6 2.d4 d5 3.e5 c5 4.c3 Nc6 5.Nf3 Qb6 6.Bd3
+French Defense, Advance Variation, Nimzowitsch Attack
+ 
+389
+C02
+2024-07-30
+2135
+2140
+41.6%
+15.9%
+42.4%
+1.e4 e6 2.d4 d5 3.e5 c5 4.Qg4
+French Defense, Advance Variation, Nimzowitsch Gambit
+ 
+309
+C02
+2024-07-23
+2121
+2122
+44.3%
+15.9%
+39.8%
+1.e4 e6 2.d4 d5 3.e5 c5 4.Qg4 cxd4 5.Nf3
+French Defense, Advance Variation, Nimzowitsch System
+ 
+1518
+C02
+2024-08-11
+1908
+1939
+32.2%
+16.6%
+51.2%
+1.e4 e6 2.d4 d5 3.e5 c5 4.Nf3
+French Defense, Advance Variation, Paulsen Attack
+ 
+7327
+C02
+2024-08-12
+2090
+2088
+39.9%
+21.9%
+38.2%
+1.e4 e6 2.d4 d5 3.e5 c5 4.c3 Nc6 5.Nf3
+French Defense, Advance Variation, Ruisdonk Gambit
+ 
+246
+C02
+2024-06-18
+2223
+2231
+37.0%
+20.3%
+42.7%
+1.e4 e6 2.d4 d5 3.e5 c5 4.Nf3 cxd4 5.Bd3
+French Defense, Alapin Gambit
+ 
+308
+C00
+2024-08-06
+2104
+2071
+45.1%
+20.4%
+34.4%
+1.e4 e6 2.d4 d5 3.Be3
+French Defense, Alekhine-Chatard Attack
+ 
+1102
+C13
+2024-08-07
+2206
+2182
+48.5%
+19.8%
+31.8%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Be7 5.e5 Nfd7 6.h4
+French Defense, Chigorin Variation
+ 
+5773
+C00
+2024-08-09
+2232
+2225
+46.2%
+22.7%
+31.1%
+1.e4 e6 2.Qe2
+French Defense, Classical Variation, Alapin Variation
+ 
+314
+C14
+2024-05-25
+2341
+2279
+50.0%
+24.5%
+25.5%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Be7 5.e5 Nfd7 6.Bxe7 Qxe7 7.Nb5
+French Defense, Classical Variation, Delayed Exchange Variation
+ 
+919
+C11
+2024-08-06
+2189
+2185
+33.6%
+28.9%
+37.4%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.exd5
+French Defense, Classical Variation, Pollock Variation
+ 
+217
+C14
+2024-07-25
+2063
+2041
+46.1%
+18.9%
+35.0%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Be7 5.e5 Nfd7 6.Bxe7 Qxe7 7.Qg4
+French Defense, Classical Variation, Richter Attack
+ 
+146
+C13
+2023-12-26
+2146
+2142
+41.8%
+14.4%
+43.8%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Be7 5.Bxf6 Bxf6 6.e5 Be7 7.Qg4
+French Defense, Classical Variation, Richter Attack
+ 
+386
+C13
+2024-07-26
+2171
+2182
+39.9%
+21.2%
+38.9%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Be7 5.Bxf6
+French Defense, Classical Variation, Rubinstein Variation
+ 
+331
+C14
+2024-08-02
+2383
+2343
+51.1%
+20.9%
+28.1%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Be7 5.e5 Nfd7 6.Bxe7 Qxe7 7.Qd2
+French Defense, Classical Variation, Steinitz Variation
+ 
+4816
+C11
+2024-08-12
+2194
+2174
+43.5%
+20.4%
+36.1%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.e5
+French Defense, Classical Variation, Steinitz Variation
+ 
+3610
+C14
+2024-08-07
+2235
+2207
+44.7%
+28.1%
+27.2%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Be7 5.e5 Nfd7 6.Bxe7 Qxe7 7.f4
+French Defense, Classical Variation, Swiss Variation
+ 
+560
+C11
+2024-08-08
+2159
+2148
+42.7%
+21.4%
+35.9%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bd3
+French Defense, Exchange Variation
+ 
+25129
+C01
+2024-08-12
+2074
+2042
+27.9%
+34.6%
+37.4%
+1.e4 e6 2.d4 d5 3.exd5
+French Defense, Exchange Variation, Monte Carlo Variation
+ 
+4337
+C01
+2024-08-09
+2091
+2069
+36.8%
+26.8%
+36.4%
+1.e4 e6 2.d4 d5 3.exd5 exd5 4.c4
+French Defense, Exchange Variation, Svenonius Variation
+ 
+560
+C01
+2024-08-06
+2145
+2105
+33.8%
+32.3%
+33.9%
+1.e4 e6 2.d4 d5 3.exd5 exd5 4.Nc3 Nf6 5.Bg5
+French Defense, Horwitz Attack
+ 
+508
+C00
+2024-08-06
+2075
+2080
+40.5%
+19.1%
+40.4%
+1.e4 e6 2.b3
+French Defense, Horwitz Attack, Papa-Ticulat Gambit
+ 
+1963
+C00
+2024-08-06
+2179
+2144
+45.6%
+21.0%
+33.4%
+1.e4 e6 2.b3 d5 3.Bb2
+French Defense, King's Indian Attack
+ 
+20234
+C00
+2024-08-12
+2204
+2187
+42.2%
+24.8%
+33.0%
+1.e4 e6 2.d3
+French Defense, Knight Variation
+ 
+3561
+C00
+2024-08-08
+1842
+1849
+29.7%
+18.2%
+52.1%
+1.e4 e6 2.Nf3
+French Defense, La Bourdonnais Variation
+ 
+1237
+C00
+2024-08-06
+2054
+2049
+39.2%
+21.4%
+39.4%
+1.e4 e6 2.f4
+French Defense, MacCutcheon Variation, Bernstein Variation
+ 
+207
+C12
+2024-07-23
+2319
+2286
+45.9%
+23.7%
+30.4%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Bb4 5.e5 h6 6.Bh4
+French Defense, MacCutcheon Variation, Chigorin Variation
+ 
+362
+C12
+2024-08-06
+2031
+2056
+27.4%
+26.0%
+46.7%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Bb4 5.e5 h6 6.exf6
+French Defense, MacCutcheon Variation, Dr. Olland (Dutch) Variation
+ 
+467
+C12
+2024-08-04
+2345
+2316
+45.0%
+26.1%
+28.9%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Bb4 5.e5 h6 6.Bc1
+French Defense, MacCutcheon Variation, Exchange Variation
+ 
+671
+C12
+2024-07-12
+2324
+2293
+39.3%
+31.4%
+29.2%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Bb4 5.exd5
+French Defense, MacCutcheon Variation, Janowski Variation
+ 
+817
+C12
+2024-07-23
+2332
+2295
+46.3%
+22.0%
+31.7%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Bb4 5.e5 h6 6.Be3
+French Defense, MacCutcheon Variation, Wolf Gambit
+ 
+501
+C12
+2024-07-30
+2278
+2259
+38.1%
+27.5%
+34.3%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Bb4 5.Ne2
+French Defense, Normal Variation
+ 
+3265
+C00
+2024-08-06
+2095
+2036
+51.7%
+16.9%
+31.4%
+1.e4 e6 2.d4
+French Defense, Normal Variation
+ 
+4362
+C10
+2024-08-12
+2296
+2251
+42.6%
+26.8%
+30.6%
+1.e4 e6 2.d4 d5 3.Nc3
+French Defense, Orthoschnapp Gambit
+ 
+184
+C00
+2024-08-06
+2313
+2297
+53.3%
+8.2%
+38.6%
+1.e4 e6 2.c4 d5 3.cxd5 exd5 4.Qb3
+French Defense, Pelikan Variation
+ 
+161
+C00
+2024-07-30
+2152
+2100
+35.4%
+27.9%
+36.6%
+1.e4 e6 2.Nc3 d5 3.f4
+French Defense, Queen's Knight
+ 
+1434
+C00
+2024-08-06
+1898
+1890
+33.5%
+15.9%
+50.6%
+1.e4 e6 2.Nc3
+French Defense, Reti-Spielmann Attack
+ 
+349
+C00
+2024-08-06
+2039
+2059
+38.4%
+20.6%
+41.0%
+1.e4 e6 2.g3
+French Defense, Reversed Philidor Formation
+ 
+183
+C00
+2024-08-08
+2293
+2277
+35.0%
+34.4%
+30.6%
+1.e4 e6 2.d3 d5 3.Nd2 Nf6 4.Ngf3 Nc6 5.Be2
+French Defense, Rubinstein Variation, Capablanca Line
+ 
+159
+C10
+2024-07-30
+2335
+2277
+52.2%
+32.1%
+15.7%
+1.e4 e6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Nd7 5.Nf3 Ngf6 6.Nxf6+ Nxf6 7.Ne5
+French Defense, Schlechter Variation
+ 
+4624
+C00
+2024-08-10
+2189
+2156
+43.5%
+21.4%
+35.1%
+1.e4 e6 2.d4 d5 3.Bd3
+French Defense, Steinitz Attack
+ 
+279
+C00
+2024-07-02
+2069
+2088
+36.9%
+24.4%
+38.7%
+1.e4 e6 2.e5
+French Defense, Steinitz Variation
+ 
+2052
+C11
+2024-08-06
+2287
+2260
+40.7%
+25.9%
+33.4%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.e5 Nfd7 5.f4 c5 6.Nf3
+French Defense, Steinitz Variation, Boleslavsky Variation
+ 
+14678
+C11
+2024-08-12
+2311
+2283
+42.5%
+27.7%
+29.8%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.e5 Nfd7 5.f4 c5 6.Nf3 Nc6 7.Be3
+French Defense, Steinitz Variation, Gledhill Attack
+ 
+142
+C11
+2024-08-05
+2164
+2171
+48.6%
+16.9%
+34.5%
+1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.e5 Nfd7 5.Qg4
+French Defense, Tarrasch Variation
+ 
+3793
+C03
+2024-08-12
+2223
+2179
+47.1%
+25.3%
+27.6%
+1.e4 e6 2.d4 d5 3.Nd2
+French Defense, Tarrasch Variation, Closed Variation, Main Line
+ 
+10790
+C06
+2024-08-10
+2255
+2226
+41.8%
+29.4%
+28.8%
+1.e4 e6 2.d4 d5 3.Nd2 Nf6 4.e5 Nfd7 5.Bd3 c5 6.c3 Nc6 7.Ne2 cxd4 8.cxd4
+French Defense, Tarrasch Variation, Open System, Euwe-Keres Line
+ 
+7067
+C07
+2024-08-11
+2365
+2325
+39.2%
+34.8%
+26.0%
+1.e4 e6 2.d4 d5 3.Nd2 c5 4.Ngf3
+French Defense, Tarrasch Variation, Open System, Suechting Line
+ 
+1197
+C07
+2024-08-06
+1968
+1945
+34.9%
+21.5%
+43.6%
+1.e4 e6 2.d4 d5 3.Nd2 c5 4.c3
+French Defense, Tarrasch Variation, Pawn Center Variation
+ 
+4320
+C05
+2024-08-09
+2258
+2219
+48.7%
+21.8%
+29.5%
+1.e4 e6 2.d4 d5 3.Nd2 Nf6 4.e5 Nfd7 5.f4
+French Defense, Two Knights Variation
+ 
+5538
+C00
+2024-08-11
+2142
+2118
+41.0%
+23.1%
+35.9%
+1.e4 e6 2.Nc3 d5 3.Nf3
+French Defense, Winawer Variation, Advance Variation
+ 
+1263
+C19
+2024-08-07
+2361
+2341
+42.7%
+27.9%
+29.4%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5 c5 5.a3 Bxc3+ 6.bxc3 Ne7 7.a4
+French Defense, Winawer Variation, Advance Variation
+ 
+108
+C17
+2024-07-02
+2335
+2215
+72.2%
+16.7%
+11.1%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5 c5 5.a3 cxd4 6.axb4 dxc3 7.Nf3
+French Defense, Winawer Variation, Advance Variation
+ 
+4241
+C18
+2024-08-12
+2287
+2263
+43.7%
+24.9%
+31.4%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5 c5 5.a3 Bxc3+ 6.bxc3
+French Defense, Winawer Variation, Advance Variation
+ 
+134
+C17
+2024-07-27
+2008
+1966
+53.7%
+22.4%
+23.9%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5 c5 5.a3
+French Defense, Winawer Variation, Advance Variation, General
+ 
+5830
+C16
+2024-08-08
+2326
+2277
+41.9%
+25.9%
+32.2%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5
+French Defense, Winawer Variation, Advance Variation, Moscow Variation
+ 
+690
+C17
+2024-08-06
+2250
+2235
+45.5%
+21.3%
+33.2%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5 c5 5.Qg4
+French Defense, Winawer Variation, Alekhine-Maroczy Gambit
+ 
+3112
+C15
+2024-08-10
+2298
+2266
+40.9%
+28.1%
+31.0%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.Ne2
+French Defense, Winawer Variation, Bogoljubow Variation
+ 
+3171
+C17
+2024-08-07
+2261
+2220
+44.0%
+26.2%
+29.7%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5 c5 5.Bd2
+French Defense, Winawer Variation, Bogoljubow Variation, Icelandic Defense
+ 
+171
+C17
+2024-04-30
+2326
+2259
+38.0%
+39.2%
+22.8%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5 c5 5.Bd2 Ne7 6.f4
+French Defense, Winawer Variation, Delayed Exchange Variation
+ 
+5010
+C01
+2024-08-10
+2273
+2242
+36.6%
+31.0%
+32.4%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.exd5
+French Defense, Winawer Variation, Exchange Variation, Canal Attack
+ 
+223
+C01
+2024-08-06
+2334
+2296
+48.0%
+26.0%
+26.0%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.exd5 exd5 5.Bd3 Ne7 6.Qh5
+French Defense, Winawer Variation, Fingerslip Variation
+ 
+427
+C15
+2024-07-29
+2051
+2042
+32.8%
+21.6%
+45.7%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.Bd2
+French Defense, Winawer Variation, Fingerslip Variation, Main Line
+ 
+183
+C15
+2023-12-09
+2265
+2218
+43.7%
+24.0%
+32.2%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.Bd2 dxe4 5.Qg4 Nf6 6.Qxg7 Rg8 7.Qh6
+French Defense, Winawer Variation, Poisoned Pawn Variation, General
+ 
+5570
+C18
+2024-08-06
+2336
+2299
+43.0%
+27.7%
+29.3%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5 c5 5.a3 Bxc3+ 6.bxc3 Ne7 7.Qg4
+French Defense, Winawer Variation, Poisoned Pawn Variation, Main Line
+ 
+2886
+C18
+2024-08-08
+2299
+2261
+45.4%
+22.9%
+31.7%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5 c5 5.a3 Bxc3+ 6.bxc3 Ne7 7.Qg4 Qc7 8.Qxg7 Rg8 9.Qxh7 cxd4 10.Ne2
+French Defense, Winawer Variation, Poisoned Pawn Variation, Paoli Variation
+ 
+204
+C18
+2023-07-14
+2282
+2283
+34.8%
+25.0%
+40.2%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5 c5 5.a3 Bxc3+ 6.bxc3 Ne7 7.Qg4 Qc7 8.Qxg7 Rg8 9.Qxh7 cxd4 10.Kd1
+French Defense, Winawer Variation, Positional Variation
+ 
+3497
+C19
+2024-08-10
+2308
+2297
+39.7%
+27.9%
+32.4%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5 c5 5.a3 Bxc3+ 6.bxc3 Ne7 7.Nf3
+French Defense, Winawer Variation, Winckelmann-Riemer Gambit
+ 
+1657
+C15
+2024-08-04
+2239
+2226
+42.2%
+21.4%
+36.5%
+1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.a3
+French Defense, Wing Gambit
+ 
+2111
+C00
+2024-08-10
+2140
+2128
+44.1%
+15.8%
+40.1%
+1.e4 e6 2.Nf3 d5 3.e5 c5 4.b4
+Grob Opening, General
+ 
+1279
+A00
+2024-08-06
+2154
+2189
+45.1%
+10.9%
+43.9%
+1.g4
+Grob Opening, Grob Gambit
+ 
+221
+A00
+2024-07-30
+2087
+2135
+47.5%
+14.5%
+38.0%
+1.g4 d5 2.Bg2
+Grob Opening, Grob Gambit, Fritz Gambit
+ 
+438
+A00
+2024-08-06
+2103
+2127
+52.7%
+8.9%
+38.4%
+1.g4 d5 2.Bg2 Bxg4 3.c4
+Grob Opening, Spike, Hurst Attack
+ 
+104
+A00
+2024-06-02
+2006
+2041
+52.9%
+11.5%
+35.6%
+1.g4 e5 2.Bg2 d5 3.c4
+Gruenfeld Defense, Brinckmann Attack
+ 
+2186
+D82
+2024-07-18
+2342
+2309
+35.3%
+37.6%
+27.1%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Bf4
+Gruenfeld Defense, Brinckmann Attack, GrÃ¼nfeld Gambit, Accepted
+ 
+488
+D84
+2024-06-27
+2386
+2347
+32.8%
+42.8%
+24.4%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Bf4 Bg7 5.e3 O-O 6.cxd5 Nxd5 7.Nxd5 Qxd5 8.Bxc7
+Gruenfeld Defense, Brinckmann Attack, GrÃ¼nfeld Gambit, Capablanca Variation
+ 
+829
+D83
+2024-07-30
+2377
+2374
+38.0%
+33.5%
+28.5%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Bf4 Bg7 5.e3 O-O 6.Rc1
+Gruenfeld Defense, Exchange Variation, Classical Variation
+ 
+3578
+D86
+2024-08-10
+2301
+2268
+33.0%
+33.6%
+33.3%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.cxd5 Nxd5 5.e4 Nxc3 6.bxc3 Bg7 7.Bc4
+Gruenfeld Defense, Exchange Variation, Modern Exchange Variation
+ 
+11435
+D85
+2024-08-12
+2325
+2287
+36.3%
+35.3%
+28.4%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.cxd5 Nxd5 5.e4 Nxc3 6.bxc3 Bg7 7.Nf3
+Gruenfeld Defense, Exchange Variation, Modern Exchange Variation, Kramnik's line
+ 
+540
+D85
+2024-08-06
+2385
+2354
+41.9%
+32.0%
+26.1%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.cxd5 Nxd5 5.e4 Nxc3 6.bxc3 Bg7 7.Nf3 c5 8.h3
+Gruenfeld Defense, Exchange Variation, Nadanian Attack
+ 
+496
+D85
+2024-08-06
+2290
+2254
+39.3%
+30.2%
+30.4%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.cxd5 Nxd5 5.Na4
+Gruenfeld Defense, Exchange Variation, Seville Variation
+ 
+323
+D87
+2024-07-28
+2305
+2280
+32.5%
+39.3%
+28.2%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.cxd5 Nxd5 5.e4 Nxc3 6.bxc3 Bg7 7.Bc4 O-O 8.Ne2 c5 9.O-O Nc6 10.Be3 Bg4 11.f3 Na5 12.Bxf7+
+Gruenfeld Defense, Exchange Variation, Sokolsky Variation
+ 
+471
+D89
+2024-07-26
+2291
+2289
+38.9%
+30.4%
+30.8%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.cxd5 Nxd5 5.e4 Nxc3 6.bxc3 Bg7 7.Bc4 O-O 8.Ne2 c5 9.O-O Nc6 10.Be3 cxd4 11.cxd4 Bg4 12.f3 Na5 13.Bd3 Be6 14.d5
+Gruenfeld Defense, Exchange Variation, Spassky Variation
+ 
+958
+D88
+2024-07-23
+2174
+2155
+41.5%
+31.9%
+26.5%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.cxd5 Nxd5 5.e4 Nxc3 6.bxc3 Bg7 7.Bc4 O-O 8.Ne2 c5 9.O-O Nc6 10.Be3 cxd4 11.cxd4
+Gruenfeld Defense, Flohr Variation
+ 
+505
+D90
+2024-06-18
+2418
+2402
+41.0%
+33.7%
+25.4%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Qa4+
+Gruenfeld Defense, Lutikov Variation
+ 
+158
+D70
+2024-07-30
+2187
+2138
+44.9%
+18.4%
+36.7%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.f3
+Gruenfeld Defense, Makogonov Variation
+ 
+593
+D94
+2024-06-18
+2369
+2348
+36.6%
+38.1%
+25.3%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.e3 O-O 6.b4
+Gruenfeld Defense, Opocensky Variation
+ 
+596
+D94
+2024-07-31
+2352
+2351
+29.9%
+40.8%
+29.4%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.e3 O-O 6.Bd2
+Gruenfeld Defense, Russian Variation
+ 
+1213
+D96
+2024-08-06
+2299
+2253
+45.7%
+26.8%
+27.5%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Qb3
+Gruenfeld Defense, Russian Variation, Accelerated Variation
+ 
+578
+D81
+2024-08-06
+2378
+2363
+41.5%
+31.7%
+26.8%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Qb3
+Gruenfeld Defense, Russian Variation, Smyslov Variation
+ 
+186
+D99
+2022-06-14
+2526
+2436
+43.0%
+35.5%
+21.5%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Qb3 dxc4 6.Qxc4 O-O 7.e4 Bg4 8.Be3 Nfd7 9.Qb3
+Gruenfeld Defense, Russian Variation, With e4
+ 
+348
+D97
+2024-04-30
+2380
+2296
+44.0%
+27.9%
+28.2%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Qb3 dxc4 6.Qxc4 O-O 7.e4
+Gruenfeld Defense, Three Knights Variation, Burille Variation
+ 
+2834
+D94
+2024-08-06
+2133
+2114
+31.5%
+29.2%
+39.3%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.e3
+Gruenfeld Defense, Three Knights Variation, Hungarian Attack
+ 
+2196
+D92
+2024-08-09
+2284
+2260
+36.6%
+34.3%
+29.1%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Bf4
+Gruenfeld Defense, Three Knights Variation, Hungarian Variation
+ 
+2448
+D93
+2024-08-05
+2215
+2182
+33.1%
+31.9%
+35.0%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Bf4 O-O 6.e3
+Gruenfeld Defense, Three Knights Variation, Paris Variation
+ 
+571
+D94
+2024-07-30
+1876
+1881
+21.4%
+24.3%
+54.3%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.e3 O-O 6.Bd3
+Gruenfeld Defense, Three Knights Variation, Petrosian System
+ 
+6367
+D91
+2024-08-06
+2281
+2266
+34.5%
+33.2%
+32.4%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Bg5
+Gruenfeld Defense, Three Knights Variation, Vienna Variation
+ 
+500
+D95
+2024-08-01
+2294
+2231
+45.0%
+32.4%
+22.6%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.e3 O-O 6.Qb3
+Gruenfeld Defense, Zaitsev Gambit
+ 
+292
+D80
+2024-07-26
+2246
+2245
+45.9%
+23.3%
+30.8%
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.h4
+Hungarian Opening, General
+ 
+11018
+A00
+2024-08-12
+2259
+2255
+41.0%
+25.6%
+33.5%
+1.g3
+Hungarian Opening, Reversed Alekhine
+ 
+109
+A00
+2024-08-06
+2243
+2209
+43.1%
+23.9%
+33.0%
+1.g3 e5 2.Nf3
+Indian Game, Anti-GrÃ¼nfeld, Advance Variation
+ 
+248
+E60
+2024-06-18
+2291
+2269
+40.3%
+23.8%
+35.9%
+1.d4 Nf6 2.c4 g6 3.d5
+Indian Game, Anti-GrÃ¼nfeld, Alekhine Variation
+ 
+1702
+D70
+2024-08-11
+2361
+2344
+40.7%
+23.9%
+35.4%
+1.d4 Nf6 2.c4 g6 3.f3
+Indian Game, Anti-Nimzo-indian
+ 
+19583
+E10
+2024-08-11
+2333
+2297
+36.9%
+31.3%
+31.8%
+1.d4 Nf6 2.c4 e6 3.Nf3
+Indian Game, Knights Variation, General
+ 
+12296
+A46
+2024-08-11
+2246
+2226
+34.0%
+31.6%
+34.4%
+1.d4 Nf6 2.Nf3
+Indian Game, London System
+ 
+13604
+A46
+2024-08-12
+2195
+2172
+37.7%
+25.9%
+36.4%
+1.d4 Nf6 2.Nf3 e6 3.Bf4
+Indian Game, London System
+ 
+14779
+A48
+2024-08-14
+2141
+2120
+34.8%
+26.2%
+39.0%
+1.d4 Nf6 2.Nf3 g6 3.Bf4
+Indian Game, Normal Variation
+ 
+697
+A50
+2024-08-06
+2335
+2301
+40.5%
+19.9%
+39.6%
+1.d4 Nf6 2.c4
+Indian Game, Paleface Attack
+ 
+180
+A45
+2024-07-30
+2001
+2019
+37.8%
+11.7%
+50.6%
+1.d4 Nf6 2.f3
+Indian Game, Przepiorka Variation
+ 
+12007
+A49
+2024-08-11
+2259
+2239
+34.9%
+32.1%
+33.0%
+1.d4 Nf6 2.Nf3 g6 3.g3
+Indian Game, Seirawan Attack
+ 
+857
+E00
+2024-08-08
+2145
+2114
+37.5%
+21.1%
+41.4%
+1.d4 Nf6 2.c4 e6 3.Bg5
+Indian Game, Tartakower Attack
+ 
+5263
+A45
+2024-08-10
+2220
+2215
+39.0%
+27.9%
+33.2%
+1.d4 Nf6 2.g3
+Indian Game, Yusupov-Rubinstein System
+ 
+11117
+A46
+2024-08-11
+2238
+2211
+34.0%
+30.1%
+35.9%
+1.d4 Nf6 2.Nf3 e6 3.e3
+Italian Game, Bird's Attack
+ 
+692
+C53
+2024-08-06
+2201
+2201
+41.5%
+21.5%
+37.0%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6 5.b4
+Italian Game, Classical Variation, Albin Gambit
+ 
+583
+C53
+2024-07-31
+1951
+1940
+42.9%
+18.5%
+38.6%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6 5.O-O
+Italian Game, Classical Variation, Center Atttack
+ 
+923
+C53
+2024-08-06
+2038
+1996
+57.6%
+12.1%
+30.2%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6 5.d4
+Italian Game, Classical Variation, General
+ 
+1534
+C53
+2024-08-06
+1878
+1846
+56.4%
+16.6%
+27.1%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3
+Italian Game, Classical Variation, Giuoco Pianissimo
+ 
+21287
+C53
+2024-08-12
+2214
+2184
+40.1%
+28.4%
+31.5%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6 5.d3
+Italian Game, Classical Variation, Giuoco Pianissimo, Main line
+ 
+745
+C53
+2024-08-10
+2440
+2392
+37.9%
+37.7%
+24.4%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6 5.d3 a6 6.Bb3 Ba7 7.h3 O-O 8.O-O d6 9.Re1
+Italian Game, Classical Variation, Greco Gambit, Mason Gambit
+ 
+235
+C54
+2010-04-10
+2230
+2222
+36.6%
+25.5%
+37.9%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6 5.d4 exd4 6.O-O
+Italian Game, Classical Variation, Greco Gambit, Moeller-Therkatz Attack
+ 
+933
+C54
+2024-08-08
+1977
+1988
+31.4%
+20.4%
+48.2%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6 5.d4 exd4 6.cxd4 Bb4+ 7.Nc3 Nxe4 8.O-O Bxc3 9.d5
+Italian Game, Classical Variation, Greco Gambit, Traditional Line
+ 
+3453
+C54
+2024-08-11
+2008
+1969
+35.4%
+28.8%
+35.8%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6 5.d4 exd4 6.cxd4
+Italian Game, Deutz Gambit
+ 
+1350
+C55
+2024-08-03
+2091
+2058
+45.0%
+19.9%
+35.0%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.O-O Nf6 5.d4
+Italian Game, Evans Gambit, Slow Variation
+ 
+134
+C52
+2024-06-04
+2162
+2132
+44.0%
+14.9%
+41.0%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.O-O
+Italian Game, Evans Gambit, Tartakower Attack
+ 
+444
+C52
+2024-07-26
+2264
+2278
+35.6%
+23.4%
+41.0%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 d6 7.Qb3
+Italian Game, General
+ 
+2397
+C50
+2024-08-10
+2066
+2003
+49.7%
+20.7%
+29.6%
+1.e4 e5 2.Nf3 Nc6 3.Bc4
+Italian Game, Giuoco Pianissimo
+ 
+1913
+C50
+2024-08-11
+1851
+1859
+43.2%
+20.8%
+36.1%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.d3
+Italian Game, Giuoco Pianissimo, Canal Variation
+ 
+1356
+C50
+2024-08-10
+2032
+2030
+33.3%
+28.9%
+37.8%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.d3 Nf6 5.Nc3 d6 6.Bg5
+Italian Game, Giuoco Pianissimo, Italian Four Knights Variation
+ 
+4518
+C50
+2024-08-11
+1986
+1969
+35.2%
+26.7%
+38.1%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.d3 Nf6 5.Nc3
+Italian Game, Rosentreter Gambit
+ 
+148
+C50
+2024-08-06
+1945
+2004
+37.2%
+12.2%
+50.7%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.d4
+Italian Game, Scotch Gambit
+ 
+111
+C55
+2024-07-16
+1969
+1886
+59.5%
+18.0%
+22.5%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.d4 exd4 5.O-O
+Italian Game, Scotch Gambit, Anderssen Attack
+ 
+2482
+C56
+2024-08-10
+2133
+2106
+28.5%
+32.5%
+39.0%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.d4 exd4 5.O-O Nxe4 6.Re1 d5 7.Bxd5 Qxd5 8.Nc3
+Italian Game, Scotch Gambit, Anderssen Attack, Main Line
+ 
+116
+C56
+2024-08-05
+2209
+2203
+28.4%
+47.4%
+24.1%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.d4 exd4 5.O-O Nxe4 6.Re1 d5 7.Bxd5 Qxd5 8.Nc3 Qa5 9.Nxe4 Be6 10.Bd2 Qd5 11.Bg5
+Italian Game, Scotch Gambit, Canal Variation
+ 
+124
+C56
+2024-06-11
+2294
+2235
+39.5%
+28.2%
+32.3%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.d4 exd4 5.O-O Nxe4 6.Re1 d5 7.Nc3
+Italian Game, Scotch Gambit, Max Lange Attack, Long Variation
+ 
+272
+C55
+2024-04-30
+2130
+2126
+35.3%
+19.5%
+45.2%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.d4 exd4 5.O-O Bc5 6.e5 d5 7.exf6 dxc4 8.Re1+ Be6 9.Ng5 Qd5 10.Nc3 Qf5 11.Nce4
+Italian Game, Scotch Gambit, Nakhmanson Gambit
+ 
+222
+C56
+2024-07-30
+2255
+2216
+43.2%
+13.1%
+43.7%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.d4 exd4 5.O-O Nxe4 6.Nc3
+Italian Game, Scotch Gambit, Walbrodt-Baird Gambit
+ 
+314
+C55
+2024-08-01
+2026
+1991
+42.4%
+23.6%
+34.1%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.d4 exd4 5.O-O Bc5 6.c3
+Italian Game, Two Knights Defense, Fried Liver Attack
+ 
+437
+C57
+2024-08-09
+1748
+1671
+74.4%
+6.0%
+19.7%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Nxd5 6.Nxf7
+Italian Game, Two Knights Defense, Knight Attack
+ 
+107
+C57
+2023-02-25
+1726
+1591
+84.1%
+5.6%
+10.3%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5
+Italian Game, Two Knights Defense, Lolli Attack
+ 
+104
+C57
+2024-03-03
+1868
+1818
+69.2%
+11.5%
+19.2%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Nxd5 6.d4
+Italian Game, Two Knights Defense, Modern Bishop's Opening
+ 
+17468
+C55
+2024-08-12
+2253
+2217
+40.3%
+26.8%
+32.9%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.d3
+Italian Game, Two Knights Defense, Perreux Variation
+ 
+626
+C55
+2024-08-06
+2124
+2112
+39.1%
+22.8%
+38.0%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.d4 exd4 5.Ng5
+Italian Game, Two Knights Defense, Polerio Defense, Bishop Check line
+ 
+2729
+C58
+2024-08-12
+2204
+2156
+44.3%
+19.0%
+36.7%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Na5 6.Bb5+
+Italian Game, Two Knights Defense, Polerio Defense, Bogoljubow Variation
+ 
+1072
+C58
+2024-08-06
+2094
+2058
+41.9%
+16.1%
+42.0%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Na5 6.Bb5+ c6 7.dxc6 bxc6 8.Qf3
+Italian Game, Two Knights Defense, Polerio Defense, Kieseritsky Variation
+ 
+324
+C58
+2024-07-30
+2074
+2042
+42.3%
+18.8%
+38.9%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Na5 6.d3
+Italian Game, Two Knights Defense, Traxler Counterattack, Bishop sac line
+ 
+291
+C57
+2024-07-30
+2144
+2098
+44.0%
+20.3%
+35.7%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 Bc5 5.Bxf7+
+Italian Game, Two Knights Defense, Traxler Counterattack, Knight sac line
+ 
+165
+C57
+2024-07-11
+1836
+1862
+29.7%
+18.2%
+52.1%
+1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 Bc5 5.Nxf7
+Kadas Opening, General
+ 
+1141
+A00
+2024-08-12
+2311
+2311
+52.3%
+10.3%
+37.3%
+1.h4
+Kangaroo Defense, Keres Defense, Transpositional Variation
+ 
+895
+E00
+2024-08-03
+2302
+2284
+31.2%
+28.9%
+39.9%
+1.d4 e6 2.c4 Bb4+ 3.Nc3
+King Pawn Game, Alapin Opening
+ 
+167
+C20
+2024-08-06
+2281
+2252
+41.3%
+22.8%
+35.9%
+1.e4 e5 2.Ne2
+King Pawn Game, Dresden Opening
+ 
+119
+C44
+2024-02-01
+1852
+1839
+34.5%
+15.1%
+50.4%
+1.e4 e5 2.Nf3 Nc6 3.c4
+King Pawn Game, Leonardis Variation
+ 
+551
+C20
+2024-07-23
+1876
+1907
+32.7%
+14.5%
+52.8%
+1.e4 e5 2.d3
+King Pawn Game, Macleod Attack
+ 
+177
+C20
+2024-07-18
+1803
+1825
+38.4%
+17.5%
+44.1%
+1.e4 e5 2.c3
+King Pawn Game, Tayler Opening
+ 
+440
+C44
+2024-06-30
+2132
+2127
+37.5%
+27.3%
+35.2%
+1.e4 e5 2.Nf3 Nc6 3.Be2
+King Pawn Game, Tayler Opening, Inverted Hanham
+ 
+685
+C44
+2024-07-31
+2261
+2286
+34.7%
+31.7%
+33.6%
+1.e4 e5 2.Nf3 Nc6 3.Be2 Nf6 4.d3 d5 5.Nbd2
+King Pawn Game, Wayward Queen Attack
+ 
+205
+C20
+2024-08-06
+2025
+2027
+44.4%
+16.6%
+39.0%
+1.e4 e5 2.Qh5
+King's Gambit, Accepted, Bishop's Gambit
+ 
+605
+C33
+2024-07-20
+2268
+2241
+43.3%
+18.5%
+38.2%
+1.e4 e5 2.f4 exf4 3.Bc4
+King's Gambit, Accepted, Bishop's Gambit, Bogoljubow Variation
+ 
+234
+C33
+2024-07-16
+2342
+2331
+43.2%
+17.9%
+38.9%
+1.e4 e5 2.f4 exf4 3.Bc4 Nf6 4.Nc3
+King's Gambit, Accepted, Hanstein Gambit
+ 
+152
+C38
+2024-05-28
+2105
+2141
+35.5%
+15.1%
+49.3%
+1.e4 e5 2.f4 exf4 3.Nf3 g5 4.Bc4 Bg7 5.O-O
+King's Gambit, Accepted, Kieseritsky Gambit, Rubinstein Variation
+ 
+107
+C39
+2023-08-27
+2288
+2298
+35.5%
+27.1%
+37.4%
+1.e4 e5 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ne5 Nf6 6.d4
+King's Gambit, Accepted, King's Knight Gambit
+ 
+159
+C34
+2024-06-30
+1961
+1878
+58.5%
+11.9%
+29.6%
+1.e4 e5 2.f4 exf4 3.Nf3
+King's Gambit, Accepted, Mason-Keres Gambit
+ 
+160
+C33
+2023-11-26
+2209
+2240
+37.5%
+23.1%
+39.4%
+1.e4 e5 2.f4 exf4 3.Nc3
+King's Gambit, Declined, Classical Variation, General
+ 
+614
+C30
+2024-08-06
+2255
+2221
+44.8%
+18.4%
+36.8%
+1.e4 e5 2.f4 Bc5 3.Nf3 d6 4.c3
+King's Gambit, Falkbeer Countergambit, Accepted
+ 
+125
+C31
+2024-04-23
+1968
+1950
+65.6%
+12.8%
+21.6%
+1.e4 e5 2.f4 d5 3.exd5
+King's Gambit, Falkbeer Countergambit, Blackburne Attack
+ 
+132
+C31
+2024-07-09
+2155
+2164
+38.6%
+25.0%
+36.4%
+1.e4 e5 2.f4 d5 3.Nf3
+King's Gambit, Falkbeer Countergambit, Charousek Gambit
+ 
+218
+C31
+2024-07-30
+2180
+2128
+50.0%
+27.1%
+22.9%
+1.e4 e5 2.f4 d5 3.exd5 e4 4.d3
+King's Gambit, Falkbeer Countergambit, Charousek Gambit, Accepted
+ 
+345
+C32
+2024-08-09
+2275
+2221
+53.6%
+20.0%
+26.4%
+1.e4 e5 2.f4 d5 3.exd5 e4 4.d3 Nf6 5.dxe4
+King's Gambit, General
+ 
+915
+C30
+2024-08-02
+1857
+1840
+64.3%
+10.8%
+24.9%
+1.e4 e5 2.f4
+King's Indian Attack, General
+ 
+35195
+A07
+2024-08-13
+2315
+2304
+42.3%
+29.5%
+28.3%
+1.Nf3 d5 2.g3
+King's Indian Attack, Sicilian Variation
+ 
+4457
+A08
+2024-08-09
+2260
+2237
+48.6%
+22.2%
+29.2%
+1.Nf3 d5 2.g3 c5 3.Bg2 Nc6 4.O-O e6 5.d3 Nf6 6.Nbd2 Be7 7.e4 O-O 8.Re1
+King's Indian Attack, Sicilian Variation
+ 
+4610
+A08
+2024-08-14
+2233
+2213
+43.2%
+26.6%
+30.2%
+1.Nf3 d5 2.g3 c5 3.Bg2
+King's Indian Attack, Smyslov Variation
+ 
+783
+A05
+2024-07-30
+2289
+2286
+42.7%
+30.6%
+26.7%
+1.Nf3 Nf6 2.g3 g6 3.b4
+King's Indian Defense, Accelerated Averbakh Variation
+ 
+1401
+E70
+2024-07-31
+2282
+2270
+45.5%
+22.6%
+31.8%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Bg5
+King's Indian Defense, Averbakh Variation
+ 
+643
+E73
+2024-08-06
+2313
+2256
+54.0%
+22.1%
+23.9%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Be2 O-O 6.Bg5
+King's Indian Defense, Averbakh Variation, Benoni Defense, Advance Variation
+ 
+3591
+E75
+2024-08-06
+2352
+2313
+43.6%
+29.0%
+27.4%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Be2 O-O 6.Bg5 c5 7.d5
+King's Indian Defense, Averbakh Variation, Benoni Defense, Exchange Variation
+ 
+288
+E74
+2024-03-24
+2327
+2329
+34.7%
+36.8%
+28.5%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Be2 O-O 6.Bg5 c5 7.dxc5
+King's Indian Defense, Exchange Variation
+ 
+4575
+E92
+2024-08-11
+2229
+2200
+26.8%
+43.7%
+29.5%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.dxe5
+King's Indian Defense, Fianchetto Variation, Classical Main Line
+ 
+5806
+E69
+2024-08-07
+2356
+2308
+45.8%
+29.6%
+24.6%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.Nf3 d6 5.g3 O-O 6.Bg2 Nbd7 7.O-O e5 8.e4 c6 9.h3
+King's Indian Defense, Fianchetto Variation, Delayed Fianchetto
+ 
+524
+E62
+2024-08-06
+2170
+2131
+47.9%
+24.6%
+27.5%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.Nf3 d6 5.g3
+King's Indian Defense, Fianchetto Variation, Double Fianchetto Attack
+ 
+905
+E64
+2024-08-04
+2328
+2322
+38.1%
+28.6%
+33.3%
+1.d4 Nf6 2.c4 g6 3.Nf3 Bg7 4.g3 d6 5.Bg2 O-O 6.O-O Nbd7 7.Nc3 e5 8.b3
+King's Indian Defense, Fianchetto Variation, Immediate Fianchetto
+ 
+5302
+E60
+2024-08-12
+2381
+2351
+39.6%
+34.0%
+26.3%
+1.d4 Nf6 2.c4 g6 3.g3
+King's Indian Defense, Fianchetto Variation, Panno Variation, Korchnoi Line
+ 
+227
+E63
+2024-07-22
+2386
+2347
+38.8%
+33.9%
+27.3%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.Nf3 d6 5.g3 O-O 6.Bg2 Nc6 7.O-O a6 8.h3 Rb8 9.Be3 b5 10.Nd2
+King's Indian Defense, Fianchetto Variation, Yugoslav Variation
+ 
+1470
+E65
+2024-08-06
+2173
+2160
+52.5%
+23.3%
+24.3%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.Nf3 d6 5.g3 O-O 6.Bg2 c5 7.O-O
+King's Indian Defense, Fianchetto Variation, Yugoslav Variation, Advance Line
+ 
+1655
+E66
+2024-08-11
+2286
+2286
+43.1%
+25.9%
+31.1%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.Nf3 d6 5.g3 O-O 6.Bg2 c5 7.O-O Nc6 8.d5
+King's Indian Defense, Four Pawns Attack
+ 
+3494
+E76
+2024-08-06
+2221
+2192
+45.6%
+23.9%
+30.5%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f4
+King's Indian Defense, Four Pawns Attack, Dynamic Attack
+ 
+2515
+E76
+2024-08-07
+2207
+2170
+44.2%
+21.8%
+34.0%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f4 O-O 6.Nf3 c5 7.d5
+King's Indian Defense, Four Pawns Attack, Exchange Variation
+ 
+257
+E79
+2024-04-16
+2385
+2289
+38.5%
+39.7%
+21.8%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f4 O-O 6.Be2 c5 7.Nf3 cxd4 8.Nxd4 Nc6 9.Be3
+King's Indian Defense, Four Pawns Attack, Florentine Gambit
+ 
+196
+E77
+2022-12-20
+2251
+2243
+34.2%
+25.0%
+40.8%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f4 O-O 6.Be2 c5 7.d5 e6 8.Nf3 exd5 9.e5
+King's Indian Defense, Four Pawns Attack, Fluid Attack
+ 
+129
+E78
+2023-09-28
+2247
+2246
+34.1%
+33.3%
+32.6%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f4 O-O 6.Be2 c5 7.Nf3
+King's Indian Defense, Four Pawns Attack, General
+ 
+299
+E77
+2024-03-17
+2087
+2068
+42.5%
+17.7%
+39.8%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f4 O-O 6.Be2
+King's Indian Defense, Four Pawns Attack, Normal Attack
+ 
+2233
+E77
+2024-08-06
+2277
+2233
+37.9%
+25.6%
+36.5%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f4 O-O 6.Be2 c5 7.d5 e6 8.Nf3
+King's Indian Defense, Kramer Variation
+ 
+3273
+E70
+2024-08-06
+2272
+2248
+44.6%
+23.0%
+32.4%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nge2
+King's Indian Defense, Larsen Variation
+ 
+1153
+E90
+2024-07-30
+2233
+2223
+38.8%
+28.4%
+32.8%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be3
+King's Indian Defense, Makagonov Variation
+ 
+9309
+E71
+2024-08-12
+2324
+2294
+48.8%
+22.5%
+28.7%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.h3
+King's Indian Defense, Normal Variation
+ 
+4710
+E70
+2024-08-07
+2326
+2283
+41.5%
+21.8%
+36.7%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4
+King's Indian Defense, Normal Variation, Deferred Fianchetto
+ 
+424
+E72
+2024-07-14
+2159
+2158
+35.9%
+23.4%
+40.8%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.g3
+King's Indian Defense, Normal Variation, King's Knight Variation
+ 
+18001
+E60
+2024-08-12
+2270
+2246
+38.9%
+30.2%
+31.0%
+1.d4 Nf6 2.c4 g6 3.Nf3
+King's Indian Defense, Normal Variation, Rare Defenses
+ 
+10094
+E90
+2024-08-12
+2274
+2247
+47.7%
+23.7%
+28.6%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3
+King's Indian Defense, Normal Variation, Standard Development
+ 
+1859
+E73
+2024-08-10
+2239
+2210
+49.1%
+20.1%
+30.8%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Be2
+King's Indian Defense, Orthodox Variation
+ 
+4297
+E94
+2024-08-10
+2372
+2343
+41.4%
+31.9%
+26.6%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O
+King's Indian Defense, Orthodox Variation, Bayonet Attack
+ 
+5375
+E97
+2024-08-12
+2316
+2294
+46.8%
+24.1%
+29.0%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O Nc6 8.d5 Ne7 9.b4
+King's Indian Defense, Orthodox Variation, Bayonet Attack, Sokolov's Line
+ 
+2399
+E97
+2024-08-04
+2386
+2348
+44.9%
+30.9%
+24.2%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O Nc6 8.d5 Ne7 9.b4 Nh5 10.Re1
+King's Indian Defense, Orthodox Variation, Classical System, Benko Attack
+ 
+740
+E99
+2024-08-06
+2357
+2310
+43.0%
+30.3%
+26.8%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O Nc6 8.d5 Ne7 9.Ne1 Nd7 10.f3 f5 11.g4
+King's Indian Defense, Orthodox Variation, Classical System, Kozul Gambit
+ 
+248
+E99
+2024-01-03
+2353
+2306
+46.0%
+23.4%
+30.6%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O Nc6 8.d5 Ne7 9.Ne1 Nd7 10.Be3 f5 11.f3 f4 12.Bf2 g5 13.Rc1 Ng6 14.c5
+King's Indian Defense, Orthodox Variation, Classical System, Misc. Lines
+ 
+4800
+E98
+2024-08-04
+2303
+2277
+44.5%
+24.4%
+31.1%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O Nc6 8.d5 Ne7 9.Ne1
+King's Indian Defense, Orthodox Variation, Classical System, Neo-Classsical Line
+ 
+2513
+E99
+2024-08-06
+2282
+2262
+45.7%
+20.3%
+34.1%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O Nc6 8.d5 Ne7 9.Ne1 Nd7 10.Be3
+King's Indian Defense, Orthodox Variation, General
+ 
+11924
+E91
+2024-08-11
+2270
+2225
+44.5%
+27.1%
+28.5%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2
+King's Indian Defense, Orthodox Variation, Gligoric-Taimanov System
+ 
+8198
+E92
+2024-08-10
+2404
+2367
+47.1%
+29.4%
+23.6%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.Be3
+King's Indian Defense, Orthodox Variation, Korchnoi Attack
+ 
+303
+E97
+2024-08-07
+2336
+2344
+38.6%
+28.7%
+32.7%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O Nc6 8.d5 Ne7 9.Bd2
+King's Indian Defense, Orthodox Variation, Modern System
+ 
+3040
+E97
+2024-07-16
+2411
+2386
+44.8%
+28.3%
+26.9%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O Nc6 8.d5 Ne7 9.Nd2
+King's Indian Defense, Orthodox Variation, Positional Defense, Closed Line
+ 
+2224
+E94
+2024-08-07
+2080
+2076
+33.5%
+22.9%
+43.5%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O Nbd7 8.d5
+King's Indian Defense, Petrosian Variation
+ 
+1523
+E92
+2024-08-06
+2279
+2238
+46.4%
+23.1%
+30.5%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.d5
+King's Indian Defense, Petrosian Variation, Keres Defense
+ 
+194
+E93
+2024-08-12
+2375
+2320
+45.9%
+26.8%
+27.3%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.d5 Nbd7 8.Bg5 h6 9.Bh4 g5 10.Bg3 Nh5 11.h4
+King's Indian Defense, Pomar System
+ 
+285
+E72
+2024-06-18
+2322
+2272
+48.4%
+25.6%
+26.0%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.g3 O-O 6.Bg2 e5 7.Nge2
+King's Indian Defense, Saemisch Variation
+ 
+3620
+E80
+2024-08-09
+2276
+2225
+47.6%
+25.1%
+27.2%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3
+King's Indian Defense, Saemisch Variation, Bobotsov-Korchnoi-Petrosian Variation
+ 
+2695
+E81
+2024-08-11
+2376
+2349
+48.3%
+25.2%
+26.6%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O 6.Nge2
+King's Indian Defense, Saemisch Variation, Closed Variation
+ 
+1972
+E87
+2024-08-10
+2187
+2150
+46.5%
+22.4%
+31.1%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O 6.Be3 e5 7.d5
+King's Indian Defense, Semi-Averbakh System
+ 
+4550
+E73
+2024-08-12
+2324
+2291
+48.7%
+21.2%
+30.2%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Be2 O-O 6.Be3
+King's Indian Defense, Smyslov Variation
+ 
+2438
+E61
+2024-08-08
+2203
+2168
+44.1%
+24.0%
+31.9%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.Nf3 d6 5.Bg5
+King's Indian Defense, Steiner Attack
+ 
+4320
+E76
+2024-08-04
+2301
+2271
+47.1%
+24.8%
+28.1%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O 6.Bg5
+King's Indian Defense, Zinnowitz Variation
+ 
+718
+E90
+2024-08-06
+2013
+2029
+35.6%
+20.9%
+43.5%
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Bg5
+King's Knight Opening, General
+ 
+121
+C40
+2024-07-09
+1820
+1727
+68.6%
+8.3%
+23.1%
+1.e4 e5 2.Nf3
+King's Knight Opening, Konstantinopolsky Opening
+ 
+641
+C44
+2024-08-02
+2238
+2270
+43.2%
+20.8%
+36.0%
+1.e4 e5 2.Nf3 Nc6 3.g3
+King's Pawn Opening, General
+ 
+10580
+B00
+2024-08-14
+2095
+2054
+39.9%
+20.6%
+39.5%
+1.e4
+Latvian Gambit, Accepted
+ 
+176
+C40
+2024-01-02
+2051
+2019
+47.2%
+17.6%
+35.2%
+1.e4 e5 2.Nf3 f5 3.exf5
+Latvian Gambit, Accepted, Bilguer Variation
+ 
+342
+C40
+2024-02-17
+2202
+2123
+58.8%
+15.5%
+25.7%
+1.e4 e5 2.Nf3 f5 3.Nxe5 Qf6 4.d4 d6 5.Nc4
+Latvian Gambit, Accepted, Leonhardt Variation
+ 
+189
+C40
+2024-04-21
+2266
+2116
+61.9%
+16.4%
+21.7%
+1.e4 e5 2.Nf3 f5 3.Nxe5 Qf6 4.Nc4 fxe4 5.Nc3
+Latvian Gambit, Mason Countergambit
+ 
+168
+C40
+2024-07-16
+2141
+2145
+50.6%
+16.1%
+33.3%
+1.e4 e5 2.Nf3 f5 3.d4
+Lion Defense, Anti-Philidor
+ 
+154
+B07
+2024-07-30
+2139
+2094
+43.5%
+19.5%
+37.0%
+1.e4 d6 2.d4 Nf6 3.Nc3 Nbd7 4.f4
+Lion Defense, Bayonet Attack
+ 
+394
+B07
+2024-07-24
+2321
+2282
+56.4%
+20.6%
+23.1%
+1.e4 d6 2.d4 Nf6 3.Nc3 Nbd7 4.g4
+Lion Defense, Lion's Jaw
+ 
+3008
+B07
+2024-08-08
+2344
+2297
+44.6%
+27.4%
+28.1%
+1.e4 d6 2.d4 Nf6 3.f3
+London System, Poisoned Pawn Variation
+ 
+312
+D02
+2024-08-06
+2213
+2192
+36.2%
+24.7%
+39.1%
+1.d4 d5 2.Nf3 Nf6 3.Bf4 c5 4.e3 Qb6 5.Nc3
+Mieses Opening, General
+ 
+1946
+A00
+2024-08-06
+2175
+2165
+41.4%
+19.7%
+38.9%
+1.d3
+Modern Defense, Averbakh Variation
+ 
+6707
+A42
+2024-08-11
+2294
+2251
+39.4%
+25.7%
+34.9%
+1.d4 g6 2.c4 Bg7 3.Nc3 d6 4.e4
+Modern Defense, Averbakh Variation, Pseudo-Saemisch
+ 
+255
+A42
+2024-08-06
+2241
+2197
+49.0%
+22.0%
+29.0%
+1.d4 g6 2.c4 Bg7 3.e4 d6 4.Be3 Nf6 5.f3
+Modern Defense, Bishop Attack
+ 
+700
+B06
+2024-07-30
+2127
+2062
+37.9%
+19.4%
+42.7%
+1.e4 g6 2.d4 Bg7 3.Bc4
+Modern Defense, Geller's System
+ 
+3653
+B06
+2024-08-06
+2328
+2294
+37.2%
+29.4%
+33.4%
+1.e4 g6 2.d4 Bg7 3.Nf3 d6 4.c3
+Modern Defense, Pseudo-Austrian Attack
+ 
+6469
+B06
+2024-08-12
+2284
+2228
+44.7%
+20.6%
+34.7%
+1.e4 g6 2.d4 Bg7 3.Nc3 d6 4.f4
+Modern Defense, Standard Line
+ 
+11255
+B06
+2024-08-12
+2309
+2256
+38.3%
+23.6%
+38.0%
+1.e4 g6 2.d4 Bg7 3.Nc3
+Modern Defense, Three Pawns Attack
+ 
+1677
+B06
+2024-08-06
+2102
+2066
+33.9%
+21.9%
+44.2%
+1.e4 g6 2.d4 Bg7 3.f4
+Modern Defense, Two Knights Variation
+ 
+4804
+B06
+2024-08-12
+2231
+2180
+37.7%
+21.6%
+40.7%
+1.e4 g6 2.d4 Bg7 3.Nc3 d6 4.Nf3
+Neo-Gruenfeld Defense, Classical Variation
+ 
+391
+D77
+2024-07-27
+2183
+2169
+49.4%
+25.8%
+24.8%
+1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.Nf3 O-O 6.O-O
+Neo-Gruenfeld Defense, Delayed Exchange Variation
+ 
+540
+D75
+2024-08-06
+2339
+2307
+34.6%
+40.2%
+25.2%
+1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.Nf3 O-O 6.cxd5 Nxd5 7.O-O c5 8.Nc3
+Neo-Gruenfeld Defense, Delayed Exchange Variation
+ 
+264
+D75
+2024-07-16
+2428
+2393
+39.4%
+43.2%
+17.4%
+1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.Nf3 O-O 6.cxd5 Nxd5 7.O-O c5 8.dxc5
+Neo-Gruenfeld Defense, Delayed Exchange Variation
+ 
+1721
+D74
+2024-08-04
+2325
+2296
+49.2%
+27.8%
+23.0%
+1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.Nf3 O-O 6.cxd5 Nxd5 7.O-O
+Neo-Gruenfeld Defense, Exchange Variation with 6.e4
+ 
+1249
+D72
+2024-08-03
+2426
+2368
+48.0%
+31.0%
+21.0%
+1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.cxd5 Nxd5 6.e4 Nb6 7.Ne2
+Neo-Gruenfeld Defense, Misc. with 5.Nf3
+ 
+1610
+D73
+2024-08-11
+2360
+2349
+32.5%
+41.3%
+26.1%
+1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.Nf3
+Nimzo-Indian Defense, Classical Variation
+ 
+14670
+E32
+2024-08-11
+2331
+2294
+34.6%
+33.2%
+32.1%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qc2
+Nimzo-Indian Defense, Classical Variation, Berlin Variation, Macieja System
+ 
+444
+E39
+2024-07-23
+2513
+2463
+36.0%
+43.7%
+20.3%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qc2 c5 5.dxc5 O-O 6.a3 Bxc5 7.Nf3 b6 8.Bf4
+Nimzo-Indian Defense, Classical Variation, Noa Variation
+ 
+1474
+E36
+2024-08-10
+2378
+2355
+33.8%
+36.5%
+29.7%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qc2 d5 5.a3
+Nimzo-Indian Defense, Classical Variation, Noa Variation
+ 
+816
+E37
+2024-07-27
+2452
+2390
+36.4%
+43.3%
+20.3%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qc2 d5 5.a3 Bxc3+ 6.Qxc3 Ne4 7.Qc2
+Nimzo-Indian Defense, Fischer Variation
+ 
+2969
+E44
+2024-08-11
+2346
+2309
+41.2%
+30.1%
+28.6%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 b6 5.Ne2
+Nimzo-Indian Defense, Huebner Variation, Rubinstein Variation
+ 
+2708
+E42
+2024-08-06
+2383
+2342
+39.6%
+33.3%
+27.1%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 c5 5.Ne2
+Nimzo-Indian Defense, Huebner Variation, Rubinstein Variation, Main Line
+ 
+891
+E42
+2024-08-08
+2396
+2365
+34.8%
+35.0%
+30.2%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 c5 5.Ne2 cxd4 6.exd4 O-O 7.a3
+Nimzo-Indian Defense, Kmoch Variation
+ 
+7163
+E20
+2024-08-12
+2306
+2262
+40.1%
+23.7%
+36.2%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.f3
+Nimzo-Indian Defense, Leningrad Variation
+ 
+3236
+E30
+2024-08-11
+2155
+2137
+32.4%
+25.0%
+42.7%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Bg5
+Nimzo-Indian Defense, Normal Line
+ 
+2213
+E40
+2024-08-09
+2282
+2256
+46.0%
+24.1%
+30.0%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3
+Nimzo-Indian Defense, Normal Variation, Bernstein Defense
+ 
+1609
+E59
+2024-08-03
+2404
+2374
+33.4%
+38.2%
+28.5%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Nf3 d5 6.Bd3 c5 7.O-O Nc6 8.a3 Bxc3 9.bxc3 dxc4 10.Bxc4
+Nimzo-Indian Defense, Normal Variation, Bernstein Defense, Exchange Line
+ 
+1178
+E58
+2024-08-12
+2415
+2375
+32.7%
+37.6%
+29.7%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Nf3 d5 6.Bd3 c5 7.O-O Nc6 8.a3 Bxc3 9.bxc3
+Nimzo-Indian Defense, Normal Variation, Bishop Attack
+ 
+3330
+E47
+2024-08-11
+2358
+2325
+38.8%
+29.1%
+32.1%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Bd3
+Nimzo-Indian Defense, Normal Variation, Botvinnik System
+ 
+1657
+E49
+2024-08-11
+2436
+2402
+42.5%
+28.1%
+29.4%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Bd3 d5 6.a3 Bxc3+ 7.bxc3
+Nimzo-Indian Defense, Normal Variation, Gligoric System, Exchange at c4
+ 
+1759
+E54
+2024-08-06
+2436
+2414
+31.5%
+41.7%
+26.8%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Nf3 d5 6.Bd3 c5 7.O-O dxc4 8.Bxc4
+Nimzo-Indian Defense, Normal Variation, Saemisch Deferred
+ 
+328
+E51
+2024-08-09
+2314
+2304
+35.4%
+26.2%
+38.4%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Nf3 d5 6.a3
+Nimzo-Indian Defense, Ragozin Defense
+ 
+352
+E46
+2024-05-07
+2365
+2325
+40.6%
+33.0%
+26.4%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 Nc6 5.Nf3 O-O 6.Bd3 d5 7.O-O
+Nimzo-Indian Defense, Reshevsky Variation
+ 
+6597
+E46
+2024-08-12
+2308
+2292
+33.0%
+30.2%
+36.7%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Ne2
+Nimzo-Indian Defense, Romanishin Variation
+ 
+375
+E20
+2024-05-21
+2395
+2349
+44.0%
+33.9%
+22.1%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Nf3 c5 5.g3 O-O 6.Bg2
+Nimzo-Indian Defense, Romanishin Variation
+ 
+2223
+E20
+2024-08-08
+2386
+2359
+37.7%
+33.4%
+28.9%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.g3
+Nimzo-Indian Defense, Saemisch Variation
+ 
+735
+E28
+2024-08-07
+2387
+2355
+45.0%
+21.2%
+33.7%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.a3 Bxc3+ 5.bxc3 O-O 6.e3
+Nimzo-Indian Defense, Saemisch Variation
+ 
+947
+E25
+2024-08-08
+2347
+2292
+41.1%
+25.7%
+33.3%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.a3 Bxc3+ 5.bxc3 c5 6.f3 d5 7.cxd5
+Nimzo-Indian Defense, Saemisch Variation
+ 
+787
+E26
+2024-08-10
+2313
+2268
+41.0%
+22.1%
+36.9%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.a3 Bxc3+ 5.bxc3 c5 6.e3
+Nimzo-Indian Defense, Saemisch Variation, Accelerated
+ 
+2486
+E24
+2024-08-08
+2188
+2173
+35.9%
+20.5%
+43.6%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.a3 Bxc3+ 5.bxc3
+Nimzo-Indian Defense, Saemisch Variation, Keres Variation
+ 
+1288
+E25
+2024-08-06
+2412
+2376
+34.1%
+41.0%
+24.9%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.a3 Bxc3+ 5.bxc3 c5 6.f3 d5 7.cxd5 Nxd5 8.dxc5
+Nimzo-Indian Defense, Spielmann Variation
+ 
+767
+E22
+2024-08-10
+2265
+2232
+38.7%
+25.7%
+35.6%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qb3
+Nimzo-Indian Defense, Three Knights Variation
+ 
+4671
+E21
+2024-08-12
+2326
+2298
+39.4%
+30.9%
+29.7%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Nf3
+Nimzo-Indian Defense, Three Knights Variation, Duchamp Variation, Modern Line
+ 
+712
+E21
+2024-08-05
+2475
+2452
+41.1%
+35.1%
+23.7%
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Nf3 b6 5.Bg5 Bb7 6.Nd2
+Nimzo-Larsen Attack, General
+ 
+2712
+A01
+2024-08-09
+2247
+2232
+46.2%
+17.7%
+36.1%
+1.b3
+Nimzo-Larsen Attack, Spike Variation
+ 
+121
+A01
+2024-07-21
+2231
+2252
+43.0%
+17.4%
+39.7%
+1.b3 Nf6 2.Bb2 g6 3.g4
+Nimzowitsch Defense, Declined Variation
+ 
+2034
+B00
+2024-08-11
+2193
+2174
+44.1%
+15.6%
+40.3%
+1.e4 Nc6 2.Nf3
+Nimzowitsch Defense, Kennedy Variation, Linksspringer Variation
+ 
+984
+B00
+2024-08-10
+2069
+2050
+39.9%
+16.7%
+43.4%
+1.e4 Nc6 2.d4 e5 3.d5
+Nimzowitsch Defense, Kennedy Variation, Paulsen Attack
+ 
+353
+B00
+2024-07-25
+2269
+2221
+41.1%
+26.1%
+32.9%
+1.e4 Nc6 2.d4 e5 3.dxe5 Nxe5 4.Nf3
+Nimzowitsch Defense, Lean Variation, Colorado Counter Accepted
+ 
+445
+B00
+2024-08-06
+2212
+2187
+51.2%
+16.9%
+31.9%
+1.e4 Nc6 2.Nf3 f5 3.exf5
+Nimzowitsch Defense, Pseudo-Spanish Variation
+ 
+103
+B00
+2024-08-06
+2201
+2212
+38.8%
+22.3%
+38.8%
+1.e4 Nc6 2.Bb5
+Nimzowitsch Defense, Scandinavian Variation, Advance Variation
+ 
+1960
+B00
+2024-08-06
+2113
+2063
+40.1%
+17.0%
+42.9%
+1.e4 Nc6 2.d4 d5 3.e5
+Nimzowitsch Defense, Scandinavian Variation, Bogoljubow Variation
+ 
+187
+B00
+2024-07-19
+2228
+2184
+43.9%
+23.5%
+32.6%
+1.e4 Nc6 2.d4 d5 3.Nc3
+Nimzowitsch-Larsen Attack, General
+ 
+8523
+A06
+2024-08-14
+2247
+2234
+40.8%
+25.5%
+33.7%
+1.Nf3 d5 2.b3
+Old Indian Defense, Janowski Variation, Fianchetto Variation
+ 
+270
+A53
+2024-07-09
+2449
+2351
+51.5%
+25.2%
+23.3%
+1.d4 Nf6 2.c4 d6 3.Nc3 Bf5 4.g3
+Old Indian Defense, Janowski Variation, Fianchetto Variation
+ 
+617
+A53
+2024-07-19
+2340
+2276
+41.2%
+28.5%
+30.3%
+1.d4 Nf6 2.c4 d6 3.Nc3 Bf5 4.Nf3
+Old Indian Defense, Janowski Variation, Main Line
+ 
+382
+A53
+2024-06-14
+2294
+2274
+33.8%
+29.3%
+36.9%
+1.d4 Nf6 2.c4 d6 3.Nc3 Bf5 4.f3
+Old Indian Defense, Normal Variation
+ 
+4519
+A55
+2024-08-06
+2337
+2288
+45.1%
+28.7%
+26.2%
+1.d4 Nf6 2.c4 d6 3.Nc3 e5 4.Nf3 Nbd7 5.e4
+Old Indian Defense, Two Knights Variation
+ 
+1759
+A54
+2024-08-13
+2396
+2342
+45.9%
+26.7%
+27.5%
+1.d4 Nf6 2.c4 d6 3.Nc3 e5 4.Nf3
+Old Indian, Czech Variation
+ 
+1227
+A53
+2024-07-30
+2315
+2260
+44.4%
+29.3%
+26.2%
+1.d4 Nf6 2.c4 d6 3.Nc3 c6 4.Nf3
+Philidor Defense, Exchange Variation
+ 
+624
+C41
+2024-07-30
+1942
+1912
+63.6%
+16.2%
+20.2%
+1.e4 e5 2.Nf3 d6 3.d4 exd4 4.Nxd4
+Philidor Defense, General
+ 
+1050
+C41
+2024-07-30
+2097
+2008
+67.8%
+14.9%
+17.3%
+1.e4 e5 2.Nf3 d6 3.d4
+Philidor Defense, Hanham Variation, Krause Variation
+ 
+363
+C41
+2024-07-12
+2234
+2175
+48.8%
+20.9%
+30.3%
+1.e4 e5 2.Nf3 d6 3.d4 Nd7 4.Bc4 c6 5.O-O
+Philidor Defense, Hanham Variation, Schlechter Variation
+ 
+336
+C41
+2024-07-16
+2250
+2160
+48.8%
+24.1%
+27.1%
+1.e4 e5 2.Nf3 d6 3.d4 Nd7 4.Bc4 c6 5.Nc3
+Philidor Defense, Hanham Variation, Steiner Variation
+ 
+273
+C41
+2024-05-07
+2387
+2281
+59.7%
+22.7%
+17.6%
+1.e4 e5 2.Nf3 d6 3.d4 Nd7 4.Bc4 c6 5.O-O Be7 6.dxe5
+Philidor Defense, Lion Variation, Bishop Sac
+ 
+207
+C41
+2024-08-10
+2013
+2056
+31.9%
+8.7%
+59.4%
+1.e4 e5 2.Nf3 d6 3.d4 Nf6 4.Nc3 Nbd7 5.Bc4 Be7 6.Bxf7+
+Philidor Defense, Lion Variation, Forcing Line
+ 
+179
+C41
+2024-07-28
+2162
+2134
+40.2%
+17.9%
+41.9%
+1.e4 e5 2.Nf3 d6 3.d4 Nf6 4.Nc3 Nbd7 5.Bc4 Be7 6.Ng5 O-O 7.Bxf7+ Rxf7 8.Ne6
+Philidor Defense, Lion Variation, Shirov Gambit
+ 
+1114
+C41
+2024-08-10
+2342
+2277
+49.2%
+19.5%
+31.3%
+1.e4 e5 2.Nf3 d6 3.d4 Nd7 4.Nc3 Ngf6 5.g4
+Philidor Defense, Morphy Gambit
+ 
+154
+C41
+2024-06-11
+1983
+1980
+48.0%
+17.5%
+34.4%
+1.e4 e5 2.Nf3 d6 3.d4 exd4 4.Bc4
+Philidor Defense, Nimzowitsch Variation
+ 
+197
+C41
+2024-04-13
+2140
+2105
+44.7%
+24.9%
+30.5%
+1.e4 e5 2.Nf3 d6 3.d4 Nf6 4.dxe5
+Philidor Defense, Nimzowitsch Variation, Rellstab Variation
+ 
+276
+C41
+2024-08-02
+2416
+2302
+52.9%
+32.6%
+14.5%
+1.e4 e5 2.Nf3 d6 3.d4 Nf6 4.dxe5 Nxe4 5.Qd5
+Philidor Defense, Philidor Countergambit, Zukertort Variation
+ 
+113
+C41
+2024-07-14
+2251
+2135
+64.6%
+13.3%
+22.1%
+1.e4 e5 2.Nf3 d6 3.d4 f5 4.Nc3
+Pirc Defense, 150 Attack
+ 
+1832
+B07
+2024-08-08
+2332
+2284
+44.8%
+24.6%
+30.6%
+1.e4 d6 2.d4 Nf6 3.Nc3 g6 4.Be3 c6 5.Qd2
+Pirc Defense, 150 Attack, Sveshnikov-Jansa Attack
+ 
+850
+B07
+2024-08-09
+2386
+2327
+49.9%
+25.1%
+25.1%
+1.e4 d6 2.d4 Nf6 3.Nc3 g6 4.Be3 c6 5.h3
