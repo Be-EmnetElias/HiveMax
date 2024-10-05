@@ -3,15 +3,10 @@ package main.java.network;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import main.java.utilities.BoardUtil;
 import main.java.utilities.Move;
-import main.java.utilities.MoveGenerator;
-import main.java.Board;
 
 public class Server implements Runnable{
 
@@ -48,7 +43,7 @@ public class Server implements Runnable{
 
 
                 System.out.println("[Server] Client connected, ID: " + clientId);
-                System.out.println("[Server] Active Clients " + connections.size());
+                printStatus();
 
                 matchmake();
 
@@ -82,13 +77,8 @@ public class Server implements Runnable{
         if(players[0] != null && players[1] != null ){
             connections.remove(players[0]);
             connections.remove(players[1]);
-            System.out.println("[Server] Matchmaking complete, " + connections.size() + " active clients");
+            System.out.println("[Server] Matchmaking complete");
         }
-
-        
-
-
-
     }
     
     public void handleMessage(Object message){
@@ -100,7 +90,42 @@ public class Server implements Runnable{
         //         ch.sendMessage(message);
         //     }
         // }
+    }
 
+    public void handleDisconnect(ConnectionHandler connection){
+        System.out.println("[Server] Client disconnected, ID: " + connection.clientId);
+        ConnectionHandler chToRemove = null;
+        for(ConnectionHandler ch : connections){
+            if(ch.clientId.equals(connection.clientId)){
+                chToRemove = ch;
+                break;
+            }
+        }
+
+        connections.remove(chToRemove);
+
+        Game gameToRemove = null;
+        for(Game g : activeGames){
+            if(g.containsPlayer(connection)){
+                gameToRemove = g;
+                if(g.white.client.isClosed()){
+                    connections.add(g.black);
+                }else{
+                    connections.add(g.white);
+                }
+                System.out.println("[Server] Ending game: " + g.gameId);
+                
+                break;
+            }
+        }
+
+        activeGames.remove(gameToRemove);
+        printStatus();
+
+    }
+
+    public void printStatus(){
+        System.out.println("\n[Server] Clients in queue " + connections.size() + " Active Games " + activeGames.size());
     }
 
     public void shutdown(){
@@ -154,6 +179,8 @@ public class Server implements Runnable{
                 }
             } catch (IOException | ClassNotFoundException e) {
                 shutdown();
+            } finally {
+                handleDisconnect(this);
             }
         }
 
@@ -164,7 +191,6 @@ public class Server implements Runnable{
                 out.close();
                 if(!client.isClosed()){
                     client.close();
-                    System.out.println("[Server] Closing client connection");
                 }
             } catch (IOException e) {
                 // TODO Auto-generated catch block
@@ -182,6 +208,7 @@ public class Server implements Runnable{
         public Game(ConnectionHandler[] players){
             
             this.gameId = UUID.randomUUID();
+            //TODO: randomize white/black
             this.white = players[0];
             this.black = players[1];
             this.gameState = new GameState(white.clientId, black.clientId);
@@ -197,6 +224,10 @@ public class Server implements Runnable{
             white.sendMessage(this.gameState);
             black.sendMessage(this.gameState); 
 
+        }
+
+        public boolean containsPlayer(ConnectionHandler player){
+            return white.clientId == player.clientId || black.clientId == player.clientId;
         }
 
     }

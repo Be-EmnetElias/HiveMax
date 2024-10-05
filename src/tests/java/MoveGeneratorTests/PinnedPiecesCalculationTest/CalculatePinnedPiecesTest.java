@@ -107,5 +107,9 @@ public class CalculatePinnedPiecesTest {
 
         assertEquals(expectedPinnedPieces, pinnedPieces);
     }
+
+    private void assertEquals(HashMap<Integer, Integer> expectedPinnedPieces, HashMap<Integer, Integer> pinnedPieces) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

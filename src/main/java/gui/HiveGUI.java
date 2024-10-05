@@ -16,17 +16,27 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+
 
 import main.java.Board;
+import main.java.hive.HiveSearch;
 import main.java.network.Client;
+import main.java.network.GameState;
 
 
-public class HiveGUI extends JPanel{
+public class HiveGUI extends JPanel {
 
 
     Client client;
     boolean playingOnline = false;
+    SinglePlayerServer singlePlayerServer;
+
     public static void main(String[] args) throws IOException{
         new HiveGUI();        
     }
@@ -37,7 +47,7 @@ public class HiveGUI extends JPanel{
         JFrame frame = new JFrame();
 
         // frame.setUndecorated(true);
-        frame.setSize(1300, 840);
+        frame.setSize(920, 840);
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
         frame.setResizable(false);
@@ -73,7 +83,7 @@ public class HiveGUI extends JPanel{
                     chessPanel.sendMoveToClient = true;
                     playOnlineButton.setText("Leave");
                 }else{
-
+                    client.shutdown();
                     chessPanel.sendMoveToClient = false;
                     playOnlineButton.setText("Play Online");
 
@@ -89,31 +99,110 @@ public class HiveGUI extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Starting single player");
+                singlePlayerServer = new SinglePlayerServer(chessPanel);
+                chessPanel.singlePlayer = true;
+                chessPanel.singlePlayerServer = singlePlayerServer;
+                if(client.client != null && !client.client.isClosed()){
+                    client.shutdown();
+                }
+                chessPanel.sendMoveToClient = false;
+                playOnlineButton.setText("Play Online");
             }
         });
         
         singlePlayerButton.setBounds(800, 100, 100, 100);
 
+        JButton customButton = new JButton("Custom Position [Test Mode]");
+        customButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setSize(1300, 840);
+                frame.add(dragPanel);
+                frame.add(infoPanel);
+                revalidate();
+            }
+        });
+        
+        customButton.setBounds(800, 200, 100, 100);
+
         frame.add(playOnlineButton);
         frame.add(singlePlayerButton);
+        frame.add(customButton);
 
 
         frame.setLayout(null);
         frame.add(chessPanel);
-        // frame.add(dragPanel);
-        // frame.add(infoPanel);
+        
 
         
 
         frame.setVisible(true);
     }
+}
 
+class SinglePlayerServer {
 
+    ChessPanel chessPanel;
+    GameState gameState;
+    boolean computerIsWhite;
+    boolean isWhite;
+    ExecutorService executorService;
+    int DEPTH = 4;
+
+    public SinglePlayerServer(ChessPanel chessPanel){
+        Random rand = new Random();
+        this.gameState = new GameState(null, null);
+        this.isWhite = rand.nextBoolean();
+        this.gameState.isWhite = this.isWhite;
+        this.computerIsWhite = !this.isWhite;
+        this.chessPanel = chessPanel;
+        chessPanel.updateChessPanel(gameState);
+        executorService = Executors.newCachedThreadPool();
+
+        if(!this.isWhite){
+            makeComputerMove();
+        }
+    }
+
+    public void update(Move move){
+        this.gameState.update(move);
+        this.chessPanel.updateChessPanel(gameState);
+        if(this.gameState.board.IS_WHITE_TURN == this.computerIsWhite){
+            makeComputerMove();
+        }
+    }
+
+    public void makeComputerMove(){
+        // Move bm = HiveSearch.bestMove(
+        //             new Board(this.gameState.board),
+        //             this.gameState.currentLegalMoves,
+        //             DEPTH,
+        //             this.computerIsWhite
+        //         );
+        // update(bm);
+
+        Future<Move> bestMove = executorService.submit(() -> {
+            return HiveSearch.bestMove(
+                new Board(this.gameState.board),
+                this.gameState.currentLegalMoves,
+                DEPTH,
+                this.computerIsWhite
+            );
+        });
+
+        executorService.execute(() -> {
+            try {
+                Move move = bestMove.get();
+                System.out.println("Best move: " + move);
+                update(move);
+            } catch (Exception e) {
+                
+            }
+        });
+    }
 
 
 }
-
-
 class InfoPanel extends JPanel{
 
     Board board;

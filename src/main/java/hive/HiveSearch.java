@@ -1,13 +1,6 @@
 package main.java.hive;
 
 import java.util.HashSet;
-import java.util.HashMap;
-
-
-
-
-import java.util.concurrent.ConcurrentHashMap;
-
 import main.java.Board;
 import main.java.utilities.*;
 
@@ -101,13 +94,18 @@ public class HiveSearch {
         int maxScore = Integer.MIN_VALUE;
         Move bestMove = null;
 
+        System.out.println("[HiveSearch] Searching Board with " + currentLegalMoves.size() + " current legal moves:");
         for(Move move : currentLegalMoves){
+            System.out.println("             Searching " + move);
             board.makeMove(move);
             HashSet<Move> nextLegalMoves = MoveGenerator.getCurrentLegalMoves(board, !isWhite);
             HashSet<Move> nextEnemyLegalMoves = MoveGenerator.getCurrentLegalMoves(board, isWhite);
 
             int score = -1 * negamax(board, nextLegalMoves, nextEnemyLegalMoves, depth - 1, !isWhite, isWhite);
 
+            if(score >= maxScore){
+                bestMove = move;
+            }
             board.undoMove(move);
         }
 
@@ -117,7 +115,9 @@ public class HiveSearch {
     private static int negamax(Board board, HashSet<Move> currentLegalMoves, HashSet<Move> enemyLegalMoves, int depth, boolean isWhite, boolean originallyWhite){
 
         if(depth <= 0){
-            return SearchCapturesChecks(board, currentLegalMoves, enemyLegalMoves, isWhite, originallyWhite, 1);
+            return HiveEvaluator.Evaluate(board, currentLegalMoves, originallyWhite) - HiveEvaluator.Evaluate(board, enemyLegalMoves, !originallyWhite);
+
+            // return SearchCapturesChecks(board, currentLegalMoves, enemyLegalMoves, isWhite, originallyWhite, 1);
         }
 
         int maxScore = Integer.MIN_VALUE;
@@ -135,7 +135,6 @@ public class HiveSearch {
             if(score > maxScore){
                 maxScore = score;
             }
-            break;
             
         }
         return maxScore;

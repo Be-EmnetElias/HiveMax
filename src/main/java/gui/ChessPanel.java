@@ -1,27 +1,18 @@
 package main.java.gui;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-
-import main.java.utilities.*;
-
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-
+import javax.imageio.ImageIO;
+import javax.sound.sampled.*;
+import javax.swing.JPanel;
 import main.java.Board;
 import main.java.network.Client;
 import main.java.network.GameState;
+import main.java.utilities.*;
 
 public class ChessPanel extends JPanel{
 
@@ -39,12 +30,17 @@ public class ChessPanel extends JPanel{
 
     public PieceType selectedPiece = PieceType.EMPTY;
     public int[] dragCoor = new int[]{-1, -1};
+    public int[] recentMove = new int[]{-1, -1};
     public HashSet<Move> moveHints = new HashSet<>();
     public HashSet<Move> nextMoveHints = new HashSet<>();
 
 
     public boolean sendMoveToClient = false;
+    public boolean singlePlayer = false;
     public Client client;
+    public SinglePlayerServer singlePlayerServer;
+    HashMap<MoveType, File> moveTypeSoundMap;
+
 
     int toSquare = -1;
     int fromSquare = -1;
@@ -53,7 +49,7 @@ public class ChessPanel extends JPanel{
 
     public ChessPanel(Board board) throws IOException{
         this.board = board;
-        this.legalMoves =  new HashSet<>(); //MoveGenerator.getCurrentLegalMoves(board, isWhite);
+        this.legalMoves =  new HashSet<>(); 
         this.psuedoLegalMoves = new HashSet<>();
 
         ClickListener clickListener = new ClickListener();
@@ -65,6 +61,13 @@ public class ChessPanel extends JPanel{
         allPieces = ImageIO.read(new File(PIECES_PATH));
         boardImage = boardImage.getScaledInstance(800, 800, BufferedImage.SCALE_SMOOTH);
         
+        this.moveTypeSoundMap = new HashMap<>();
+        moveTypeSoundMap.put(MoveType.DEFAULT, new File("src\\main\\assets\\sounds\\DEFAULT.wav"));
+        moveTypeSoundMap.put(MoveType.CAPTURE, new File("src\\main\\assets\\sounds\\CAPTURE.wav"));
+        moveTypeSoundMap.put(MoveType.CASTLE, new File("src\\main\\assets\\sounds\\CASTLE.wav"));
+        moveTypeSoundMap.put(MoveType.CHECK, new File("src\\main\\assets\\sounds\\CHECK.wav"));
+        moveTypeSoundMap.put(MoveType.PROMOTION, new File("src\\main\\assets\\sounds\\PROMOTION.wav"));
+
 
         // Slice the allPieces image into individual piece images
         PieceType[] pieceLetters = new PieceType[]{
@@ -87,6 +90,12 @@ public class ChessPanel extends JPanel{
         this.isMyTurn = board.IS_WHITE_TURN == isWhite;
         this.legalMoves = gameState.currentLegalMoves;
         this.psuedoLegalMoves = gameState.enemyPsuedoLegalMoves;
+        if(gameState.recentMove != null){
+            this.recentMove[0] = gameState.recentMove.fromSquare();
+            this.recentMove[1] = gameState.recentMove.toSquare();
+            playSound(gameState.recentMove.moveType());
+
+        }
         repaint();
     }
 
@@ -97,8 +106,20 @@ public class ChessPanel extends JPanel{
         nextMoveHints = new HashSet<>();
     }
     
+    public void playSound(MoveType moveType) {
+        try{
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(moveTypeSoundMap.get(moveType));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     private class ClickListener extends MouseAdapter{
 
+        @Override
         public void mousePressed(MouseEvent e){
             fromSquare = BoardUtil.rowColToSquare(e.getY()/100, e.getX()/100, isWhite);
             selectedPiece = BoardUtil.getPieceTypeAtSquare(board, fromSquare);
@@ -124,6 +145,7 @@ public class ChessPanel extends JPanel{
             repaint();
         }
 
+        @Override
         public void mouseReleased(MouseEvent e) {
             
             selectedPiece = PieceType.EMPTY;
@@ -132,7 +154,12 @@ public class ChessPanel extends JPanel{
             if(isMyTurn){
                 for(Move move: legalMoves){
                     if(move.toSquare() == toSquare && move.fromSquare() == fromSquare){
-                        client.sendMessage(move);
+                        if(sendMoveToClient){
+                            client.sendMessage(move);
+                        }
+                        if(singlePlayer){
+                            singlePlayerServer.update(move);
+                        }
                         break;
                     }
                 }
@@ -145,6 +172,7 @@ public class ChessPanel extends JPanel{
 
     private class DragListener extends MouseMotionAdapter{
 
+        @Override
         public void mouseMoved(MouseEvent e){
             dragCoor[0] = e.getX();
             dragCoor[1] = e.getY();
@@ -152,6 +180,7 @@ public class ChessPanel extends JPanel{
             repaint();
         }
 
+        @Override
         public void mouseDragged(MouseEvent e){
             dragCoor[0] = e.getX();
             dragCoor[1] = e.getY();
@@ -165,11 +194,20 @@ public class ChessPanel extends JPanel{
         super.paintComponent(g);
 
         // board
-        if(this.isWhite){
-            g.drawImage(boardImage, 0, 0, 800, 800, null);
+        g.drawImage(boardImage, 0, 0, 800, 800, null);
+
+
+        // recent move
+        g.setColor(new Color(255,255,255,100));
+        if(!this.isWhite){
+            g.fillRect(700 - (recentMove[0] % 8 * 100), 700 - (recentMove[0] / 8 * 100),100,100);
+            g.fillRect(700 - (recentMove[1] % 8 * 100), 700 - (recentMove[1] / 8 * 100),100,100);
+
         }else{
-            g.drawImage(boardImage, 0, 0, 800, 800, 0, 800, 800, 0, null);
+            g.fillRect(recentMove[0] % 8 * 100, recentMove[0] / 8 * 100,100,100);
+            g.fillRect(recentMove[1] % 8 * 100, recentMove[1] / 8 * 100,100,100);
         }
+
 
         // drag highlight
         g.setColor(new Color(255,255,255,100));
@@ -228,5 +266,6 @@ public class ChessPanel extends JPanel{
             g.drawImage(pieceImages.get(selectedPiece), dragCoor[0] - 50, dragCoor[1] - 50 , null);
         }
     }
+
 }
 

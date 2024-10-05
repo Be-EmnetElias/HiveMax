@@ -2,17 +2,12 @@ package main.java.network;
 
 import java.io.*;
 import java.net.Socket;
-import javax.swing.JPanel;
 import java.util.*;
-
-import main.java.Board;
 import main.java.gui.ChessPanel;
-import main.java.utilities.BoardUtil;
-import main.java.utilities.Move;
 
 public class Client implements Runnable {
     
-    private Socket client;
+    public Socket client;
     private ObjectInputStream in;
     private ObjectOutputStream out;
 
@@ -34,14 +29,13 @@ public class Client implements Runnable {
             Object inMessage;
             while((inMessage = in.readObject()) != null){
 
-                if(inMessage instanceof UUID){
-                    this.clientId = (UUID)inMessage;
+                if(inMessage instanceof UUID uuid){
+                    this.clientId = uuid;
                     System.out.println("\n[Client] Connected to server, ID: " + clientId);
                 }
 
-                else if(inMessage instanceof GameState){
+                else if(inMessage instanceof GameState gameState){
                     System.out.println("\n[Client] Recieved " + inMessage);
-                    GameState gameState = (GameState) inMessage;
                     gameState.isWhite = gameState.whitePlayer.equals(clientId);
                     chessPanel.updateChessPanel(gameState);
                 }
@@ -72,10 +66,10 @@ public class Client implements Runnable {
             if(!client.isClosed()){
                 client.close();
             }
-        System.out.println("[Client] Closing client");
+            System.out.println("[Client] Closing client");
 
         }catch (IOException e){
-
+            System.out.println("[Client] Could not close client?");
         }
     }
     
