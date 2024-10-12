@@ -77,7 +77,7 @@ public class PerftTest {
 
     // @Test
     // public void PerftDepth7(){
-    //     // assertEquals(PerftPosition[6].nodes(), HiveEvaluator.nodeCount(6, 6, new Board()).nodes());
-    //     System.out.println(HiveEvaluator.nodeCount(7, 7, new Board()));
+    //     assertEquals(PerftPosition[7].nodes(), HiveSearch.nodeCount(7, 7, new Board()).nodes());
+    //     // System.out.println(HiveEvaluator.nodeCount(7, 7, new Board()));
     // }
 }

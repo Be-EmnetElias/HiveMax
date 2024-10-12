@@ -47,11 +47,12 @@ public class HiveGUI extends JPanel {
         JFrame frame = new JFrame();
 
         // frame.setUndecorated(true);
-        frame.setSize(920, 840);
+        frame.setSize(915, 840);
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setBackground(Color.DARK_GRAY);
 
         
         ImageIcon HIVE_MAX_ICON = new ImageIcon("src\\main\\assets\\HIVE_MAX_LOGO.png");
@@ -60,15 +61,15 @@ public class HiveGUI extends JPanel {
         ChessPanel chessPanel = new ChessPanel(board);
         client = new Client(chessPanel);
         chessPanel.client = client;
-        chessPanel.setBounds(0,0, 800, 800);
+        chessPanel.setBounds(100,0, 800, 800);
 
         
 
         InfoPanel infoPanel = new InfoPanel(board, chessPanel);
-        infoPanel.setBounds(800,600, 500, 200);
+        infoPanel.setBounds(900,600, 500, 200);
 
         DragPanel dragPanel = new DragPanel(board, chessPanel, infoPanel);
-        dragPanel.setBounds(800, 0, 200, 600);
+        dragPanel.setBounds(900, 0, 200, 600);
 
         JButton playOnlineButton = new JButton(("Play Online"));
         playOnlineButton.addActionListener(new ActionListener() {
@@ -92,7 +93,7 @@ public class HiveGUI extends JPanel {
             }
         });
         
-        playOnlineButton.setBounds(800, 0, 100, 100);
+        playOnlineButton.setBounds(0, 0, 100, 100);
 
         JButton singlePlayerButton = new JButton("Vs. Computer");
         singlePlayerButton.addActionListener(new ActionListener() {
@@ -110,7 +111,7 @@ public class HiveGUI extends JPanel {
             }
         });
         
-        singlePlayerButton.setBounds(800, 100, 100, 100);
+        singlePlayerButton.setBounds(0, 100, 100, 100);
 
         JButton customButton = new JButton("Custom Position [Test Mode]");
         customButton.addActionListener(new ActionListener() {
@@ -123,7 +124,7 @@ public class HiveGUI extends JPanel {
             }
         });
         
-        customButton.setBounds(800, 200, 100, 100);
+        customButton.setBounds(0, 200, 100, 100);
 
         frame.add(playOnlineButton);
         frame.add(singlePlayerButton);
@@ -147,7 +148,7 @@ class SinglePlayerServer {
     boolean computerIsWhite;
     boolean isWhite;
     ExecutorService executorService;
-    int DEPTH = 4;
+    int DEPTH = 8;
 
     public SinglePlayerServer(ChessPanel chessPanel){
         Random rand = new Random();
@@ -193,7 +194,6 @@ class SinglePlayerServer {
         executorService.execute(() -> {
             try {
                 Move move = bestMove.get();
-                System.out.println("Best move: " + move);
                 update(move);
             } catch (Exception e) {
                 
@@ -203,6 +203,7 @@ class SinglePlayerServer {
 
 
 }
+
 class InfoPanel extends JPanel{
 
     Board board;
@@ -314,7 +315,7 @@ class DragPanel extends JPanel{
     private class ClickListener extends MouseAdapter{
 
         public void mousePressed(MouseEvent e){
-            // System.out.println("Mouse pressed:" + e.getX() + ", " + e.getY());
+            System.out.println("Mouse pressed:" + e.getX() + ", " + e.getY());
             if(e.getX() > 200 || e.getY() > 600){
                 selected = PieceType.EMPTY;
 

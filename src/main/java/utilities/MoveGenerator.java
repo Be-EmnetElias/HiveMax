@@ -1,6 +1,5 @@
 package main.java.utilities;
 
-import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -29,21 +28,16 @@ public class MoveGenerator{
     public static HashSet<Move> getCurrentLegalMoves(Board board, boolean isWhite){
         int kingPosition = BoardUtil.getKingSquare(board, isWhite);
         HashSet<Integer> dangerSquares = new HashSet<>();
-        HashMap<Integer, Integer> emptyPinnedPieces = new HashMap<>();
         boolean singleCheck = false;
         boolean doubleCheck = false;
         int captureMask = BoardUtil.NULL_CAPTURE_MASK;
         long pushMask = BoardUtil.NULL_PUSH_MASK;
         PieceType checkingPiece = PieceType.EMPTY;
         
-        long[] teamBoards = BoardUtil.getTeamBoardsWithoutKing(board, isWhite);
-        long teamBoardWithoutKing = 0L;
-        for(long b: teamBoards){
-            teamBoardWithoutKing |= b;
-        }
+        
 
         // get enemy psuedo legal moves
-        HashSet<Move> enemyPsuedoLegalMoves = getPsuedoLegalMoves(board, BoardUtil.getTeamBoards(board, !isWhite), teamBoardWithoutKing, !isWhite, true, emptyPinnedPieces, dangerSquares, captureMask, pushMask);
+        HashSet<Move> enemyPsuedoLegalMoves = getEnemyPsuedoLegalMoves(board, isWhite, true);
 
         // extract danger squares and determine if single or double check
         // king is in single check if the enemy move attacks the king
@@ -101,6 +95,22 @@ public class MoveGenerator{
         }
     }
 
+    public static HashSet<Move> getEnemyPsuedoLegalMoves(Board board, boolean isWhite, boolean attacksOnly){
+        HashMap<Integer, Integer> emptyPinnedPieces = new HashMap<>();
+        HashSet<Integer> dangerSquares = new HashSet<>();
+        int captureMask = BoardUtil.NULL_CAPTURE_MASK;
+        long pushMask = BoardUtil.NULL_PUSH_MASK;
+        long[] teamBoards = BoardUtil.getTeamBoardsWithoutKing(board, isWhite);
+        long teamBoardWithoutKing = 0L;
+        for(long b: teamBoards){
+            teamBoardWithoutKing |= b;
+        }
+
+        return getPsuedoLegalMoves(board, BoardUtil.getTeamBoards(board, !isWhite), teamBoardWithoutKing, !isWhite, attacksOnly, emptyPinnedPieces, dangerSquares, captureMask, pushMask);
+    }
+
+    // todo: king removed is needed but maybe another flag for attacks only for the pawns
+    // attacks only is needed to calculate danger squares
     public static HashSet<Move> getPsuedoLegalMoves(Board board, long[] team, long enemyBoard, boolean isWhite, boolean kingRemoved, HashMap<Integer, Integer> pinnedPieces, HashSet<Integer> dangerSquares, int captureMask, long pushMask){
         HashSet<Move> psuedoLegalMoves = new HashSet<>();
         long teamBoard = BoardUtil.getTeamBoard(board, isWhite);
@@ -259,6 +269,7 @@ public class MoveGenerator{
         return pawnMoves;
     }
 
+    //todo: issue with enemy king taking pieces that knight is protecting
     public static HashSet<Move> getKnightMoves(Board board, long knights, long teamBoard, boolean isWhite, boolean kingRemoved,  int captureMask, long pushMask, HashMap<Integer, Integer> pinnedPieces){
         HashSet<Move> knightMoves = new HashSet<>();
 
@@ -283,7 +294,7 @@ public class MoveGenerator{
 
                 boolean overflowed = Math.abs(fromFile - toFile) > 2 || Math.abs(fromRank - toRank) > 2;
                 boolean validSquare = BoardUtil.checkValidSquare(toSquare);
-                boolean validEnemy = !BoardUtil.isOccupiedByFriendly(toSquare, teamBoard);
+                boolean validEnemy = kingRemoved || !BoardUtil.isOccupiedByFriendly(toSquare, teamBoard);
                 boolean validPinDirection = BoardUtil.isValidPinDirection(fromSquare, displacement, pinnedPieces);
                 boolean validInCaptureAndPushMasks = BoardUtil.squareValidInCaptureAndPushMasks(toSquare, captureMask, pushMask);
 
