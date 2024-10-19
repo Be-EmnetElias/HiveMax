@@ -31,6 +31,7 @@ public class Server implements Runnable{
     @Override
     public void run(){
         try{
+            // server = new ServerSocket(9999, 50, InetAddress.getByName("0.0.0.0"));
             server = new ServerSocket(9999);
             threadPool = Executors.newCachedThreadPool();
             System.out.println("[Server] Started on port 9999");

@@ -20,6 +20,7 @@ public class Board implements Serializable{
 
     public boolean IS_WHITE_TURN;
 
+    public boolean WHITE_CASTLED, BLACK_CASTLED;
 
 
     
@@ -85,6 +86,11 @@ public class Board implements Serializable{
     }
 
     public void setBoard(Board board, String fenposition){
+
+        if(fenposition.equals("")){
+            setBoard(board, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 0");
+            return;
+        }
         
         String[] boardInformation = fenposition.split("\\s+");
 
@@ -192,6 +198,7 @@ public class Board implements Serializable{
     }
 
     /**
+     * Assumes this move is valid
      * Almost every move can be made by simply replacing the target location with the current piece, and the previous location to empty
      * Enpassant: In addition to the default move, also empty the enpassant square +|- 1
      * Promotion: In addition to the default move, remove the piece, add the new promoted piece
@@ -236,23 +243,27 @@ public class Board implements Serializable{
                     // white king side castle
                     long newRooks1 = BoardUtil.setBit(BoardUtil.clearBit(WHITE_ROOKS,63), 61);
                     boardsMap.put(PieceType.WHITE_ROOK, newRooks1);
-    
+                    WHITE_CASTLED = true;
                     break;
                 case 58:
                     // white queen side castle
                     long newRooks2 = BoardUtil.setBit(BoardUtil.clearBit(WHITE_ROOKS,56), 59);
                     boardsMap.put(PieceType.WHITE_ROOK, newRooks2);
+                    WHITE_CASTLED = true;
 
                     break;
                 case 6:
                     // black king side castle
                     long newRooks3 = BoardUtil.setBit(BoardUtil.clearBit(BLACK_ROOKS,7), 5);
                     boardsMap.put(PieceType.BLACK_ROOK, newRooks3);
+                    BLACK_CASTLED = true;
+
                     break;
                 case 2:
                     // black queen side castle
                     long newRooks4 = BoardUtil.setBit(BoardUtil.clearBit(BLACK_ROOKS,0), 3);
                     boardsMap.put(PieceType.BLACK_ROOK, newRooks4);
+                    BLACK_CASTLED = true;
                     break;
             }
         }
@@ -403,21 +414,28 @@ public class Board implements Serializable{
                     // white king side castle
                     long newRooks1 = BoardUtil.setBit(BoardUtil.clearBit(WHITE_ROOKS,61), 63);
                     boardsMap.put(PieceType.WHITE_ROOK, newRooks1);
+                    WHITE_CASTLED = false;
+                    
                     break;
                 case 58:
                     // white queen side castle
                     long newRooks2 = BoardUtil.setBit(BoardUtil.clearBit(WHITE_ROOKS,59), 56);
                     boardsMap.put(PieceType.WHITE_ROOK, newRooks2);
+                    WHITE_CASTLED = false;
+                    
                     break;
                 case 6:
                     // black king side castle
                     long newRooks3 = BoardUtil.setBit(BoardUtil.clearBit(BLACK_ROOKS,5), 7);
                     boardsMap.put(PieceType.BLACK_ROOK, newRooks3);
+                    BLACK_CASTLED = false;
                     break;
                 case 2:
                     // black queen side castle
                     long newRooks4 = BoardUtil.setBit(BoardUtil.clearBit(BLACK_ROOKS,3), 0);
                     boardsMap.put(PieceType.BLACK_ROOK, newRooks4);
+                    BLACK_CASTLED = false;
+                    
                     break;
             }
         }

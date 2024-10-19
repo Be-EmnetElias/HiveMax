@@ -198,7 +198,7 @@ public class ChessPanel extends JPanel{
 
 
         // recent move
-        g.setColor(new Color(255,255,255,100));
+        g.setColor(new Color(155, 252, 114,100));
         if(!this.isWhite){
             g.fillRect(700 - (recentMove[0] % 8 * 100), 700 - (recentMove[0] / 8 * 100),100,100);
             g.fillRect(700 - (recentMove[1] % 8 * 100), 700 - (recentMove[1] / 8 * 100),100,100);

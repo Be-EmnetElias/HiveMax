@@ -1,6 +1,5 @@
 package main.java.utilities;
 
-import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -29,21 +28,16 @@ public class MoveGenerator{
     public static HashSet<Move> getCurrentLegalMoves(Board board, boolean isWhite){
         int kingPosition = BoardUtil.getKingSquare(board, isWhite);
         HashSet<Integer> dangerSquares = new HashSet<>();
-        HashMap<Integer, Integer> emptyPinnedPieces = new HashMap<>();
         boolean singleCheck = false;
         boolean doubleCheck = false;
         int captureMask = BoardUtil.NULL_CAPTURE_MASK;
         long pushMask = BoardUtil.NULL_PUSH_MASK;
         PieceType checkingPiece = PieceType.EMPTY;
         
-        long[] teamBoards = BoardUtil.getTeamBoardsWithoutKing(board, isWhite);
-        long teamBoardWithoutKing = 0L;
-        for(long b: teamBoards){
-            teamBoardWithoutKing |= b;
-        }
+        
 
         // get enemy psuedo legal moves
-        HashSet<Move> enemyPsuedoLegalMoves = getPsuedoLegalMoves(board, BoardUtil.getTeamBoards(board, !isWhite), teamBoardWithoutKing, !isWhite, true, emptyPinnedPieces, dangerSquares, captureMask, pushMask);
+        HashSet<Move> enemyPsuedoLegalMoves = getEnemyPsuedoLegalMoves(board, isWhite, true);
 
         // extract danger squares and determine if single or double check
         // king is in single check if the enemy move attacks the king
@@ -101,6 +95,33 @@ public class MoveGenerator{
         }
     }
 
+    /**
+     * todo: what exactly are psuedo legal moves
+     * sometimes we want to calculate danger squares for a king, which means that pieces being protected cannot be captured, hence 'kingremoved'
+     *      -- for example if a knight is protecting a queen, an enemy king cannot capture this queen, so the move 'knight takes friendly queen' is 'valid' move when looking for danger squares
+     * pawns can be tricky, because when calculating danger squares, we ignore pawn default moves and all pawn capture moves are 'valid' when looking for danger squares
+     * then sometimes we want
+     * @param board
+     * @param isWhite
+     * @param attacksOnly
+     * @return
+     */
+    public static HashSet<Move> getEnemyPsuedoLegalMoves(Board board, boolean isWhite, boolean attacksOnly){
+        HashMap<Integer, Integer> emptyPinnedPieces = new HashMap<>();
+        HashSet<Integer> dangerSquares = new HashSet<>();
+        int captureMask = BoardUtil.NULL_CAPTURE_MASK;
+        long pushMask = BoardUtil.NULL_PUSH_MASK;
+        long[] teamBoards = BoardUtil.getTeamBoardsWithoutKing(board, isWhite);
+        long teamBoardWithoutKing = 0L;
+        for(long b: teamBoards){
+            teamBoardWithoutKing |= b;
+        }
+
+        return getPsuedoLegalMoves(board, BoardUtil.getTeamBoards(board, !isWhite), teamBoardWithoutKing, !isWhite, attacksOnly, emptyPinnedPieces, dangerSquares, captureMask, pushMask);
+    }
+
+    // todo: king removed is needed but maybe another flag for attacks only for the pawns
+    // attacks only is needed to calculate danger squares
     public static HashSet<Move> getPsuedoLegalMoves(Board board, long[] team, long enemyBoard, boolean isWhite, boolean kingRemoved, HashMap<Integer, Integer> pinnedPieces, HashSet<Integer> dangerSquares, int captureMask, long pushMask){
         HashSet<Move> psuedoLegalMoves = new HashSet<>();
         long teamBoard = BoardUtil.getTeamBoard(board, isWhite);
@@ -283,7 +304,7 @@ public class MoveGenerator{
 
                 boolean overflowed = Math.abs(fromFile - toFile) > 2 || Math.abs(fromRank - toRank) > 2;
                 boolean validSquare = BoardUtil.checkValidSquare(toSquare);
-                boolean validEnemy = !BoardUtil.isOccupiedByFriendly(toSquare, teamBoard);
+                boolean validEnemy = kingRemoved || !BoardUtil.isOccupiedByFriendly(toSquare, teamBoard);
                 boolean validPinDirection = BoardUtil.isValidPinDirection(fromSquare, displacement, pinnedPieces);
                 boolean validInCaptureAndPushMasks = BoardUtil.squareValidInCaptureAndPushMasks(toSquare, captureMask, pushMask);
 

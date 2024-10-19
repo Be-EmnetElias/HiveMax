@@ -46,6 +46,7 @@ public class Client implements Runnable {
                 
             }
         } catch (IOException | ClassNotFoundException e){
+            System.out.println("[Client] Error: " + e);
             shutdown();
         }
     }
@@ -61,9 +62,11 @@ public class Client implements Runnable {
 
     public void shutdown(){
         try{
-            in.close();
-            out.close();
-            if(!client.isClosed()){
+            if(in != null && out != null){
+                in.close();
+                out.close();
+            }
+            if(client != null && !client.isClosed()){
                 client.close();
             }
             System.out.println("[Client] Closing client");
