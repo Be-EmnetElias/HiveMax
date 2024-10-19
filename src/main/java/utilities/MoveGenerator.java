@@ -95,6 +95,17 @@ public class MoveGenerator{
         }
     }
 
+    /**
+     * todo: what exactly are psuedo legal moves
+     * sometimes we want to calculate danger squares for a king, which means that pieces being protected cannot be captured, hence 'kingremoved'
+     *      -- for example if a knight is protecting a queen, an enemy king cannot capture this queen, so the move 'knight takes friendly queen' is 'valid' move when looking for danger squares
+     * pawns can be tricky, because when calculating danger squares, we ignore pawn default moves and all pawn capture moves are 'valid' when looking for danger squares
+     * then sometimes we want
+     * @param board
+     * @param isWhite
+     * @param attacksOnly
+     * @return
+     */
     public static HashSet<Move> getEnemyPsuedoLegalMoves(Board board, boolean isWhite, boolean attacksOnly){
         HashMap<Integer, Integer> emptyPinnedPieces = new HashMap<>();
         HashSet<Integer> dangerSquares = new HashSet<>();
@@ -269,7 +280,6 @@ public class MoveGenerator{
         return pawnMoves;
     }
 
-    //todo: issue with enemy king taking pieces that knight is protecting
     public static HashSet<Move> getKnightMoves(Board board, long knights, long teamBoard, boolean isWhite, boolean kingRemoved,  int captureMask, long pushMask, HashMap<Integer, Integer> pinnedPieces){
         HashSet<Move> knightMoves = new HashSet<>();
 

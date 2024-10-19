@@ -19,7 +19,7 @@ public class HiveEvaluator {
     WEAK_COUNT_WEIGHT = 1, 
     
     
-    MATERIAL_COUNT_PAWN_WEIGHT = 1, 
+    MATERIAL_COUNT_PAWN_WEIGHT = 100, 
     
     CENTER_PAWN_COUNT_WEIGHT = 1,
     
@@ -43,7 +43,7 @@ public class HiveEvaluator {
 
 
     
-    MATERIAL_COUNT_KNIGHT_WEIGHT = 1,
+    MATERIAL_COUNT_KNIGHT_WEIGHT = 200,
     
     KNIGHT_MOBILITY_WEIGHT = 1,
     
@@ -60,7 +60,7 @@ public class HiveEvaluator {
     KNIGHT_SUPPORTED_BY_PAWN_WEIGHT = 1,
     
 
-    MATERIAL_COUNT_BISHOP_WEIGHT = 1,
+    MATERIAL_COUNT_BISHOP_WEIGHT = 300,
     
     BISHOP_MOBILITY_WEIGHT = 1,
 
@@ -69,7 +69,7 @@ public class HiveEvaluator {
     BISHOP_PAIR_WEIGHT = 1,
 
     
-    MATERIAL_COUNT_ROOK_WEIGHT = 1,
+    MATERIAL_COUNT_ROOK_WEIGHT = 500,
     
     ROOK_MOBILITY_WEIGHT = 1,
 
@@ -85,7 +85,7 @@ public class HiveEvaluator {
 
 
     
-    MATERIAL_COUNT_QUEEN_WEIGHT = 1,
+    MATERIAL_COUNT_QUEEN_WEIGHT = 900,
     
     QUEEN_MOBILITY_WEIGHT = 1,
 
@@ -106,8 +106,8 @@ public class HiveEvaluator {
 
     }
 
-    public static int Evaluate(Board board, HashSet<Move> currentLegalMoves, HashSet<Move> enemyPsuedoLegalMoves,  boolean originallyWhite){
-        return EvaluateTeam(board, currentLegalMoves, enemyPsuedoLegalMoves, originallyWhite) - EvaluateTeam(board, enemyPsuedoLegalMoves, currentLegalMoves, !originallyWhite);
+    public static int Evaluate(Board board, HashSet<Move> currentLegalMoves, HashSet<Move> enemyPsuedoLegalMoves,  boolean isWhite){
+        return EvaluateTeam(board, currentLegalMoves, enemyPsuedoLegalMoves, isWhite) - EvaluateTeam(board, enemyPsuedoLegalMoves, currentLegalMoves, !isWhite);
     }
     private static int EvaluateTeam(Board board, HashSet<Move> currentLegalMoves, HashSet<Move> enemyPsuedoLegalMoves,  boolean isWhite){
         if(currentLegalMoves.isEmpty()){
@@ -141,7 +141,7 @@ public class HiveEvaluator {
 
         int score = 0;
 
-        // //GENERAL INFORMATION
+        //GENERAL INFORMATION
         // score += weakCount(currentLegalMoves, enemyBoards)                                              *WEAK_COUNT_WEIGHT;
 
         //PAWN INFORMATION
@@ -185,12 +185,12 @@ public class HiveEvaluator {
         score += materialCount(queens)                                                                  *MATERIAL_COUNT_QUEEN_WEIGHT;
         // score += mobility(isWhite ? PieceType.WHITE_QUEEN: PieceType.BLACK_QUEEN, movesPieceType)       *QUEEN_MOBILITY_WEIGHT;
 
-        // //KING INFORMATION
-        // score += kingCastled(isWhite, board)                                                            *KING_CASTLED_WEIGHT;
+        //KING INFORMATION
+        score += kingCastled(isWhite, board)                                                            *KING_CASTLED_WEIGHT;
         // score += kingAttackedValue()                                                                    *KING_ATTACKED_VALUE_WEIGHT;
         // score += kingDefendedValue()                                                                    *KING_DEFENDED_VALUE_WEIGHT;
 
-        // KINGS
+        
 
         return score;
     }

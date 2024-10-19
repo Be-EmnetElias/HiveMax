@@ -86,7 +86,7 @@ public class HiveGUI extends JPanel {
                 }else{
                     client.shutdown();
                     chessPanel.sendMoveToClient = false;
-                    playOnlineButton.setText("Play Online");
+                    playOnlineButton.setText("Online");
 
                 }
                 revalidate();
@@ -95,7 +95,7 @@ public class HiveGUI extends JPanel {
         
         playOnlineButton.setBounds(0, 0, 100, 100);
 
-        JButton singlePlayerButton = new JButton("Vs. Computer");
+        JButton singlePlayerButton = new JButton("AI");
         singlePlayerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -107,13 +107,13 @@ public class HiveGUI extends JPanel {
                     client.shutdown();
                 }
                 chessPanel.sendMoveToClient = false;
-                playOnlineButton.setText("Play Online");
+                playOnlineButton.setText("Online");
             }
         });
         
         singlePlayerButton.setBounds(0, 100, 100, 100);
 
-        JButton customButton = new JButton("Custom Position [Test Mode]");
+        JButton customButton = new JButton("[Test Mode]");
         customButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -148,7 +148,7 @@ class SinglePlayerServer {
     boolean computerIsWhite;
     boolean isWhite;
     ExecutorService executorService;
-    int DEPTH = 8;
+    int DEPTH = 3;
 
     public SinglePlayerServer(ChessPanel chessPanel){
         Random rand = new Random();
@@ -174,14 +174,6 @@ class SinglePlayerServer {
     }
 
     public void makeComputerMove(){
-        // Move bm = HiveSearch.bestMove(
-        //             new Board(this.gameState.board),
-        //             this.gameState.currentLegalMoves,
-        //             DEPTH,
-        //             this.computerIsWhite
-        //         );
-        // update(bm);
-
         Future<Move> bestMove = executorService.submit(() -> {
             return HiveSearch.bestMove(
                 new Board(this.gameState.board),
