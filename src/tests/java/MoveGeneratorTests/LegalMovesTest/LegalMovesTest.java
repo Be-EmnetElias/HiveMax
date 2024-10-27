@@ -1,8 +1,5 @@
 package tests.java.MoveGeneratorTests.LegalMovesTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +8,6 @@ import java.util.List;
 import main.java.board.Board;
 import main.java.board.BoardUtil;
 import main.java.board.PieceType;
-import main.java.hive.HiveSearch;
 import main.java.move.Move;
 import main.java.move.MoveGenerator;
 import main.java.move.MoveType;

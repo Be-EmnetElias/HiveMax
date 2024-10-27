@@ -5,9 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.*;
 
-import main.java.utilities.*;
 import main.java.board.Board;
-import main.java.hive.SearchEvaluateThread;
 import main.java.move.Move;
 import main.java.move.MoveGenerator;
 import main.java.move.PerftInfo;;
@@ -20,7 +18,7 @@ public class HiveSearch {
 
     private static final ExecutorService EXECUTOR = Executors.newCachedThreadPool();//Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
-    public static int DEPTH = 5;
+    public static int DEPTH = 4;
 
     public HiveSearch(){}
 

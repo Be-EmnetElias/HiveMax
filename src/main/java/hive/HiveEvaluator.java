@@ -1,7 +1,6 @@
 package main.java.hive;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
@@ -173,8 +172,8 @@ public class HiveEvaluator {
         score += kingPawnShieldCount(pawns,king)                                                        *KING_PAWN_SHIELD_WEIGHT;
         score += isolatedPawnCount(pawns)                                                               *ISOLATED_PAWN_WEIGHT;
         score += doubledPawnCount(pawns)                                                                *DOUBLE_PAWN_WEIGHT;
-        score += passPawnCount(pawns, enemyPawns, isWhite)                                              *PASS_PAWN_WEIGHT;
-        score += rankPassPawnCount()                                                                    *RANK_PASS_PAWN_WEIGHT;
+        score += passPawnCount(passPawns)                                                               *PASS_PAWN_WEIGHT;
+        score += rankPassPawnCount(passPawns, isWhite)                                                  *RANK_PASS_PAWN_WEIGHT;
         score += backwardPawnCount()                                                                    *BACKWARD_PAWN_WEIGHT;
         score += blockedPawnCount()                                                                     *BLOCKED_PAWN_WEIGHT;
         score += blockedPassPawnCount()                                                                 *BLOCKED_PASSED_PAWN_WEIGHT;
@@ -222,7 +221,7 @@ public class HiveEvaluator {
 
     static long CENTER_MASK = (1L << 27) | (1L << 28) | (1L << 35) | (1L << 36);
 
-    static long FILE_MASK = 0xff00000000000000L; //left most rank
+    static long FILE_MASK = 0x101010101010101L; //left most rank
 
     static long RANK_MASK = 0xff00000000000000L; //rank 0
 
@@ -239,6 +238,29 @@ public class HiveEvaluator {
 
     //------------- helpers --------------
 
+    public static long shiftFile(long file, int amount){
+        if(amount >= 0){
+            return file << amount;
+        }else{
+            return file >> Math.abs(amount);
+        }
+    }
+
+    public static long shiftRank(long rank, int amount){
+        if(amount >= 0){
+            return rank >>> ((7-amount) * 8); 
+
+        }else{
+            return rank << ((7-Math.abs(amount)) * 8); 
+
+        }
+    }
+
+    public static long shiftRank(long rank, int amount, boolean isWhite){
+        return isWhite ? ~(RANK_MASK >> ((7 - amount) * 8)) : RANK_MASK >> ((6-amount) * 8);
+
+    }
+
     // returns a long of pass pawns
     // pass pawns have no enemy pawns in front of it and on adjacent files
     private static long passPawns(long pawns, long enemyPawns, boolean isWhite){
@@ -246,17 +268,35 @@ public class HiveEvaluator {
 
         while(pawns != 0){
             int pawnSquare = Long.numberOfTrailingZeros(pawns);
-            long pawnFile = FILE_MASK << (pawnSquare / 8);
-            long pawnRank = RANK_MASK << (pawnSquare % 8);
+            int pawnFile = (pawnSquare % 8);
+            int pawnRank = (pawnSquare / 8);
 
+            long pawnFileMask = shiftFile(FILE_MASK, pawnFile);
+            long pawnRankMask = shiftRank(RANK_MASK, pawnRank, isWhite);
+            long enemyPawnsAhead = enemyPawns & pawnRankMask;
+       
+            boolean enemyPawnSameFile = Long.bitCount(enemyPawnsAhead & pawnFileMask) > 0;
+            boolean enemyPawnLeftFile = false;
+            boolean enemyPawnRightFile = false;
 
-            // long enemyPawnSameFile = enemyPawns
+            if(pawnFile > 0){
+                enemyPawnLeftFile = Long.bitCount(enemyPawnsAhead & (pawnFileMask >> 1)) > 0;
+            }
+
+            if(pawnFile < 7){
+                enemyPawnRightFile = Long.bitCount(enemyPawnsAhead & (pawnFileMask << 1)) > 0;
+            }
+
+            if(!enemyPawnLeftFile && !enemyPawnRightFile && !enemyPawnSameFile){
+                passPawns = BoardUtil.setBit(passPawns, pawnSquare);
+            }
+            
             pawns &= pawns - 1;
-            break;
         }
 
         return passPawns;
     }
+    
     // returns a map with key/value -> PieceType/List<Move> from a list of moves
     private static EnumMap<PieceType, List<Move>> movesPerPieceType(List<Move> legalMoves){
         EnumMap<PieceType, List<Move>> movesPieceType = new EnumMap<>(PieceType.class);
@@ -373,40 +413,26 @@ public class HiveEvaluator {
 
     }
 
-    //todo
     // returns the count of pass pawns
-    // a pass pawn has no enemy pawns on the ranks in front of its file and the 2 adjacent files
-    private static int passPawnCount(long pawns, long enemyPawns, boolean isWhite){
-        // int count = 0;
-        // for (int i = 0; i < 64; i++) {
-        //     if ((pawns & (1L << i)) != 0) { // If there is a pawn at this square
-        //         int file = i % 8;
-        //         long fileMask = 0x0101010101010101L << file;
-        //         long adjacentFiles = 0L;
-        //         if (file > 0) adjacentFiles |= fileMask >> 1;
-        //         if (file < 7) adjacentFiles |= fileMask << 1;
-        //         long blockingFiles = fileMask | adjacentFiles;
-
-        //         // Only consider squares in front of the pawn
-        //         if (isWhite) {
-        //             blockingFiles &= ~((1L << i) - 1);
-        //         } else {
-        //             blockingFiles &= -1L << i;
-        //         }
-
-        //         if ((enemyPawns & blockingFiles) == 0) {
-        //             count++;
-        //         }
-        //     }
-        // }
-        // return count;
-        return 0;
+    private static int passPawnCount(long passPawns){
+        return Long.bitCount(passPawns);
     }
 
-    // todo
     // returns the combined ranks of all pass pawns
-    private static int rankPassPawnCount(){
-        return 0;
+    // a rank in this case will be how far 'up' this pawn has traveled
+    // (basically the absolute distance traveled to account for both black/white pawns)
+    private static int rankPassPawnCount(long passPawns, boolean isWhite){
+        int score = 0;
+        while(passPawns != 0){
+            int pawnSquare = Long.numberOfTrailingZeros(passPawns);
+            int pawnRank = (pawnSquare / 8);
+            int actualRank = isWhite ? (6 - pawnRank) : pawnRank;
+            score += actualRank;
+            
+            passPawns &= passPawns - 1;
+        }
+
+        return score;
     }
 
     // todo
@@ -425,7 +451,7 @@ public class HiveEvaluator {
 
     // todo
     // returns the count of blocked pass pawns
-    // reuturns the count of pass pawns that are blocked
+    // returns the count of pass pawns that are blocked
     private static int blockedPassPawnCount(){
         return 0;
     }
@@ -477,32 +503,39 @@ public class HiveEvaluator {
 
     //--------------- ROOK INFORMATION ----------------
 
-    // returns the count of rooks behind a pass pawn
+    // returns the count of rooks behind a different pass pawn
     //todo
     private static int rookBehindPassPawnCount(){
         return 0;
     }
 
     //todo
+    // returns the coutn of rooks on an open file
+    // an open file has no enemy pieces
     private static int rookOnOpenFileCount(long rooks, long board){
         return 0;
     }
 
     //todo
+    // returns the count of rooks on an semi-open file
+    // a semi-open file has no enemy pawns
     private static int rookOnSemiOpenFileCount(long rooks, long pawns){
         return 0;
     }
 
 
     //todo
+    // returns the count of rooks on a closed file
+    // a close filed has a friendly pawn
     private static int rookOnClosedFileCount(long rooks, long pawns, long enemyPawns){
         return 0;
     }
 
     //todo
-    // returns 1 if the rooks are on the same file or same rank, 0 otherwise
-    private static int rooksConnected(long rooks, long board){
-       return 0;
+    // returns 1 if the rooks are on the same file or same rank with no other team pieces in between, 0 otherwise
+    private static int rooksConnected(long rooks, long teamBoard){
+        return 0;
+
     }
 
 

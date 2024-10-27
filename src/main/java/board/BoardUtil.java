@@ -288,20 +288,14 @@ public class BoardUtil {
     // long 64 bits 000000010101010.....
     // MSB = square 63, LSB = square 0
     public static void printLong(long board){
-        System.out.println("TRUYING: " + Long.toBinaryString(board));
-        System.out.println("square; " +  Long.numberOfLeadingZeros(~board));
         String boardStr = "";
-        for(int i=0; i <64 - Long.numberOfTrailingZeros(board); i++){
+        for(int i=0; i <= 64 - Long.toBinaryString(board).length(); i++){
             boardStr += "0";
         }
 
         boardStr += Long.toBinaryString(board);
-
-        while(boardStr.length() < 64){
-            boardStr += "0";
-        }
         
-        for(int i = 0; i<boardStr.length(); i++){
+        for(int i = boardStr.length()-1; i>0; i--){
             if(i%8==0){
                 System.out.println();
                 System.out.println();
@@ -311,6 +305,11 @@ public class BoardUtil {
         }
 
         System.out.println();
+        System.out.println();
+
+        System.out.println();
+
+        
 
     }
 

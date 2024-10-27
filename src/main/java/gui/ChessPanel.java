@@ -17,7 +17,6 @@ import main.java.move.Move;
 import main.java.move.MoveType;
 import main.java.network.Client;
 import main.java.network.GameState;
-import main.java.utilities.*;
 
 import java.util.List;
 

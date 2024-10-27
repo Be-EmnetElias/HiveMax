@@ -16,7 +16,7 @@ public class EvaluationTest {
 
     @Test
     public void testAvoidCheckMate(){
-        Board board = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -  0 0");
+        Board board = new Board();
 
         List<Move> legalMoves = MoveGenerator.getEnemyPsuedoLegalMoves(board, false, false, true);
         List<Move> pLegalMoves = MoveGenerator.getEnemyPsuedoLegalMoves(board, true, false, true);
@@ -25,14 +25,15 @@ public class EvaluationTest {
         HiveSearch.showLogs = true;
         HiveEvaluator.showLogs = true;
 
-        
-        // BoardUtil.printLong(0b1111111100000000000000000000000000000000000000000000000000000000L);
-        BoardUtil.printLong(board.BLACK_PAWNS);
-        // BoardUtil.printBoard(board);
+        // long rank = 0b1111111100000000000000000000000000000000000000000000000000000000L;
+        // System.out.println("RANK:" + Long.toHexString(rank));
+        // BoardUtil.printLong(rank >>> 16);
+        // BoardUtil.printLong(board.WHITE_PAWNS);
+        BoardUtil.printBoard(board);
 
        
 
-        // int score = HiveEvaluator.EvaluateTeam(board, legalMoves, pLegalMoves,true);
+        int score = HiveEvaluator.EvaluateTeam(board,pLegalMoves, legalMoves,false);
         // Move move = HiveSearch.bestMove(board,legalMoves, 3, true);
         // System.out.println("WHITE");
         // System.out.println("Best move: " + move);

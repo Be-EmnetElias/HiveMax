@@ -1,7 +1,6 @@
 package main.java.network;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.UUID;
 
 import main.java.board.Board;

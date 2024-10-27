@@ -5,7 +5,6 @@ import java.util.concurrent.Callable;
 import main.java.board.Board;
 import main.java.move.Move;
 import main.java.move.MoveGenerator;
-import main.java.utilities.*;
 import java.util.*;
 
 
