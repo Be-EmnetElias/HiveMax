@@ -1,5 +1,7 @@
-package main.java.utilities;
+package main.java.move;
 import java.io.*;
+
+import main.java.board.PieceType;
 
 /**
  * fromSquare

@@ -5,12 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.Test;
 
-import main.java.utilities.Board;
-import main.java.utilities.BoardUtil;
-import main.java.utilities.Move;
-import main.java.utilities.MoveGenerator;
-import main.java.utilities.MoveType;
-import main.java.utilities.PieceType;
+import main.java.board.Board;
+import main.java.board.BoardUtil;
+import main.java.board.PieceType;
+import main.java.move.Move;
+import main.java.move.MoveGenerator;
+import main.java.move.MoveType;
+
 import java.util.*;
 
 public class KingMovesTest {

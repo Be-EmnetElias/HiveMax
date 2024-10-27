@@ -1,9 +1,13 @@
-package main.java.utilities;
+package main.java.move;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import main.java.board.Board;
+import main.java.board.BoardUtil;
+import main.java.board.PieceType;
 
 public class MoveGenerator{
 
@@ -137,8 +141,7 @@ public class MoveGenerator{
         return getPsuedoLegalMoves(board, BoardUtil.getTeamBoards(board, !isWhite), teamBoardWithoutKing, !isWhite, attacksOnly, allPawnMoves, emptyPinnedPieces, dangerSquares, captureMask, pushMask);
     }
 
-    // todo: king removed is needed but maybe another flag for attacks only for the pawns
-    // attacks only is needed to calculate danger squares
+
     public static List<Move> getPsuedoLegalMoves(Board board, long[] team, long enemyBoard, boolean isWhite, boolean lookingForDangerSquares, boolean allPawnMoves, HashMap<Integer, Integer> pinnedPieces, HashSet<Integer> dangerSquares, int captureMask, long pushMask){
         List<Move> psuedoLegalMoves = new ArrayList<>();
         long teamBoard = BoardUtil.getTeamBoard(board, isWhite);

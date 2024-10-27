@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import main.java.*;
-import main.java.utilities.Board;
-import main.java.utilities.BoardUtil;
-import main.java.utilities.MoveGenerator;
+import main.java.board.Board;
+import main.java.board.BoardUtil;
+import main.java.move.MoveGenerator;
 
 public class CalculatePinnedPiecesTest {
 

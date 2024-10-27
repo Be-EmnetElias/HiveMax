@@ -1,5 +1,10 @@
 package tests.java.BoardTests;
 import main.java.*;
+import main.java.board.Board;
+import main.java.board.BoardUtil;
+import main.java.board.PieceType;
+import main.java.move.Move;
+import main.java.move.MoveType;
 import main.java.utilities.*;
 
 import org.junit.jupiter.api.Test;

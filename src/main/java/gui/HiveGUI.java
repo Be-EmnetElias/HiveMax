@@ -22,8 +22,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import main.java.board.Board;
+import main.java.board.BoardUtil;
+import main.java.board.PieceType;
 import main.java.hive.HiveEvaluator;
 import main.java.hive.HiveSearch;
+import main.java.move.Move;
 import main.java.network.Client;
 import main.java.network.GameState;
 

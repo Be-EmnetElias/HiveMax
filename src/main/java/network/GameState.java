@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.UUID;
 
-import main.java.utilities.Board;
-import main.java.utilities.Move;
-import main.java.utilities.MoveGenerator;
+import main.java.board.Board;
+import main.java.move.Move;
+import main.java.move.MoveGenerator;
+
 import java.util.List;
 
 public class GameState implements Serializable{

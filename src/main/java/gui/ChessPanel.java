@@ -10,6 +10,11 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.JPanel;
 
+import main.java.board.Board;
+import main.java.board.BoardUtil;
+import main.java.board.PieceType;
+import main.java.move.Move;
+import main.java.move.MoveType;
 import main.java.network.Client;
 import main.java.network.GameState;
 import main.java.utilities.*;

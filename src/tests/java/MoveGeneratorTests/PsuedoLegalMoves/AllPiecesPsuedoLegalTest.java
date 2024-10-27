@@ -5,11 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
 
-import main.java.utilities.Board;
-import main.java.utilities.Move;
-import main.java.utilities.MoveGenerator;
-import main.java.utilities.MoveType;
-import main.java.utilities.PieceType;
+import main.java.board.Board;
+import main.java.board.PieceType;
+import main.java.move.Move;
+import main.java.move.MoveGenerator;
+import main.java.move.MoveType;
+
 import java.util.*;
 
 public class AllPiecesPsuedoLegalTest {

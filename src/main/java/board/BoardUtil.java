@@ -1,7 +1,10 @@
-package main.java.utilities;
+package main.java.board;
 
 import java.util.HashMap;
 import java.util.HashSet;
+
+import main.java.move.Move;
+import main.java.move.MoveType;
 
 public class BoardUtil {
     
@@ -280,6 +283,35 @@ public class BoardUtil {
                 return "";
             
         }
+    }
+
+    // long 64 bits 000000010101010.....
+    // MSB = square 63, LSB = square 0
+    public static void printLong(long board){
+        System.out.println("TRUYING: " + Long.toBinaryString(board));
+        System.out.println("square; " +  Long.numberOfLeadingZeros(~board));
+        String boardStr = "";
+        for(int i=0; i <64 - Long.numberOfTrailingZeros(board); i++){
+            boardStr += "0";
+        }
+
+        boardStr += Long.toBinaryString(board);
+
+        while(boardStr.length() < 64){
+            boardStr += "0";
+        }
+        
+        for(int i = 0; i<boardStr.length(); i++){
+            if(i%8==0){
+                System.out.println();
+                System.out.println();
+
+            }
+            System.out.print(boardStr.charAt(i) + "  ");
+        }
+
+        System.out.println();
+
     }
 
     public static void printBoard(Board board){

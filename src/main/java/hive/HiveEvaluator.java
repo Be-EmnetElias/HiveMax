@@ -6,13 +6,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 
-import main.java.utilities.Board;
-import main.java.utilities.BoardUtil;
-import main.java.utilities.Move;
-import main.java.utilities.MoveGenerator;
-import main.java.utilities.MoveType;
-import main.java.utilities.PieceType;
+import main.java.board.Board;
+import main.java.board.BoardUtil;
+import main.java.board.PieceType;
+import main.java.move.Move;
+import main.java.move.MoveGenerator;
+import main.java.move.MoveType;
 
+// todo: when training, will need mulitple evalutors with different weights, need to make this class NON-STATIC, or keep the functions static and import weights instead of using fields
 public class HiveEvaluator {
     
 // = = == == == === === WEIGHTS === === == == == = = 
@@ -118,14 +119,19 @@ public class HiveEvaluator {
      * @return
      */
     public static int Evaluate(Board board){
-        List<Move> whiteMoves = board.IS_WHITE_TURN ? MoveGenerator.getCurrentLegalMoves(board, true) : MoveGenerator.getEnemyPsuedoLegalMoves(board, false, false, true);
-        List<Move> blackMoves = board.IS_WHITE_TURN ? MoveGenerator.getEnemyPsuedoLegalMoves(board, true, false, true) : MoveGenerator.getCurrentLegalMoves(board, false);
+
+        //todo load weights?
+
+        // when evaluating, look at the psuedo legal moves for better information
+        // for example getting all pawn moves including captures, instead of only the legal ones
+        List<Move> whiteMoves = MoveGenerator.getEnemyPsuedoLegalMoves(board, false, false, true);
+        List<Move> blackMoves = MoveGenerator.getEnemyPsuedoLegalMoves(board, true, false, true);
         int whiteScore = EvaluateTeam(board, whiteMoves, blackMoves, true);
         int blackScore = EvaluateTeam(board, blackMoves, whiteMoves, false);
 
         return whiteScore - blackScore;
     }
-    private static int EvaluateTeam(Board board, List<Move> currentLegalMoves, List<Move> enemyPsuedoLegalMoves,  boolean isWhite){
+    public static int EvaluateTeam(Board board, List<Move> currentLegalMoves, List<Move> enemyPsuedoLegalMoves,  boolean isWhite){
 
         // todo: check end game conditions
         // if no legal moves left, determine if checkmate (-infinity score) or stalemate(0 score)
@@ -151,15 +157,9 @@ public class HiveEvaluator {
         EnumMap<PieceType, List<Move>> movesPieceType = movesPerPieceType(currentLegalMoves);
         EnumMap<PieceType, List<Move>> enemyMovesPieceType = movesPerPieceType(enemyPsuedoLegalMoves);
 
-        long squaresNotAttackedEnemyPawns = ~0L;
-        if(enemyMovesPieceType.keySet().contains(isWhite ? PieceType.BLACK_PAWN : PieceType.WHITE_PAWN)){
-            for(Move move : enemyMovesPieceType.get(isWhite ? PieceType.BLACK_PAWN : PieceType.WHITE_PAWN)){
-                if(move.moveType() == MoveType.CAPTURE){
-                    squaresNotAttackedEnemyPawns ^= (1L << move.toSquare());
-                }
-            }
-        }
-        
+        long passPawns = passPawns(pawns, enemyPawns, isWhite);
+        long squaresAttackedByFriendlyPawns = squaresAttackedByPawns(movesPieceType, isWhite ? PieceType.WHITE_PAWN : PieceType.BLACK_PAWN);
+        long squaresNotAttackedEnemyPawns = ~squaresAttackedByPawns(enemyMovesPieceType, isWhite ? PieceType.BLACK_PAWN : PieceType.WHITE_PAWN);
 
 
         int score = 0;
@@ -183,11 +183,11 @@ public class HiveEvaluator {
         score += materialCount(knights)                                                                 *MATERIAL_COUNT_KNIGHT_WEIGHT;
         score += mobility(isWhite ? PieceType.WHITE_KNIGHT: PieceType.BLACK_KNIGHT, movesPieceType)     *KNIGHT_MOBILITY_WEIGHT;
         score += knightOnOutpostCount(knights, squaresNotAttackedEnemyPawns)                            *KNIGHT_ON_OUTPOST_WEIGHT;
+        score += knightSupportedByPawnCount(knights, squaresAttackedByFriendlyPawns)                    *KNIGHT_SUPPORTED_BY_PAWN_WEIGHT;
         score += knightOnCenterCount(knights)                                                           *KNIGHT_ON_CENTER_WEIGHT;
         score += knightOnOuterEdge1Count(knights)                                                       *KNIGHT_ON_OUTER_EDGE_1_WEIGHT;
         score += knightOnOuterEdge2Count(knights)                                                       *KNIGHT_ON_OUTER_EDGE_2_WEIGHT;
         score += knightOnOuterEdge3Count(knights)                                                       *KNIGHT_ON_OUTER_EDGE_3_WEIGHT;
-        score += knightSupportedByPawnCount(knights, pawns)                                             *KNIGHT_SUPPORTED_BY_PAWN_WEIGHT;
 
         //BISHOP INFORMATION
         score += materialCount(bishops)                                                                 *MATERIAL_COUNT_BISHOP_WEIGHT;
@@ -222,6 +222,10 @@ public class HiveEvaluator {
 
     static long CENTER_MASK = (1L << 27) | (1L << 28) | (1L << 35) | (1L << 36);
 
+    static long FILE_MASK = 0xff00000000000000L; //left most rank
+
+    static long RANK_MASK = 0xff00000000000000L; //rank 0
+
     static long OUTER_EDGE_1 = 0x0000001818000000L;
 
     static long OUTER_EDGE_2 = 0x00003C24243C0000L;
@@ -235,6 +239,24 @@ public class HiveEvaluator {
 
     //------------- helpers --------------
 
+    // returns a long of pass pawns
+    // pass pawns have no enemy pawns in front of it and on adjacent files
+    private static long passPawns(long pawns, long enemyPawns, boolean isWhite){
+        long passPawns = 0L;
+
+        while(pawns != 0){
+            int pawnSquare = Long.numberOfTrailingZeros(pawns);
+            long pawnFile = FILE_MASK << (pawnSquare / 8);
+            long pawnRank = RANK_MASK << (pawnSquare % 8);
+
+
+            // long enemyPawnSameFile = enemyPawns
+            pawns &= pawns - 1;
+            break;
+        }
+
+        return passPawns;
+    }
     // returns a map with key/value -> PieceType/List<Move> from a list of moves
     private static EnumMap<PieceType, List<Move>> movesPerPieceType(List<Move> legalMoves){
         EnumMap<PieceType, List<Move>> movesPieceType = new EnumMap<>(PieceType.class);
@@ -252,6 +274,20 @@ public class HiveEvaluator {
         return movesPieceType;
     }
 
+    // returns a binary long of which squares are not being attacked by this team's pawns
+    private static long squaresAttackedByPawns(EnumMap<PieceType, List<Move>> enemyMovesPieceType, PieceType pawn){
+        long squaresAttackedPawns = 0L;
+        if(enemyMovesPieceType.keySet().contains(pawn)){
+            for(Move move : enemyMovesPieceType.get(pawn)){
+                if(move.moveType() == MoveType.CAPTURE){
+                    squaresAttackedPawns |= (1L << move.toSquare());
+                }
+            }
+        }
+        return squaresAttackedPawns;
+    }
+    
+    
     //------------- general information ----------------
 
     // returns the number of squares that cannot be protected by this team
@@ -314,21 +350,10 @@ public class HiveEvaluator {
 
     }
 
+    //todo
     // returns the count of isolated pawns (TODO: idk what counts as isolated)
     private static int isolatedPawnCount(long pawns){
-        int count = 0;
-        for (int i = 0; i < 64; i++) {
-            if ((pawns & (1L << i)) != 0) { // If there is a pawn at this square
-                int file = i % 8;
-                long adjacentFiles = 0L;
-                if (file > 0) adjacentFiles |= (pawns >> 1) & 0x7F7F7F7F7F7F7F7FL;
-                if (file < 7) adjacentFiles |= (pawns << 1) & 0xFEFEFEFEFEFEFEFEL;
-                if (adjacentFiles == 0) {
-                    count++;
-                }
-            }
-        }
-        return count;
+        return 0;
 
     }
     
@@ -348,67 +373,74 @@ public class HiveEvaluator {
 
     }
 
+    //todo
     // returns the count of pass pawns
-    // pass pawn has no enemy pawns on its column and the neighboring columns
+    // a pass pawn has no enemy pawns on the ranks in front of its file and the 2 adjacent files
     private static int passPawnCount(long pawns, long enemyPawns, boolean isWhite){
-        int count = 0;
-        for (int i = 0; i < 64; i++) {
-            if ((pawns & (1L << i)) != 0) { // If there is a pawn at this square
-                int file = i % 8;
-                long fileMask = 0x0101010101010101L << file;
-                long adjacentFiles = 0L;
-                if (file > 0) adjacentFiles |= fileMask >> 1;
-                if (file < 7) adjacentFiles |= fileMask << 1;
-                long blockingFiles = fileMask | adjacentFiles;
+        // int count = 0;
+        // for (int i = 0; i < 64; i++) {
+        //     if ((pawns & (1L << i)) != 0) { // If there is a pawn at this square
+        //         int file = i % 8;
+        //         long fileMask = 0x0101010101010101L << file;
+        //         long adjacentFiles = 0L;
+        //         if (file > 0) adjacentFiles |= fileMask >> 1;
+        //         if (file < 7) adjacentFiles |= fileMask << 1;
+        //         long blockingFiles = fileMask | adjacentFiles;
 
-                // Only consider squares in front of the pawn
-                if (isWhite) {
-                    blockingFiles &= ~((1L << i) - 1);
-                } else {
-                    blockingFiles &= -1L << i;
-                }
+        //         // Only consider squares in front of the pawn
+        //         if (isWhite) {
+        //             blockingFiles &= ~((1L << i) - 1);
+        //         } else {
+        //             blockingFiles &= -1L << i;
+        //         }
 
-                if ((enemyPawns & blockingFiles) == 0) {
-                    count++;
-                }
-            }
-        }
-        return count;
+        //         if ((enemyPawns & blockingFiles) == 0) {
+        //             count++;
+        //         }
+        //     }
+        // }
+        // return count;
+        return 0;
     }
 
     // todo
+    // returns the combined ranks of all pass pawns
     private static int rankPassPawnCount(){
         return 0;
     }
 
     // todo
+    // returns the count of backward pawns
+    // a backward pawn has no friendly pawns on the ranks behind it
     private static int backwardPawnCount(){
         return 0;
     }
 
     // todo
+    // returns the count of blocked pawns
+    // a blocked pawn has a non-pawn piece on the ranks in front of it
     private static int blockedPawnCount(){
         return 0;
     }
 
     // todo
+    // returns the count of blocked pass pawns
+    // reuturns the count of pass pawns that are blocked
     private static int blockedPassPawnCount(){
         return 0;
     }
 
-    //=========== knight information ============
+    //=========== KNIGHT INFORMATION ============
 
     // returns the count of knights on an outpost
     // an outpost is a square that is not being attacked by enemy pawns
-    // todo: 
     private static int knightOnOutpostCount(long knights, long squaresNotAttackedEnemyPawns){
         return Long.bitCount(knights & squaresNotAttackedEnemyPawns);
     }
 
-    // todo:
     // return the count of knights that are protected by a friendly pawn
-    private static int knightSupportedByPawnCount(long knights, long pawns){
-        return 0;
+    private static int knightSupportedByPawnCount(long knights, long squaresAttackedByFriendlyPawns){
+        return Long.bitCount(knights & squaresAttackedByFriendlyPawns);
     }
 
     // returns the count of knights on the 4 center squares
@@ -431,7 +463,7 @@ public class HiveEvaluator {
         return Long.bitCount(knights & OUTER_EDGE_3);
     }
 
-    //--------------- bishop information ----------------
+    //--------------- BISHOP INFORMATION ----------------
     
     // returns the count of bishops on large diagonals
     private static int bishopOnLargeDiagonalsCount(long bishops){
@@ -443,33 +475,40 @@ public class HiveEvaluator {
         return Long.bitCount(bishops) > 1 ? 1 : 0;
     }
 
-    //--------------- rook information ----------------
+    //--------------- ROOK INFORMATION ----------------
 
     // returns the count of rooks behind a pass pawn
+    //todo
     private static int rookBehindPassPawnCount(){
         return 0;
     }
 
-
+    //todo
     private static int rookOnOpenFileCount(long rooks, long board){
         return 0;
     }
 
+    //todo
     private static int rookOnSemiOpenFileCount(long rooks, long pawns){
         return 0;
     }
 
+
+    //todo
     private static int rookOnClosedFileCount(long rooks, long pawns, long enemyPawns){
         return 0;
     }
 
+    //todo
+    // returns 1 if the rooks are on the same file or same rank, 0 otherwise
     private static int rooksConnected(long rooks, long board){
-        return 0;
+       return 0;
     }
 
 
 
     //--------------- queen information ----------------
+    //todo
 
     //--------------- king information ----------------
     

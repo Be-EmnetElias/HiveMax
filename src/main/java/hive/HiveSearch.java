@@ -6,7 +6,11 @@ import java.util.concurrent.Future;
 import java.util.*;
 
 import main.java.utilities.*;
-import main.java.hive.SearchEvaluateThread;;
+import main.java.board.Board;
+import main.java.hive.SearchEvaluateThread;
+import main.java.move.Move;
+import main.java.move.MoveGenerator;
+import main.java.move.PerftInfo;;
 
 public class HiveSearch {
     

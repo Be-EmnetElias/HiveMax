@@ -1,7 +1,9 @@
 package tests.java.SearchAndEvaluateTests;
 
 import main.java.*;
+import main.java.board.Board;
 import main.java.hive.HiveSearch;
+import main.java.move.PerftInfo;
 import main.java.utilities.*;
 
 import org.junit.jupiter.api.Test;

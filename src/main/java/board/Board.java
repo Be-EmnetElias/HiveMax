@@ -1,7 +1,11 @@
-package main.java.utilities;
+package main.java.board;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import main.java.move.Move;
+import main.java.move.MoveType;
+
 import java.io.*;
 
 
