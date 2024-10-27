@@ -3,8 +3,6 @@ package main.java.utilities;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import main.java.Board;
-
 public class BoardUtil {
     
     public static final PieceType[] PIECE_TYPES = PieceType.values();
@@ -131,6 +129,44 @@ public class BoardUtil {
         return (boardFromSquare & teamPieces) != 0; 
     }
 
+    public static boolean isSameTeam(PieceType piece, PieceType other){
+        if(piece == PieceType.EMPTY || other == PieceType.EMPTY){
+            return false;
+        }else{
+            return getPieceTypeTeam(piece) == getPieceTypeTeam(other);
+        }
+    }
+
+    public static boolean getPieceTypeTeam(PieceType piece){
+        switch(piece){
+            case BLACK_BISHOP:
+                return false;
+            case BLACK_KING:
+                return false;
+            case BLACK_KNIGHT:
+                return false;
+            case BLACK_PAWN:
+                return false;
+            case BLACK_QUEEN:
+                return false;
+            case BLACK_ROOK:
+                return false;
+            case WHITE_BISHOP:
+                return true;
+            case WHITE_KING:
+                return true;
+            case WHITE_KNIGHT:
+                return true;
+            case WHITE_PAWN:
+                return true;
+            case WHITE_QUEEN:
+                return true;
+            case WHITE_ROOK:
+                return true;
+            default:
+                throw new IllegalArgumentException("Cannot get team of PieceType Empty!"); 
+        }
+    }
     /*
      * TODO: find how often this is used
      * Optimization: instead of comparing a square to long, if the piece at this square is already known, compare to PieceType instead
@@ -255,22 +291,20 @@ public class BoardUtil {
                 long pos = 1L << (row * 8 + col);
     
                 // System.out.printf("%3d", row * 8 + col);
-                if ((board.WHITE_PAWNS & pos) != 0) { System.out.print("P  ");}
-                else if ((board.WHITE_KNIGHTS & pos) != 0) { System.out.print("N  ");}
-                else if ((board.WHITE_BISHOPS & pos) != 0) { System.out.print("B  ");}
-                else if ((board.WHITE_ROOKS & pos) != 0) { System.out.print("R  ");}
-                else if ((board.WHITE_QUEENS & pos) != 0) { System.out.print("Q  ");}
-                else if ((board.WHITE_KINGS & pos) != 0) { System.out.print("K  ");}
-                
-                else if ((board.BLACK_PAWNS & pos) != 0) { System.out.print("p  ");}
-                else if ((board.BLACK_KNIGHTS & pos) != 0) { System.out.print("n  ");}
-                else if ((board.BLACK_BISHOPS & pos) != 0) { System.out.print("b  ");}
-                else if ((board.BLACK_ROOKS & pos) != 0) { System.out.print("r  ");}
-                else if ((board.BLACK_QUEENS & pos) != 0) { System.out.print("q  ");}
-                else if ((board.BLACK_KINGS & pos) != 0) { System.out.print("k  ");}
-
+                if ((board.WHITE_PAWNS & pos) != 0) { System.out.print("P   ");}
+                else if ((board.WHITE_KNIGHTS & pos) != 0) { System.out.print("N   ");}
+                else if ((board.WHITE_BISHOPS & pos) != 0) { System.out.print("B   ");}
+                else if ((board.WHITE_ROOKS & pos) != 0) { System.out.print("R   ");}
+                else if ((board.WHITE_QUEENS & pos) != 0) { System.out.print("Q   ");}
+                else if ((board.WHITE_KINGS & pos) != 0) { System.out.print("K   ");}
+                else if ((board.BLACK_PAWNS & pos) != 0) { System.out.print("p   ");}
+                else if ((board.BLACK_KNIGHTS & pos) != 0) { System.out.print("n   ");}
+                else if ((board.BLACK_BISHOPS & pos) != 0) { System.out.print("b   ");}
+                else if ((board.BLACK_ROOKS & pos) != 0) { System.out.print("r   ");}
+                else if ((board.BLACK_QUEENS & pos) != 0) { System.out.print("q   ");}
+                else if ((board.BLACK_KINGS & pos) != 0) { System.out.print("k   ");}
                 else{
-                    System.out.print(".  ");
+                    System.out.print(".   ");
                 }
             }
             if(row == 0) System.out.print("\t TURN: " + (board.IS_WHITE_TURN ? "WHITE":"BLACK"));
@@ -296,10 +330,10 @@ public class BoardUtil {
 
         }
 
-        System.out.println("\n   ------------------------");
+        System.out.println("\n   - - - - - - - - - - - - - - - - ");
         System.out.print("    ");
         for(int i=0; i<8; i++){
-            System.out.print((char)('a' + i) + "  ");
+            System.out.print((char)('a' + i) + "   ");
         }
 
         System.out.println("\n");
@@ -371,34 +405,5 @@ public class BoardUtil {
         );
     }
 
-    public static boolean getPieceTypeTeam(PieceType piece){
-        switch(piece){
-            case BLACK_BISHOP:
-                return false;
-            case BLACK_KING:
-                return false;
-            case BLACK_KNIGHT:
-                return false;
-            case BLACK_PAWN:
-                return false;
-            case BLACK_QUEEN:
-                return false;
-            case BLACK_ROOK:
-                return false;
-            case WHITE_BISHOP:
-                return true;
-            case WHITE_KING:
-                return true;
-            case WHITE_KNIGHT:
-                return true;
-            case WHITE_PAWN:
-                return true;
-            case WHITE_QUEEN:
-                return true;
-            case WHITE_ROOK:
-                return true;
-            default:
-                throw new IllegalArgumentException("Cannot get team of PieceType Empty!"); 
-        }
-    }
+   
 }

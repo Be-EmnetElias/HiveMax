@@ -22,9 +22,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-
-
-import main.java.Board;
+import main.java.hive.HiveEvaluator;
 import main.java.hive.HiveSearch;
 import main.java.network.Client;
 import main.java.network.GameState;
@@ -32,13 +30,12 @@ import main.java.network.GameState;
 
 public class HiveGUI extends JPanel {
 
-
     Client client;
     boolean playingOnline = false;
     SinglePlayerServer singlePlayerServer;
 
     public static void main(String[] args) throws IOException{
-        new HiveGUI();        
+        new HiveGUI();   
     }
 
     public HiveGUI() throws IOException {
@@ -148,7 +145,6 @@ class SinglePlayerServer {
     boolean computerIsWhite;
     boolean isWhite;
     ExecutorService executorService;
-    int DEPTH = 3;
 
     public SinglePlayerServer(ChessPanel chessPanel){
         Random rand = new Random();
@@ -157,8 +153,13 @@ class SinglePlayerServer {
         this.gameState.isWhite = this.isWhite;
         this.computerIsWhite = !this.isWhite;
         this.chessPanel = chessPanel;
+
+
         chessPanel.updateChessPanel(gameState);
         executorService = Executors.newCachedThreadPool();
+
+        System.out.println("Player is " + this.isWhite);
+        System.out.println("Computer is " + this.computerIsWhite);
 
         if(!this.isWhite){
             makeComputerMove();
@@ -178,7 +179,6 @@ class SinglePlayerServer {
             return HiveSearch.bestMove(
                 new Board(this.gameState.board),
                 this.gameState.currentLegalMoves,
-                DEPTH,
                 this.computerIsWhite
             );
         });
@@ -186,6 +186,7 @@ class SinglePlayerServer {
         executorService.execute(() -> {
             try {
                 Move move = bestMove.get();
+                // System.out.println("Computer made move: " + move);
                 update(move);
             } catch (Exception e) {
                 

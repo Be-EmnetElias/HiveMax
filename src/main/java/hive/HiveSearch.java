@@ -1,15 +1,22 @@
 package main.java.hive;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.*;
 
-import java.util.HashSet;
-import main.java.Board;
 import main.java.utilities.*;
-
+import main.java.hive.SearchEvaluateThread;;
 
 public class HiveSearch {
     
     public static double CHECKMATE = 100, PROMOTION = 50, CASTLE = 30, CAPTURE = 25, CHECK = 10, DEFAULT = 0;
 
-    public static boolean showLogs = true;
+    public static boolean showLogs = false;
+
+    private static final ExecutorService EXECUTOR = Executors.newCachedThreadPool();//Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+
+    public static int DEPTH = 5;
 
     public HiveSearch(){}
 
@@ -26,7 +33,7 @@ public class HiveSearch {
         long doubleChecks = 0;
         long checkmates = 0;
 
-        HashSet<Move> moves = MoveGenerator.getCurrentLegalMoves(originalBoard);
+        List<Move> moves = MoveGenerator.getCurrentLegalMoves(originalBoard);
         long nodes = moves.stream().parallel()
             .map(move -> {
                 Board board = new Board(originalBoard); //todo should be a copy of original board
@@ -53,7 +60,7 @@ public class HiveSearch {
         long doubleChecks = 0;
         long checkmates = 0;
 
-        HashSet<Move> moves = MoveGenerator.getCurrentLegalMoves(board);
+        List<Move> moves = MoveGenerator.getCurrentLegalMoves(board);
 
         for(Move move: moves){
             switch(move.moveType()){
@@ -90,156 +97,49 @@ public class HiveSearch {
         
     }
 
-    public static Move bestMove(Board board, HashSet<Move> currentLegalMoves, int depth, boolean isWhite) {
-        int maxScore = Integer.MIN_VALUE;
-        int alpha = Integer.MIN_VALUE;
-        int beta = Integer.MAX_VALUE;
-
-        Move bestMove = null;
-
-        Log("Searching Board with " + currentLegalMoves.size() + " current legal moves:");
+    public static Move bestMove(Board board, List<Move> currentLegalMoves, boolean isWhite) {
+        
+        //todo: sort legal moves first
+        //todo: since the first layer of moves are all given to threads, cannot prune at this top level, which could save a lot of time
+        Log("Searching " + currentLegalMoves.size() + " moves");
+        List<SearchEvaluateThread> tasks = new ArrayList<>();
         for(Move move : currentLegalMoves){
-            Log("\tSearching " + move);
-            board.makeMove(move);
-            HashSet<Move> nextLegalMoves = MoveGenerator.getCurrentLegalMoves(board, !isWhite);
-            HashSet<Move> nextEnemyPsuedoLegalMoves = MoveGenerator.getCurrentLegalMoves(board, isWhite); 
-
-            int score = -1 * negamax(board, nextLegalMoves, nextEnemyPsuedoLegalMoves, depth - 1, !isWhite, -beta, -alpha);
-            if(score >= maxScore){
-                bestMove = move;                
-                maxScore = score;
-            }
-            Log("\t\tScore: " + score);
-
-            board.undoMove(move);
+            tasks.add(new SearchEvaluateThread(new Board(board), move, DEPTH, isWhite));
         }
-        Log("Best Move: " + bestMove + " SCORE: " + maxScore);
+
+
+        List<SearchResult> bestMovesSorted = new ArrayList<>();
+        
+        List<Future<SearchResult>> results;
+        try {
+            results = EXECUTOR.invokeAll(tasks);
+            for (Future<SearchResult> result : results){
+                SearchResult sr = result.get();
+                bestMovesSorted.add(sr);
+                Collections.sort(bestMovesSorted, (sr1, sr2) -> sr2.score() - sr1.score());
+            }
+        } catch (InterruptedException | ExecutionException e) {
+
+        } 
+
+        Log("======Best moves sorted=====");
+        for(SearchResult sr : bestMovesSorted){
+            Log("\t Score: " + sr.score() + " : " + sr.move());
+            while(!sr.moveHistory().isEmpty()){
+                Log("\t\t " + sr.moveHistory().pop());
+            }
+        }
+        Move bestWhiteMove = bestMovesSorted.get(0).move();
+        Move bestBlackMove = bestMovesSorted.get(Math.max(0, bestMovesSorted.size() - 1)).move();
+        Move bestMove = isWhite ? bestWhiteMove : bestBlackMove;
+
+        Log("Best Move " + bestMove);
         return bestMove;
     }
 
-    private static int negamax(Board board, HashSet<Move> currentLegalMoves, HashSet<Move> enemyPsuedoLegalMoves, int depth, boolean isWhite, int alpha, int beta){
-
-        if(depth <= 0){
-            // Log("\t\tSearched up to depth, checking captures & checks");
-            int s =  HiveEvaluator.Evaluate(board, currentLegalMoves, enemyPsuedoLegalMoves, isWhite);
-            return s;
-            // return SearchCapturesChecks(board, currentLegalMoves, enemyLegalMoves, isWhite, alpha, beta);
-        }
-
-        int maxScore = Integer.MIN_VALUE;
-
-        for(Move move : currentLegalMoves){
-            board.makeMove(move);
-
-            HashSet<Move> nextLegalMoves = MoveGenerator.getCurrentLegalMoves(board, !isWhite);
-            HashSet<Move> nextEnemyPsuedoLegalMoves = MoveGenerator.getCurrentLegalMoves(board, isWhite); 
-
-            int score = -1 * negamax(board, nextLegalMoves, nextEnemyPsuedoLegalMoves, depth - 1, !isWhite, -beta, -alpha);
-            board.undoMove(move);
-
-            if(score >= maxScore){
-                maxScore = score;
-            }
-
-            int newAlpha = Math.max(alpha, score);
-            // if(newAlpha >= beta){
-            //     // Log("\talpha exceeded beta, stopping search");
-            //     break;
-            // }
-            
-        }
-        return maxScore;
-    }
-
-    // private static int SearchCapturesChecks(Board board, HashSet<Move> currentLegalMoves, HashSet<Move> enemyPsuedoLegalMoves, boolean isWhite, int alpha, int beta){
-    //     HashSet<Move> captureAndCheckOnly = new HashSet<>();
-
-    //     for(Move move : currentLegalMoves){
-    //         if(move.moveType() == MoveType.CHECK || move.moveType() == MoveType.CAPTURE){
-    //             captureAndCheckOnly.add(move);
-    //         }
-    //     }
-        
-    //     if(captureAndCheckOnly.isEmpty()){
-    //         int score = HiveEvaluator.Evaluate(board, currentLegalMoves, enemyPsuedoLegalMoves, isWhite);
-
-    //         Log("\t\t\t\tNo more captures/checks. Final Evaluation: " + score);
-    //         return score;
-    //     }
-
-    //     Log("\t\t\tSearching " + captureAndCheckOnly.size() + " captures/checks");
-
-    //     System.out.println("Searching captures/checks for current board");
-    //     BoardUtil.printBoard(board);
-
-    //     int maxScore = Integer.MIN_VALUE;
-
-
-    //     for(Move move : captureAndCheckOnly){
-    //         System.out.println("\tMove: " + move);
-    //         board.makeMove(move);
-
-    //         HashSet<Move> nextLegalMoves = MoveGenerator.getCurrentLegalMoves(board, !isWhite);
-    //         HashSet<Move> nextEnemyPsuedoLegalMoves = MoveGenerator.getCurrentLegalMoves(board, isWhite); 
-    //         int score = -1 * KeepSearchCapturesChecks(board, nextLegalMoves, nextEnemyPsuedoLegalMoves, !isWhite, -beta, -alpha);
-    //         board.undoMove(move);
-
-    //         if(score >= maxScore){
-    //             maxScore = score;
-    //         }
-
-    //         int newAlpha = Math.max(alpha, score);
-    //         if(newAlpha >= beta) break;
-            
-    //     }
-
-    //     return maxScore;
-    // }
-    
-    // private static int KeepSearchCapturesChecks(Board board, HashSet<Move> currentLegalMoves, HashSet<Move> enemyPsuedoLegalMoves, boolean isWhite, int alpha, int beta){
-    //     HashSet<Move> captureAndCheckOnly = new HashSet<>();
-
-    //     for(Move move : currentLegalMoves){
-    //         if(move.moveType() == MoveType.CHECK || move.moveType() == MoveType.CAPTURE){
-    //             captureAndCheckOnly.add(move);
-    //         }
-    //     }
-        
-    //     if(captureAndCheckOnly.isEmpty()){
-    //         int score = HiveEvaluator.Evaluate(board, currentLegalMoves, enemyPsuedoLegalMoves, isWhite);
-    //         Log("\t\t\t\tNo more captures/checks. Final Evaluation: " + score);
-    //         return score;
-    //     }
-
-    //     Log("\t\t\tSearching " + captureAndCheckOnly.size() + " captures/checks");
-
-
-    //     int maxScore = Integer.MIN_VALUE;
-
-
-    //     for(Move move : captureAndCheckOnly){
-    //         board.makeMove(move);
-
-    //         HashSet<Move> nextLegalMoves = MoveGenerator.getCurrentLegalMoves(board, !isWhite);
-    //         HashSet<Move> nextEnemyPsuedoLegalMoves = MoveGenerator.getCurrentLegalMoves(board, isWhite); 
-    //         int score = -1 * SearchCapturesChecks(board, nextLegalMoves, nextEnemyPsuedoLegalMoves, !isWhite, -beta, -alpha);
-    //         board.undoMove(move);
-
-    //         if(score >= maxScore){
-    //             maxScore = score;
-    //         }
-
-    //         int newAlpha = Math.max(alpha, score);
-    //         if(newAlpha >= beta) break;
-            
-    //     }
-
-    //     return maxScore;
-    // }
-    
     private static void Log(String msg){
         if(showLogs){
-            System.out.println("[Hive Search] => " + msg);
+            System.out.println("[ Hive Search ] " + msg);
         }
     }
 

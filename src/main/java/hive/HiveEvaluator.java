@@ -4,10 +4,13 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.ArrayList;
 
-import main.java.Board;
+import main.java.utilities.Board;
 import main.java.utilities.BoardUtil;
 import main.java.utilities.Move;
+import main.java.utilities.MoveGenerator;
+import main.java.utilities.MoveType;
 import main.java.utilities.PieceType;
 
 public class HiveEvaluator {
@@ -21,7 +24,7 @@ public class HiveEvaluator {
     
     MATERIAL_COUNT_PAWN_WEIGHT = 100, 
     
-    CENTER_PAWN_COUNT_WEIGHT = 1,
+    CENTER_PAWN_COUNT_WEIGHT = 25,
     
     KING_PAWN_SHIELD_WEIGHT = 1,
     
@@ -98,18 +101,36 @@ public class HiveEvaluator {
 
 // = = == == == === === ======= === === == == == = = 
 
-    public static boolean showLogs = true;
+    public static boolean showLogs = false;
 
     public HiveEvaluator(){}
 
     public static void Log(String msg){
-
+        if(showLogs){
+            System.out.println("[ Hive Evaluate ] " + msg + "\n");
+        }
     }
 
-    public static int Evaluate(Board board, HashSet<Move> currentLegalMoves, HashSet<Move> enemyPsuedoLegalMoves,  boolean isWhite){
-        return EvaluateTeam(board, currentLegalMoves, enemyPsuedoLegalMoves, isWhite) - EvaluateTeam(board, enemyPsuedoLegalMoves, currentLegalMoves, !isWhite);
+    /**
+     * Returns a static evaluation of this board by subtracting blacks score from whites score
+     * @param board
+     * @param isWhite
+     * @return
+     */
+    public static int Evaluate(Board board){
+        List<Move> whiteMoves = board.IS_WHITE_TURN ? MoveGenerator.getCurrentLegalMoves(board, true) : MoveGenerator.getEnemyPsuedoLegalMoves(board, false, false, true);
+        List<Move> blackMoves = board.IS_WHITE_TURN ? MoveGenerator.getEnemyPsuedoLegalMoves(board, true, false, true) : MoveGenerator.getCurrentLegalMoves(board, false);
+        int whiteScore = EvaluateTeam(board, whiteMoves, blackMoves, true);
+        int blackScore = EvaluateTeam(board, blackMoves, whiteMoves, false);
+
+        return whiteScore - blackScore;
     }
-    private static int EvaluateTeam(Board board, HashSet<Move> currentLegalMoves, HashSet<Move> enemyPsuedoLegalMoves,  boolean isWhite){
+    private static int EvaluateTeam(Board board, List<Move> currentLegalMoves, List<Move> enemyPsuedoLegalMoves,  boolean isWhite){
+
+        // todo: check end game conditions
+        // if no legal moves left, determine if checkmate (-infinity score) or stalemate(0 score)
+        // check for insufficient material draw(0 score)
+        // check for 50 move rule
         if(currentLegalMoves.isEmpty()){
             return Integer.MIN_VALUE;
         }
@@ -127,63 +148,65 @@ public class HiveEvaluator {
 
         long enemyPawns = enemyBoards[0];
 
-        EnumMap<PieceType, HashSet<Move>> movesPieceType = new EnumMap<>(PieceType.class);
-        for(Move move : currentLegalMoves){
-            if(!movesPieceType.containsKey(move.pieceType())){
-                movesPieceType.put(move.pieceType(), (new HashSet<Move>(){{add(move);}}));
-            }else{
-                HashSet<Move> moves = movesPieceType.get(move.pieceType());
-                moves.add(move);
-                movesPieceType.put(move.pieceType(), moves);
+        EnumMap<PieceType, List<Move>> movesPieceType = movesPerPieceType(currentLegalMoves);
+        EnumMap<PieceType, List<Move>> enemyMovesPieceType = movesPerPieceType(enemyPsuedoLegalMoves);
+
+        long squaresNotAttackedEnemyPawns = ~0L;
+        if(enemyMovesPieceType.keySet().contains(isWhite ? PieceType.BLACK_PAWN : PieceType.WHITE_PAWN)){
+            for(Move move : enemyMovesPieceType.get(isWhite ? PieceType.BLACK_PAWN : PieceType.WHITE_PAWN)){
+                if(move.moveType() == MoveType.CAPTURE){
+                    squaresNotAttackedEnemyPawns ^= (1L << move.toSquare());
+                }
             }
         }
+        
 
 
         int score = 0;
 
         //GENERAL INFORMATION
-        // score += weakCount(currentLegalMoves, enemyBoards)                                              *WEAK_COUNT_WEIGHT;
+        score += weakCount(currentLegalMoves, enemyBoards)                                              *WEAK_COUNT_WEIGHT;
 
         //PAWN INFORMATION
         score += materialCount(pawns)                                                                   *MATERIAL_COUNT_PAWN_WEIGHT;
-        // score += centerPawnCount(pawns)                                                                 *CENTER_PAWN_COUNT_WEIGHT;
-        // score += kingPawnShieldCount(pawns,king)                                                        *KING_PAWN_SHIELD_WEIGHT;
-        // score += isolatedPawnCount(pawns)                                                               *ISOLATED_PAWN_WEIGHT;
-        // score += doubledPawnCount(pawns)                                                                *DOUBLE_PAWN_WEIGHT;
-        // score += passPawnCount(pawns, enemyPawns, isWhite)                                              *PASS_PAWN_WEIGHT;
-        // score += rankPassPawnCount()                                                                    *RANK_PASS_PAWN_WEIGHT;
-        // score += backwardPawnCount()                                                                    *BACKWARD_PAWN_WEIGHT;
-        // score += blockedPawnCount()                                                                     *BLOCKED_PAWN_WEIGHT;
-        // score += blockedPassPawnCount()                                                                 *BLOCKED_PASSED_PAWN_WEIGHT;
+        score += centerPawnCount(pawns)                                                                 *CENTER_PAWN_COUNT_WEIGHT;
+        score += kingPawnShieldCount(pawns,king)                                                        *KING_PAWN_SHIELD_WEIGHT;
+        score += isolatedPawnCount(pawns)                                                               *ISOLATED_PAWN_WEIGHT;
+        score += doubledPawnCount(pawns)                                                                *DOUBLE_PAWN_WEIGHT;
+        score += passPawnCount(pawns, enemyPawns, isWhite)                                              *PASS_PAWN_WEIGHT;
+        score += rankPassPawnCount()                                                                    *RANK_PASS_PAWN_WEIGHT;
+        score += backwardPawnCount()                                                                    *BACKWARD_PAWN_WEIGHT;
+        score += blockedPawnCount()                                                                     *BLOCKED_PAWN_WEIGHT;
+        score += blockedPassPawnCount()                                                                 *BLOCKED_PASSED_PAWN_WEIGHT;
 
         //KNIGHT INFORMATION
         score += materialCount(knights)                                                                 *MATERIAL_COUNT_KNIGHT_WEIGHT;
-        // score += mobility(isWhite ? PieceType.WHITE_KNIGHT: PieceType.BLACK_KNIGHT, movesPieceType)     *KNIGHT_MOBILITY_WEIGHT;
-        // score += knightOnOutpostCount(knights, enemyPawns)                                              *KNIGHT_ON_OUTPOST_WEIGHT;
-        // score += knightOnCenterCount(knights)                                                           *KNIGHT_ON_CENTER_WEIGHT;
-        // score += knightOnOuterEdge1Count(knights)                                                       *KNIGHT_ON_OUTER_EDGE_1_WEIGHT;
-        // score += knightOnOuterEdge2Count(knights)                                                       *KNIGHT_ON_OUTER_EDGE_2_WEIGHT;
-        // score += knightOnOuterEdge3Count(knights)                                                       *KNIGHT_ON_OUTER_EDGE_3_WEIGHT;
-        // score += knightSupportedByPawnCount(knights, pawns)                                             *KNIGHT_SUPPORTED_BY_PAWN_WEIGHT;
+        score += mobility(isWhite ? PieceType.WHITE_KNIGHT: PieceType.BLACK_KNIGHT, movesPieceType)     *KNIGHT_MOBILITY_WEIGHT;
+        score += knightOnOutpostCount(knights, squaresNotAttackedEnemyPawns)                            *KNIGHT_ON_OUTPOST_WEIGHT;
+        score += knightOnCenterCount(knights)                                                           *KNIGHT_ON_CENTER_WEIGHT;
+        score += knightOnOuterEdge1Count(knights)                                                       *KNIGHT_ON_OUTER_EDGE_1_WEIGHT;
+        score += knightOnOuterEdge2Count(knights)                                                       *KNIGHT_ON_OUTER_EDGE_2_WEIGHT;
+        score += knightOnOuterEdge3Count(knights)                                                       *KNIGHT_ON_OUTER_EDGE_3_WEIGHT;
+        score += knightSupportedByPawnCount(knights, pawns)                                             *KNIGHT_SUPPORTED_BY_PAWN_WEIGHT;
 
         //BISHOP INFORMATION
         score += materialCount(bishops)                                                                 *MATERIAL_COUNT_BISHOP_WEIGHT;
-        // score += mobility(isWhite ? PieceType.WHITE_BISHOP: PieceType.BLACK_BISHOP, movesPieceType)     *BISHOP_MOBILITY_WEIGHT;
-        // score += bishopOnLargeDiagonalsCount(bishops)                                                   *BISHOP_ON_LARGE_DIAGONAL_WEIGHT;
-        // score += hasBishopPair(bishops)                                                                 *BISHOP_PAIR_WEIGHT;
+        score += mobility(isWhite ? PieceType.WHITE_BISHOP: PieceType.BLACK_BISHOP, movesPieceType)     *BISHOP_MOBILITY_WEIGHT;
+        score += bishopOnLargeDiagonalsCount(bishops)                                                   *BISHOP_ON_LARGE_DIAGONAL_WEIGHT;
+        score += hasBishopPair(bishops)                                                                 *BISHOP_PAIR_WEIGHT;
 
         //ROOK INFORMATION
         score += materialCount(rooks)                                                                   *MATERIAL_COUNT_ROOK_WEIGHT;
-        // score += mobility(isWhite ? PieceType.WHITE_ROOK: PieceType.BLACK_ROOK, movesPieceType)         *ROOK_MOBILITY_WEIGHT;
-        // score += rookBehindPassPawnCount()                                                              *ROOK_BEHIND_PASS_PAWN;
-        // score += rookOnClosedFileCount(rooks, pawns, enemyPawns)                                        *ROOK_ON_CLOSED_FILE;
-        // score += rookOnOpenFileCount(rooks,team)                                                        *ROOK_ON_OPEN_FILE;
-        // score += rookOnSemiOpenFileCount(rooks,pawns)                                                   *ROOK_ON_SEMI_OPEN_FILE;
-        // score += rooksConnected(rooks,team)                                                             *ROOKS_CONNECTED_WEIGHT;
+        score += mobility(isWhite ? PieceType.WHITE_ROOK: PieceType.BLACK_ROOK, movesPieceType)         *ROOK_MOBILITY_WEIGHT;
+        score += rookBehindPassPawnCount()                                                              *ROOK_BEHIND_PASS_PAWN;
+        score += rookOnClosedFileCount(rooks, pawns, enemyPawns)                                        *ROOK_ON_CLOSED_FILE;
+        score += rookOnOpenFileCount(rooks,team)                                                        *ROOK_ON_OPEN_FILE;
+        score += rookOnSemiOpenFileCount(rooks,pawns)                                                   *ROOK_ON_SEMI_OPEN_FILE;
+        score += rooksConnected(rooks,team)                                                             *ROOKS_CONNECTED_WEIGHT;
 
         //QUEEN INFORMATION
         score += materialCount(queens)                                                                  *MATERIAL_COUNT_QUEEN_WEIGHT;
-        // score += mobility(isWhite ? PieceType.WHITE_QUEEN: PieceType.BLACK_QUEEN, movesPieceType)       *QUEEN_MOBILITY_WEIGHT;
+        score += mobility(isWhite ? PieceType.WHITE_QUEEN: PieceType.BLACK_QUEEN, movesPieceType)       *QUEEN_MOBILITY_WEIGHT;
 
         //KING INFORMATION
         score += kingCastled(isWhite, board)                                                            *KING_CASTLED_WEIGHT;
@@ -210,10 +233,29 @@ public class HiveEvaluator {
     static long LARGE_POSITIVE_DIAGONAL = 0x0102040810204080L;
 
 
+    //------------- helpers --------------
+
+    // returns a map with key/value -> PieceType/List<Move> from a list of moves
+    private static EnumMap<PieceType, List<Move>> movesPerPieceType(List<Move> legalMoves){
+        EnumMap<PieceType, List<Move>> movesPieceType = new EnumMap<>(PieceType.class);
+        for(Move move : legalMoves){
+            if(!movesPieceType.containsKey(move.pieceType())){
+                List<Move> moves = new ArrayList<>();
+                moves.add(move);
+                movesPieceType.put(move.pieceType(), moves);
+            }else{
+                List<Move> moves = movesPieceType.get(move.pieceType());
+                moves.add(move);
+                movesPieceType.put(move.pieceType(), moves);
+            }
+        }
+        return movesPieceType;
+    }
+
     //------------- general information ----------------
 
     // returns the number of squares that cannot be protected by this team
-    private static int weakCount(HashSet<Move> currentLegalMoves, long[] enemies){
+    private static int weakCount(List<Move> currentLegalMoves, long[] enemies){
         HashSet<Integer> protectedSquares = new HashSet<>();
         HashSet<Integer> currentSquares = new HashSet<>();
         int enemySquares = 0;
@@ -233,10 +275,11 @@ public class HiveEvaluator {
     }
 
     // returns the amount of squares this piece can move to
-    private static int mobility(PieceType type, EnumMap<PieceType, HashSet<Move>> movesPieceType){
+    private static int mobility(PieceType type, EnumMap<PieceType, List<Move>> movesPieceType){
         return movesPieceType.get(type) != null ? movesPieceType.get(type).size() : 0;
     }
 
+    
     //============= pawn information =============
 
     // returns the count of pawns in the center squares
@@ -358,8 +401,8 @@ public class HiveEvaluator {
     // returns the count of knights on an outpost
     // an outpost is a square that is not being attacked by enemy pawns
     // todo: 
-    private static int knightOnOutpostCount(long knights, long enemyPawns){
-        return 0;
+    private static int knightOnOutpostCount(long knights, long squaresNotAttackedEnemyPawns){
+        return Long.bitCount(knights & squaresNotAttackedEnemyPawns);
     }
 
     // todo:

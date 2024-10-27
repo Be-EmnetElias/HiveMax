@@ -1,4 +1,4 @@
-package tests.java.MoveGeneratorTests.LegalMovesTest;
+package tests.java.SearchAndEvaluateTests;
 
 import main.java.*;
 import main.java.hive.HiveSearch;

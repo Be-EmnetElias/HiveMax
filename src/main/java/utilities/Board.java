@@ -1,9 +1,8 @@
-package main.java;
+package main.java.utilities;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.io.*;
-import main.java.utilities.*;
 
 
 public class Board implements Serializable{
@@ -23,7 +22,7 @@ public class Board implements Serializable{
     public boolean WHITE_CASTLED, BLACK_CASTLED;
 
 
-    
+    // todo: make board class only fields? refactor to move the below methods to BoardUtil
 
     public Board(){
         setBoard(this, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 0");
@@ -210,7 +209,7 @@ public class Board implements Serializable{
         int toSquare = move.toSquare();
         PieceType pieceType = move.pieceType();
         PieceType capturedPieceType = move.capturedPieceType();
-        PieceType promotedPieceType = move.promotionName();
+        PieceType promotedPieceType = move.promotionPieceType();
         MoveType moveType = move.moveType();
 
         HashMap<PieceType, Long> boardsMap = makeBoardMap();
@@ -380,7 +379,7 @@ public class Board implements Serializable{
         int toSquare = move.toSquare();
         PieceType pieceType = move.pieceType();
         PieceType capturedPieceType = move.capturedPieceType();
-        PieceType promotedPieceType = move.promotionName();
+        PieceType promotedPieceType = move.promotionPieceType();
         MoveType moveType = move.moveType();
 
         HashMap<PieceType, Long> boardsMap = makeBoardMap();

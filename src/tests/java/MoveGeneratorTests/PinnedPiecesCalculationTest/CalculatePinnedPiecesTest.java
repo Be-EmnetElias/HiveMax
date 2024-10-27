@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import main.java.*;
+import main.java.utilities.Board;
 import main.java.utilities.BoardUtil;
 import main.java.utilities.MoveGenerator;
 
@@ -106,10 +107,6 @@ public class CalculatePinnedPiecesTest {
         HashMap<Integer, Integer> expectedPinnedPieces = new HashMap<>();
 
         assertEquals(expectedPinnedPieces, pinnedPieces);
-    }
-
-    private void assertEquals(HashMap<Integer, Integer> expectedPinnedPieces, HashMap<Integer, Integer> pinnedPieces) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

@@ -1,27 +1,27 @@
 package tests.java.SearchAndEvaluateTests;
 
-import java.util.HashSet;
-
 import org.junit.jupiter.api.Test;
 
+import java.util.*;
 import main.java.hive.HiveEvaluator;
 import main.java.hive.HiveSearch;
-import main.java.utilities.*;
-import java.util.*;
+import main.java.utilities.Board;
+import main.java.utilities.BoardUtil;
+import main.java.utilities.Move;
+import main.java.utilities.MoveGenerator;
 
-public class CheckMateTest {
-    
-    //todo: test simple position has correct evaluation
+public class EvaluationTest {
+    // 
     @Test
     public void testAvoidCheckMate(){
-        Board board = new Board("3pk3/3p4/8/8/8/1B6/4Q3/4K3 b KQkq -  0 0");
+        Board board = new Board("7k/8/1p6/8/1PN5/8/8/7K w - -  0 0");
 
         List<Move> legalMoves = MoveGenerator.getCurrentLegalMoves(board, true);
         List<Move> pLegalMoves = MoveGenerator.getEnemyPsuedoLegalMoves(board, true, false, true);
 
         // MoveGenerator.showLogs = true;
         HiveSearch.showLogs = true;
-
+        // HiveEvaluator.showLogs = true;
 
         // int score = HiveEvaluator.Evaluate(board, legalMoves, pLegalMoves,true);
         // Move move = HiveSearch.bestMove(board,legalMoves, 3, true);
@@ -29,15 +29,8 @@ public class CheckMateTest {
         // System.out.println("Best move: " + move);
         // System.out.println("SCORE: " + score);
         // System.out.println("BLACK");
-        
-        HiveSearch.DEPTH = 2;
-        Move move = HiveSearch.bestMove(board,pLegalMoves,false);
+
+        Move move = HiveSearch.bestMove(board,legalMoves,true);
         BoardUtil.printBoard(board);
     }
-
-    @Test
-    public void testCheckmate(){
-    }
-
-   
 }
