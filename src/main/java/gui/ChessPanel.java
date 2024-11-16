@@ -23,7 +23,9 @@ import java.util.List;
 public class ChessPanel extends JPanel{
 
     public boolean isWhite = true;
+    public boolean allowBothMoves = true;
     public boolean isMyTurn = false;
+    public boolean playSound = true;
     public Board board;
     public List<Move> legalMoves;
     public List<Move> psuedoLegalMoves;
@@ -113,13 +115,15 @@ public class ChessPanel extends JPanel{
     }
     
     public void playSound(MoveType moveType) {
-        try{
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(moveTypeSoundMap.get(moveType));
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioStream);
-            clip.start();
-        }catch(Exception e){
-            e.printStackTrace();
+        if(playSound){
+            try{
+                AudioInputStream audioStream = AudioSystem.getAudioInputStream(moveTypeSoundMap.get(moveType));
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioStream);
+                clip.start();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
     }
 
@@ -132,14 +136,14 @@ public class ChessPanel extends JPanel{
             List<Move> hints = new ArrayList<>();
             
 
-            if(isMyTurn){
+            if(isMyTurn || allowBothMoves){
                 for(Move move: legalMoves){
                     if(move.fromSquare() == fromSquare){
                         hints.add(move);
                     }
                 }
                 moveHints = hints;
-            }else{
+            }else if(!isMyTurn || allowBothMoves){
                 for(Move move: psuedoLegalMoves){
                     if(move.fromSquare() == fromSquare){
                         hints.add(move);

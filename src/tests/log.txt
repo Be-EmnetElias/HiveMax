@@ -10,12 +10,31 @@ Depth 6 : 64.7s
 
 ======== Parallel Stream Highest Depth, Failing Depth7 off by ~3000 ========
 
-Depth 0 : 14ms
-Depth 1 : 35ms
-Depth 2 : 55ms
-Depth 3 : 78ms
-Depth 4 : 340ms
-Depth 5 : 1.4s
-Depth 6 : 19.8s
+Depth 0 : 12ms
+Depth 1 : 17ms
+Depth 2 : 4ms
+Depth 3 : 23ms
+Depth 4 : 245ms
+Depth 5 : 1.0s
+Depth 6 : 15.4s
 Depth 7 : 517.8s
 
+
+======== Hive Search ========
+
+Depth 1 : 30ms
+Depth 2 : 19ms
+Depth 3 : 145ms
+Depth 4 : 590ms
+Depth 5 : 3.3s
+Depth 6 : 18.2s
+
+
+======== Hive Search ========
+
+Depth 1 : 30ms
+Depth 2 : 19ms
+Depth 3 : 145ms
+Depth 4 : 590ms
+Depth 5 : 3.3s
+Depth 6 : 18.2s

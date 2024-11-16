@@ -3,6 +3,7 @@ package main.java.hive;
 import java.util.concurrent.Callable;
 
 import main.java.board.Board;
+import main.java.board.BoardUtil;
 import main.java.move.Move;
 import main.java.move.MoveGenerator;
 import java.util.*;
@@ -14,13 +15,14 @@ public class SearchEvaluateThread implements Callable<SearchResult>{
     private Move move;
     private int depth;
     private boolean isWhite;
-
+    private HiveWeights weights;
     
-    public SearchEvaluateThread(Board board, Move move, int depth, boolean isWhite){
+    public SearchEvaluateThread(Board board, HiveWeights weights, Move move, int depth, boolean isWhite){
         this.board = new Board(board);
         this.move = move;
         this.depth = depth;
         this.isWhite = isWhite;
+        this.weights = weights;
 
     }
 
@@ -35,12 +37,22 @@ public class SearchEvaluateThread implements Callable<SearchResult>{
         List<Move> legalMoves = MoveGenerator.getCurrentLegalMoves(board);
         
         if(depth <= 0 || legalMoves.isEmpty()){
-            Stack<Move> moveHistory = new Stack<>();
-            return new SearchResult(this.move, HiveEvaluator.Evaluate(board), moveHistory);
+            long hash = HiveHash.getHash(board);
+            
+
+            if(HiveHash.containsHash(hash)){
+                System.out.println("seen hash");
+                return new SearchResult(this.move, HiveHash.getHashValue(hash));
+            }else{
+                // System.out.println("new  hash, size; " + HiveHash.HIVE_HASH_TABLE.size());
+                int score = HiveEvaluator.Evaluate(board, weights);
+                HiveHash.putHashValue(hash, score);
+                return new SearchResult(this.move, score);
+            }
         }
         
         if(isWhite){
-            SearchResult bestMove = new SearchResult(null, Integer.MIN_VALUE, null);
+            SearchResult bestMove = new SearchResult(null, Integer.MIN_VALUE);
 
             for(Move move : legalMoves){
                 board.makeMove(move);
@@ -48,7 +60,6 @@ public class SearchEvaluateThread implements Callable<SearchResult>{
                 
                 if(sr.score() > bestMove.score()){
                     bestMove = sr;
-                    sr.moveHistory().push(move);
                 }
                 alpha = Math.max(alpha, sr.score());
                 
@@ -60,11 +71,11 @@ public class SearchEvaluateThread implements Callable<SearchResult>{
 
             }
 
-            return new SearchResult(this.move, bestMove.score(), bestMove.moveHistory());
+            return new SearchResult(this.move, bestMove.score());
 
         }else{
 
-            SearchResult bestMove = new SearchResult(null, Integer.MAX_VALUE, null);
+            SearchResult bestMove = new SearchResult(null, Integer.MAX_VALUE);
 
             for(Move move : legalMoves){
                 board.makeMove(move);
@@ -73,7 +84,6 @@ public class SearchEvaluateThread implements Callable<SearchResult>{
 
                 if(sr.score() < bestMove.score()){
                     bestMove = sr;
-                    sr.moveHistory().push(move);
 
                 }
                 beta = Math.min(beta, sr.score());
@@ -85,7 +95,7 @@ public class SearchEvaluateThread implements Callable<SearchResult>{
                 }
             }
 
-            return new SearchResult(this.move, bestMove.score(), bestMove.moveHistory());
+            return new SearchResult(this.move, bestMove.score());
 
         }
 

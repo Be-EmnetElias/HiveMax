@@ -25,6 +25,8 @@ public class Board implements Serializable{
 
     public boolean WHITE_CASTLED, BLACK_CASTLED;
 
+    public int TURNS;
+
 
     // todo: make board class only fields? refactor to move the below methods to BoardUtil
 
@@ -88,8 +90,11 @@ public class Board implements Serializable{
         this.IS_WHITE_TURN = other.IS_WHITE_TURN;   
     }
 
+    public void incr(){
+        this.TURNS += 1;
+    }
     public void setBoard(Board board, String fenposition){
-
+        this.TURNS = 0;
         if(fenposition.equals("")){
             setBoard(board, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 0");
             return;
@@ -389,6 +394,7 @@ public class Board implements Serializable{
         HashMap<PieceType, Long> boardsMap = makeBoardMap();
 
         ENPASSANT_SQUARE = -1;
+        
         // move the piece type
         long pieceBoard = boardsMap.get(pieceType);
         pieceBoard = BoardUtil.clearBit(pieceBoard, toSquare);
@@ -455,6 +461,9 @@ public class Board implements Serializable{
 
         // update enpassant
         //todo: idk
+        if(moveType == MoveType.ENPASSANT){
+
+        }
 
         // update piece boards
         for(Map.Entry<PieceType, Long> entry : boardsMap.entrySet()){

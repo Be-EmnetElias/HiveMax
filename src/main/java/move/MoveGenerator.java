@@ -46,11 +46,13 @@ public class MoveGenerator{
         long pushMask = BoardUtil.NULL_PUSH_MASK;
         PieceType checkingPiece = PieceType.EMPTY;
         
-        
-
         // get enemy psuedo legal moves
         List<Move> enemyPsuedoLegalMoves = getEnemyPsuedoLegalMoves(board, isWhite, true, false);
+
         Log("\tDanger Squares: ");
+
+        //todo
+        // always add enemy king squares
 
         // extract danger squares and determine if single or double check
         // king is in single check if the enemy move attacks the king
@@ -77,7 +79,6 @@ public class MoveGenerator{
         if(doubleCheck){
             List<Move> kingMoves = getKingMoves(board, kingPosition, BoardUtil.getTeamBoard(board, isWhite), dangerSquares, isWhite);
             Log("\tKing in double check " + kingMoves.size() + " MOVES");
-            Log(kingMoves.toString());
             return kingMoves;
         }else{
         
@@ -105,8 +106,8 @@ public class MoveGenerator{
 
             }
 
-
             List<Move> legalMoves = getPsuedoLegalMoves(board, BoardUtil.getTeamBoards(board, isWhite), BoardUtil.getTeamBoard(board, !isWhite), isWhite, false, false, pinnedPieces, dangerSquares, captureMask, pushMask); 
+
             Log(legalMoves.size() + " MOVES");
             Log(legalMoves.toString());
             return legalMoves;

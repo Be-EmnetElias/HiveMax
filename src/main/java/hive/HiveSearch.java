@@ -18,7 +18,7 @@ public class HiveSearch {
 
     private static final ExecutorService EXECUTOR = Executors.newCachedThreadPool();//Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
-    public static int DEPTH = 4;
+    public static int DEPTH = 5;
 
     public HiveSearch(){}
 
@@ -99,14 +99,14 @@ public class HiveSearch {
         
     }
 
-    public static Move bestMove(Board board, List<Move> currentLegalMoves, boolean isWhite) {
+    public static Move bestMove(Board board, HiveWeights weights, List<Move> currentLegalMoves, boolean isWhite) {
         
         //todo: sort legal moves first
         //todo: since the first layer of moves are all given to threads, cannot prune at this top level, which could save a lot of time
         Log("Searching " + currentLegalMoves.size() + " moves");
         List<SearchEvaluateThread> tasks = new ArrayList<>();
         for(Move move : currentLegalMoves){
-            tasks.add(new SearchEvaluateThread(new Board(board), move, DEPTH, isWhite));
+            tasks.add(new SearchEvaluateThread(new Board(board), weights, move, DEPTH, isWhite));
         }
 
 
@@ -127,9 +127,6 @@ public class HiveSearch {
         Log("======Best moves sorted=====");
         for(SearchResult sr : bestMovesSorted){
             Log("\t Score: " + sr.score() + " : " + sr.move());
-            while(!sr.moveHistory().isEmpty()){
-                Log("\t\t " + sr.moveHistory().pop());
-            }
         }
         Move bestWhiteMove = bestMovesSorted.get(0).move();
         Move bestBlackMove = bestMovesSorted.get(Math.max(0, bestMovesSorted.size() - 1)).move();

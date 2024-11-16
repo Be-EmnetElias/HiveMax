@@ -15,101 +15,45 @@ import main.java.move.MoveType;
 // todo: when training, will need mulitple evalutors with different weights, need to make this class NON-STATIC, or keep the functions static and import weights instead of using fields
 public class HiveEvaluator {
     
-// = = == == == === === WEIGHTS === === == == == = = 
-
-    public static int 
-
-    WEAK_COUNT_WEIGHT = 1, 
-    
-    
-    MATERIAL_COUNT_PAWN_WEIGHT = 100, 
-    
-    CENTER_PAWN_COUNT_WEIGHT = 25,
-    
-    KING_PAWN_SHIELD_WEIGHT = 1,
-    
-    ISOLATED_PAWN_WEIGHT = -1,
-    
-    DOUBLE_PAWN_WEIGHT = -1,
-    
-    RANK_PASSED_PAWN_WEIGHT = 1,
-    
-    PASS_PAWN_WEIGHT = 1,
-    
-    RANK_PASS_PAWN_WEIGHT = 1,
-
-    BLOCKED_PAWN_WEIGHT = -1,
-    
-    BLOCKED_PASSED_PAWN_WEIGHT = -1,
-    
-    BACKWARD_PAWN_WEIGHT = -1,
-
-
-    
-    MATERIAL_COUNT_KNIGHT_WEIGHT = 200,
-    
-    KNIGHT_MOBILITY_WEIGHT = 1,
-    
-    KNIGHT_ON_OUTPOST_WEIGHT = 1,
-    
-    KNIGHT_ON_CENTER_WEIGHT = 1,
-    
-    KNIGHT_ON_OUTER_EDGE_1_WEIGHT = 1,
-    
-    KNIGHT_ON_OUTER_EDGE_2_WEIGHT = 1,
-    
-    KNIGHT_ON_OUTER_EDGE_3_WEIGHT = 1,
-    
-    KNIGHT_SUPPORTED_BY_PAWN_WEIGHT = 1,
-    
-
-    MATERIAL_COUNT_BISHOP_WEIGHT = 300,
-    
-    BISHOP_MOBILITY_WEIGHT = 1,
-
-    BISHOP_ON_LARGE_DIAGONAL_WEIGHT = 1,
-
-    BISHOP_PAIR_WEIGHT = 1,
-
-    
-    MATERIAL_COUNT_ROOK_WEIGHT = 500,
-    
-    ROOK_MOBILITY_WEIGHT = 1,
-
-    ROOK_BEHIND_PASS_PAWN = 1,
-
-    ROOK_ON_CLOSED_FILE = -1,
-
-    ROOK_ON_OPEN_FILE = 1,
-
-    ROOK_ON_SEMI_OPEN_FILE = 1,
-
-    ROOKS_CONNECTED_WEIGHT = 1,
-
-
-    
-    MATERIAL_COUNT_QUEEN_WEIGHT = 900,
-    
-    QUEEN_MOBILITY_WEIGHT = 1,
-
-    
-    KING_CASTLED_WEIGHT = 1,
-
-    KING_ATTACKED_VALUE_WEIGHT = -1,
-
-    KING_DEFENDED_VALUE_WEIGHT = 1;
-
-// = = == == == === === ======= === === == == == = = 
-
     public static boolean showLogs = false;
 
-    public HiveEvaluator(){}
-
-    public static void Log(String msg){
-        if(showLogs){
-            System.out.println("[ Hive Evaluate ] " + msg + "\n");
-        }
-    }
+    public static HiveWeights SUBJECT_YMIR_WEIGHTS = new HiveWeights(
+        -1,
+        100,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        200,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        300,
+        1,
+        1,
+        1,
+        500,
+        0,
+        1,
+        -1,
+        1,
+        1,
+        1,
+        900,
+        1,
+        1,
+        0,
+        0 
+    );
 
     /**
      * Returns a static evaluation of this board by subtracting blacks score from whites score
@@ -117,7 +61,7 @@ public class HiveEvaluator {
      * @param isWhite
      * @return
      */
-    public static int Evaluate(Board board){
+    public static int Evaluate(Board board, HiveWeights weights){
 
         //todo load weights?
 
@@ -125,19 +69,61 @@ public class HiveEvaluator {
         // for example getting all pawn moves including captures, instead of only the legal ones
         List<Move> whiteMoves = MoveGenerator.getEnemyPsuedoLegalMoves(board, false, false, true);
         List<Move> blackMoves = MoveGenerator.getEnemyPsuedoLegalMoves(board, true, false, true);
-        int whiteScore = EvaluateTeam(board, whiteMoves, blackMoves, true);
-        int blackScore = EvaluateTeam(board, blackMoves, whiteMoves, false);
+        int whiteScore = EvaluateTeam(board, weights, whiteMoves, blackMoves, true);
+        int blackScore = EvaluateTeam(board, weights, blackMoves, whiteMoves, false);
 
         return whiteScore - blackScore;
     }
-    public static int EvaluateTeam(Board board, List<Move> currentLegalMoves, List<Move> enemyPsuedoLegalMoves,  boolean isWhite){
+    
+    public static int EvaluateTeam(Board board, HiveWeights weights, List<Move> currentLegalMoves, List<Move> enemyPsuedoLegalMoves,  boolean isWhite){
+
+        int WEAK_COUNT_WEIGHT                 = weights.WEAK_COUNT_WEIGHT(); 
+        int MATERIAL_COUNT_PAWN_WEIGHT        = weights.MATERIAL_COUNT_PAWN_WEIGHT(); 
+        int CENTER_PAWN_COUNT_WEIGHT          = weights.CENTER_PAWN_COUNT_WEIGHT();
+        int KING_PAWN_SHIELD_WEIGHT           = weights.KING_PAWN_SHIELD_WEIGHT();
+        int ISOLATED_PAWN_WEIGHT              = weights.ISOLATED_PAWN_WEIGHT();
+        int DOUBLE_PAWN_WEIGHT                = weights.DOUBLE_PAWN_WEIGHT();
+        int RANK_PASSED_PAWN_WEIGHT           = weights.RANK_PASSED_PAWN_WEIGHT();
+        int PASS_PAWN_WEIGHT                  = weights.PASS_PAWN_WEIGHT();
+        int BLOCKED_PAWN_WEIGHT               = weights.BLOCKED_PAWN_WEIGHT();
+        int BLOCKED_PASSED_PAWN_WEIGHT        = weights.BLOCKED_PASSED_PAWN_WEIGHT();
+        int BACKWARD_PAWN_WEIGHT              = weights.BACKWARD_PAWN_WEIGHT();
+        int MATERIAL_COUNT_KNIGHT_WEIGHT      = weights.MATERIAL_COUNT_KNIGHT_WEIGHT();
+        int KNIGHT_MOBILITY_WEIGHT            = weights.KNIGHT_MOBILITY_WEIGHT();
+        int KNIGHT_ON_OUTPOST_WEIGHT          = weights.KNIGHT_ON_OUTPOST_WEIGHT();
+        int KNIGHT_ON_CENTER_WEIGHT           = weights.KNIGHT_ON_CENTER_WEIGHT();
+        int KNIGHT_ON_OUTER_EDGE_1_WEIGHT     = weights.KNIGHT_ON_OUTER_EDGE_1_WEIGHT();
+        int KNIGHT_ON_OUTER_EDGE_2_WEIGHT     = weights.KNIGHT_ON_OUTER_EDGE_2_WEIGHT();
+        int KNIGHT_ON_OUTER_EDGE_3_WEIGHT     = weights.KNIGHT_ON_OUTER_EDGE_3_WEIGHT();
+        int KNIGHT_SUPPORTED_BY_PAWN_WEIGHT   = weights.KNIGHT_SUPPORTED_BY_PAWN_WEIGHT();
+        int MATERIAL_COUNT_BISHOP_WEIGHT      = weights.MATERIAL_COUNT_BISHOP_WEIGHT();
+        int BISHOP_MOBILITY_WEIGHT            = weights.BISHOP_MOBILITY_WEIGHT();
+        int BISHOP_ON_LARGE_DIAGONAL_WEIGHT   = weights.BISHOP_ON_LARGE_DIAGONAL_WEIGHT();
+        int BISHOP_PAIR_WEIGHT                = weights.BISHOP_PAIR_WEIGHT();
+        int MATERIAL_COUNT_ROOK_WEIGHT        = weights.MATERIAL_COUNT_ROOK_WEIGHT();
+        int ROOK_MOBILITY_WEIGHT              = weights.ROOK_MOBILITY_WEIGHT();
+        int ROOK_BEHIND_PASS_PAWN             = weights.ROOK_BEHIND_PASS_PAWN();
+        int ROOK_ON_CLOSED_FILE               = weights.ROOK_ON_CLOSED_FILE();
+        int ROOK_ON_OPEN_FILE                 = weights.ROOK_ON_OPEN_FILE();
+        int ROOK_ON_SEMI_OPEN_FILE            = weights.ROOK_ON_SEMI_OPEN_FILE();
+        int ROOKS_CONNECTED_WEIGHT            = weights.ROOKS_CONNECTED_WEIGHT();
+        int MATERIAL_COUNT_QUEEN_WEIGHT       = weights.MATERIAL_COUNT_QUEEN_WEIGHT();
+        int QUEEN_MOBILITY_WEIGHT             = weights.QUEEN_MOBILITY_WEIGHT();
+        int KING_CASTLED_WEIGHT               = weights.KING_CASTLED_WEIGHT();
+        int KING_ATTACKED_VALUE_WEIGHT        = weights.KING_ATTACKED_VALUE_WEIGHT();
+        int KING_DEFENDED_VALUE_WEIGHT        = weights.KING_DEFENDED_VALUE_WEIGHT();
 
         // todo: check end game conditions
         // if no legal moves left, determine if checkmate (-infinity score) or stalemate(0 score)
         // check for insufficient material draw(0 score)
         // check for 50 move rule
         if(currentLegalMoves.isEmpty()){
-            return Integer.MIN_VALUE;
+            for(Move move : enemyPsuedoLegalMoves){
+                if(move.moveType() == MoveType.CAPTURE && BoardUtil.isSquareOnBoard(move.toSquare(), isWhite ? board.WHITE_KINGS : board.BLACK_KINGS)){
+                    return Integer.MIN_VALUE;
+                }
+            }
+            return 0;
         }
 
         long[] enemyBoards = BoardUtil.getTeamBoards(board, !isWhite);
@@ -173,7 +159,7 @@ public class HiveEvaluator {
         score += isolatedPawnCount(pawns)                                                               *ISOLATED_PAWN_WEIGHT;
         score += doubledPawnCount(pawns)                                                                *DOUBLE_PAWN_WEIGHT;
         score += passPawnCount(passPawns)                                                               *PASS_PAWN_WEIGHT;
-        score += rankPassPawnCount(passPawns, isWhite)                                                  *RANK_PASS_PAWN_WEIGHT;
+        score += rankPassPawnCount(passPawns, isWhite)                                                  *RANK_PASSED_PAWN_WEIGHT;
         score += backwardPawnCount()                                                                    *BACKWARD_PAWN_WEIGHT;
         score += blockedPawnCount()                                                                     *BLOCKED_PAWN_WEIGHT;
         score += blockedPassPawnCount()                                                                 *BLOCKED_PASSED_PAWN_WEIGHT;

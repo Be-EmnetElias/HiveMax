@@ -3,7 +3,9 @@ package main.java.board;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import main.java.hive.HiveHash;
 import main.java.move.Move;
+import main.java.move.MoveGenerator;
 import main.java.move.MoveType;
 
 public class BoardUtil {
@@ -50,6 +52,11 @@ public class BoardUtil {
     }};
 
     public BoardUtil(){}
+
+    //todo
+    public static boolean isGameOver(Board board){
+        return MoveGenerator.getCurrentLegalMoves(board).isEmpty() || board.TURNS > 50;
+    }
 
     public static long[] getTeamBoards(Board board, boolean isWhite){
         if(isWhite){
@@ -252,7 +259,6 @@ public class BoardUtil {
         return SLIDING_PIECES.contains(pieceType);
     }
 
-
     public static String pieceTypeToString(PieceType piece){
         switch(piece){
             case BLACK_BISHOP:
@@ -314,6 +320,7 @@ public class BoardUtil {
     }
 
     public static void printBoard(Board board){
+        long hash = HiveHash.getHash(board);
         int enpassantPosition = board.ENPASSANT_SQUARE;
         String enpasantSquare = (enpassantPosition == -1) ? "NONE":"" + (char)('a' + enpassantPosition%8) + (8-enpassantPosition/8);
         for (int row = 0; row < 8; row++) {
@@ -351,11 +358,12 @@ public class BoardUtil {
             ((board.CASTLING_RIGHTS & 1) != 0 ? "1 ":"0 ") +
 
             board.CASTLING_RIGHTS
-
-
-            
             );
             if(row == 2) System.out.print("\t AVAILABLE ENPASSANT CAPTURE: " + (enpasantSquare.equals("a0")?"NONE":enpasantSquare));
+
+            if(row == 3) System.out.println("\t TOTAL MOVES: " + board.TURNS);
+
+            if(row == 4) System.out.println("\t Zobrist Hash: " + hash);
 
             if(row != 7) System.out.println("\n  | ");
 
