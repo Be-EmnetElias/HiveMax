@@ -22,7 +22,7 @@ public class Client implements Runnable {
     @Override
     public void run(){
         try{
-            client = new Socket("localhost", 9999);
+            client = new Socket("localhost",9999); //73.140.79.98
             out = new ObjectOutputStream(client.getOutputStream());
             in = new ObjectInputStream(client.getInputStream());
 

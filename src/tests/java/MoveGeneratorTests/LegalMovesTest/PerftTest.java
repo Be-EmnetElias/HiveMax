@@ -1,14 +1,10 @@
 package tests.java.MoveGeneratorTests.LegalMovesTest;
-
-import main.java.*;
+import main.java.board.Board;
 import main.java.hive.HiveSearch;
-import main.java.utilities.*;
+import main.java.move.PerftInfo;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 

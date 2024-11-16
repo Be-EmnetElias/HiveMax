@@ -1,12 +1,22 @@
-package main.java.utilities;
+package main.java.move;
 import java.io.*;
 
+import main.java.board.PieceType;
+
+/**
+ * fromSquare
+ * toSquare
+ * pieceType
+ * capturedPieceType
+ * promotionPieceType
+ * moveType
+ */
 public record Move(
     int fromSquare,
     int toSquare,   
     PieceType pieceType,   
     PieceType capturedPieceType,
-    PieceType promotionName,
+    PieceType promotionPieceType,
     MoveType moveType 
 ) implements Serializable{
 

@@ -5,9 +5,9 @@ import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import main.java.*;
-import main.java.utilities.BoardUtil;
-import main.java.utilities.MoveGenerator;
+import main.java.board.Board;
+import main.java.board.BoardUtil;
+import main.java.move.MoveGenerator;
 
 public class CalculatePinnedPiecesTest {
 
@@ -69,7 +69,6 @@ public class CalculatePinnedPiecesTest {
 
         long team = BoardUtil.getTeamBoard(board, true);
         long enemies = BoardUtil.getTeamBoard(board, false);
-        long enemySlidingPieces = board.BLACK_BISHOPS | board.BLACK_ROOKS | board.BLACK_QUEENS;
 
         HashMap<Integer, Integer> pinnedPieces = MoveGenerator.calculatePinnedPieces(team, enemies, new long[]{board.BLACK_BISHOPS, board.BLACK_ROOKS, board.BLACK_QUEENS}, BoardUtil.getKingSquare(board, true), true);
         HashMap<Integer, Integer> expectedPinnedPieces = new HashMap<>();
@@ -100,16 +99,11 @@ public class CalculatePinnedPiecesTest {
 
         long team = BoardUtil.getTeamBoard(board, true);
         long enemies = BoardUtil.getTeamBoard(board, false);
-        long enemySlidingPieces = board.BLACK_BISHOPS | board.BLACK_ROOKS | board.BLACK_QUEENS;
 
         HashMap<Integer, Integer> pinnedPieces = MoveGenerator.calculatePinnedPieces(team, enemies, new long[]{board.BLACK_BISHOPS, board.BLACK_ROOKS, board.BLACK_QUEENS}, BoardUtil.getKingSquare(board, true), true);
         HashMap<Integer, Integer> expectedPinnedPieces = new HashMap<>();
 
         assertEquals(expectedPinnedPieces, pinnedPieces);
-    }
-
-    private void assertEquals(HashMap<Integer, Integer> expectedPinnedPieces, HashMap<Integer, Integer> pinnedPieces) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

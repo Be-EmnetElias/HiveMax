@@ -1,19 +1,30 @@
-package main.java.utilities;
+package main.java.move;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
-import main.java.Board;
+import main.java.board.Board;
+import main.java.board.BoardUtil;
+import main.java.board.PieceType;
 
 public class MoveGenerator{
 
+    public static boolean showLogs = false;
 
     public MoveGenerator(){}
     
-    
-    public static HashSet<Move> getCurrentLegalMoves(Board board){
+    public static void Log(String msg){
+        if(showLogs){
+            System.out.println("[Move Generator] " + msg);
+        }
+    }
+
+    public static List<Move> getCurrentLegalMoves(Board board){
         return getCurrentLegalMoves(board, board.IS_WHITE_TURN);
     }
+
     /** 
      * * To get current legal moves:
      * * (1) calculate enemy attacking pseudo legal moves
@@ -23,9 +34,10 @@ public class MoveGenerator{
      * *        (b) If single check, calculate capture and push mask and return according psuedo legal moves
      * *        (c) If double check, return king moves accordingly to danger squares
      * @param isWhite
-     * @return HashSet<Move>
+     * @return List<Move>
      */
-    public static HashSet<Move> getCurrentLegalMoves(Board board, boolean isWhite){
+    public static List<Move> getCurrentLegalMoves(Board board, boolean isWhite){
+        Log("=== Current Legal Moves for " + (isWhite ? "WHITE":"BLACK") + " ===");
         int kingPosition = BoardUtil.getKingSquare(board, isWhite);
         HashSet<Integer> dangerSquares = new HashSet<>();
         boolean singleCheck = false;
@@ -34,16 +46,20 @@ public class MoveGenerator{
         long pushMask = BoardUtil.NULL_PUSH_MASK;
         PieceType checkingPiece = PieceType.EMPTY;
         
-        
-
         // get enemy psuedo legal moves
-        HashSet<Move> enemyPsuedoLegalMoves = getEnemyPsuedoLegalMoves(board, isWhite, true);
+        List<Move> enemyPsuedoLegalMoves = getEnemyPsuedoLegalMoves(board, isWhite, true, false);
+
+        Log("\tDanger Squares: ");
+
+        //todo
+        // always add enemy king squares
 
         // extract danger squares and determine if single or double check
         // king is in single check if the enemy move attacks the king
         // king is in double check if a different enemy move is also attacking the king
         for(Move enemyMove : enemyPsuedoLegalMoves){
             int toSquare = enemyMove.toSquare();
+            Log("\t\t" + toSquare + " by " + enemyMove.pieceType());
             dangerSquares.add(toSquare);
             if(!doubleCheck && (toSquare == kingPosition)){
 
@@ -61,14 +77,17 @@ public class MoveGenerator{
 
         // return moves accordingly
         if(doubleCheck){
-            return getKingMoves(board, kingPosition, BoardUtil.getTeamBoard(board, isWhite), dangerSquares, isWhite);
+            List<Move> kingMoves = getKingMoves(board, kingPosition, BoardUtil.getTeamBoard(board, isWhite), dangerSquares, isWhite);
+            Log("\tKing in double check " + kingMoves.size() + " MOVES");
+            return kingMoves;
         }else{
+        
             //calculate pinned pieces
             long[] enemySlidingPieces = isWhite ? new long[]{board.BLACK_BISHOPS, board.BLACK_ROOKS, board.BLACK_QUEENS} : new long[]{board. WHITE_BISHOPS, board.WHITE_ROOKS, board.WHITE_QUEENS};
             HashMap<Integer, Integer> pinnedPieces = calculatePinnedPieces(BoardUtil.getTeamBoard(board, isWhite), BoardUtil.getTeamBoard(board, !isWhite), enemySlidingPieces, kingPosition, isWhite);
             
             if(singleCheck && BoardUtil.canPieceSlide(checkingPiece)){
-
+                Log("\tKing in single check by sliding enemy piece");
                 //calculate push masks, which are the squares from the capture mask to the kingPosition
                 pushMask = 0L;
                 int dy = (kingPosition / 8) - (captureMask / 8);
@@ -79,18 +98,19 @@ public class MoveGenerator{
                 if (dx < 0) dx = -1;
                 int displacement = dx + (dy == 1 ? 8:0) + (dy == -1 ? -8:0);
                 int current = captureMask + displacement;
+
                 while(current != kingPosition){
                     pushMask = BoardUtil.setBit(pushMask, current);
-
                     current += displacement;
                 }
 
             }
 
-            
-            
+            List<Move> legalMoves = getPsuedoLegalMoves(board, BoardUtil.getTeamBoards(board, isWhite), BoardUtil.getTeamBoard(board, !isWhite), isWhite, false, false, pinnedPieces, dangerSquares, captureMask, pushMask); 
 
-            return getPsuedoLegalMoves(board, BoardUtil.getTeamBoards(board, isWhite), BoardUtil.getTeamBoard(board, !isWhite), isWhite, false, pinnedPieces, dangerSquares, captureMask, pushMask);
+            Log(legalMoves.size() + " MOVES");
+            Log(legalMoves.toString());
+            return legalMoves;
             
         }
     }
@@ -101,12 +121,14 @@ public class MoveGenerator{
      *      -- for example if a knight is protecting a queen, an enemy king cannot capture this queen, so the move 'knight takes friendly queen' is 'valid' move when looking for danger squares
      * pawns can be tricky, because when calculating danger squares, we ignore pawn default moves and all pawn capture moves are 'valid' when looking for danger squares
      * then sometimes we want
+     * 
+     * Returns the psuedo legal moves of this teams enemy
      * @param board
      * @param isWhite
      * @param attacksOnly
      * @return
      */
-    public static HashSet<Move> getEnemyPsuedoLegalMoves(Board board, boolean isWhite, boolean attacksOnly){
+    public static List<Move> getEnemyPsuedoLegalMoves(Board board, boolean isWhite, boolean attacksOnly, boolean allPawnMoves){
         HashMap<Integer, Integer> emptyPinnedPieces = new HashMap<>();
         HashSet<Integer> dangerSquares = new HashSet<>();
         int captureMask = BoardUtil.NULL_CAPTURE_MASK;
@@ -117,19 +139,18 @@ public class MoveGenerator{
             teamBoardWithoutKing |= b;
         }
 
-        return getPsuedoLegalMoves(board, BoardUtil.getTeamBoards(board, !isWhite), teamBoardWithoutKing, !isWhite, attacksOnly, emptyPinnedPieces, dangerSquares, captureMask, pushMask);
+        return getPsuedoLegalMoves(board, BoardUtil.getTeamBoards(board, !isWhite), teamBoardWithoutKing, !isWhite, attacksOnly, allPawnMoves, emptyPinnedPieces, dangerSquares, captureMask, pushMask);
     }
 
-    // todo: king removed is needed but maybe another flag for attacks only for the pawns
-    // attacks only is needed to calculate danger squares
-    public static HashSet<Move> getPsuedoLegalMoves(Board board, long[] team, long enemyBoard, boolean isWhite, boolean kingRemoved, HashMap<Integer, Integer> pinnedPieces, HashSet<Integer> dangerSquares, int captureMask, long pushMask){
-        HashSet<Move> psuedoLegalMoves = new HashSet<>();
+
+    public static List<Move> getPsuedoLegalMoves(Board board, long[] team, long enemyBoard, boolean isWhite, boolean lookingForDangerSquares, boolean allPawnMoves, HashMap<Integer, Integer> pinnedPieces, HashSet<Integer> dangerSquares, int captureMask, long pushMask){
+        List<Move> psuedoLegalMoves = new ArrayList<>();
         long teamBoard = BoardUtil.getTeamBoard(board, isWhite);
-        psuedoLegalMoves.addAll(getPawnMoves(board, team[0], teamBoard, enemyBoard, isWhite, kingRemoved, captureMask, pushMask, pinnedPieces));
-        psuedoLegalMoves.addAll(getKnightMoves(board, team[1], teamBoard, isWhite, kingRemoved, captureMask, pushMask, pinnedPieces));
-        psuedoLegalMoves.addAll(getSlidingPieceMoves(board, (isWhite ? PieceType.WHITE_BISHOP : PieceType.BLACK_BISHOP), team[2], teamBoard, enemyBoard, isWhite, kingRemoved, captureMask, pushMask, pinnedPieces));
-        psuedoLegalMoves.addAll(getSlidingPieceMoves(board, isWhite ? PieceType.WHITE_ROOK : PieceType.BLACK_ROOK, team[3], teamBoard, enemyBoard, isWhite, kingRemoved, captureMask, pushMask, pinnedPieces));
-        psuedoLegalMoves.addAll(getSlidingPieceMoves(board, isWhite ? PieceType.WHITE_QUEEN : PieceType.BLACK_QUEEN, team[4], teamBoard, enemyBoard, isWhite, kingRemoved, captureMask, pushMask, pinnedPieces));
+        psuedoLegalMoves.addAll(getPawnMoves(board, team[0], teamBoard, enemyBoard, isWhite, lookingForDangerSquares, allPawnMoves, captureMask, pushMask, pinnedPieces));
+        psuedoLegalMoves.addAll(getKnightMoves(board, team[1], teamBoard, isWhite, lookingForDangerSquares, captureMask, pushMask, pinnedPieces));
+        psuedoLegalMoves.addAll(getSlidingPieceMoves(board, (isWhite ? PieceType.WHITE_BISHOP : PieceType.BLACK_BISHOP), team[2], teamBoard, enemyBoard, isWhite, lookingForDangerSquares, captureMask, pushMask, pinnedPieces));
+        psuedoLegalMoves.addAll(getSlidingPieceMoves(board, isWhite ? PieceType.WHITE_ROOK : PieceType.BLACK_ROOK, team[3], teamBoard, enemyBoard, isWhite, lookingForDangerSquares, captureMask, pushMask, pinnedPieces));
+        psuedoLegalMoves.addAll(getSlidingPieceMoves(board, isWhite ? PieceType.WHITE_QUEEN : PieceType.BLACK_QUEEN, team[4], teamBoard, enemyBoard, isWhite, lookingForDangerSquares, captureMask, pushMask, pinnedPieces));
         psuedoLegalMoves.addAll(getKingMoves(board, Long.numberOfTrailingZeros(team[5]), teamBoard, dangerSquares, isWhite));
 
         return psuedoLegalMoves;
@@ -205,18 +226,20 @@ public class MoveGenerator{
         return pinnedPieces;
     }
 
-    public static HashSet<Move> getPawnMoves(Board board, long pawns, long teamBoard, long enemyBoard, boolean isWhite, boolean capturesOnly, int captureMask, long pushMask, HashMap<Integer, Integer> pinnedPieces){
-        HashSet<Move> pawnMoves = new HashSet<>();
+    public static List<Move> getPawnMoves(Board board, long pawns, long teamBoard, long enemyBoard, boolean isWhite, boolean capturesOnly, boolean allPawnMoves, int captureMask, long pushMask, HashMap<Integer, Integer> pinnedPieces){
+        List<Move> pawnMoves = new ArrayList<>();
 
         int[] displacements = isWhite ? BoardUtil.WHITE_PAWN_DISPLACEMENTS : BoardUtil.BLACK_PAWN_DISPLACEMENTS;
         PieceType pieceType = isWhite ? PieceType.WHITE_PAWN : PieceType.BLACK_PAWN;
 
+        // for each pawn
         while(pawns != 0){
 
             int fromSquare = Long.numberOfTrailingZeros(pawns);
             int fromFile = fromSquare % 8;
             int fromRank = fromSquare / 8;
 
+            // for each displacement
             for(int displacement: displacements){
 
                 int absDisplacement = Math.abs(displacement);
@@ -225,24 +248,38 @@ public class MoveGenerator{
                 int toFile = toSquare % 8;
                 int toRank = toSquare / 8;
 
-
-                
-
+                // make sure pawns on the left most file don't spill over into the right column
                 boolean overflowed = Math.abs(fromFile - toFile) > 2 || Math.abs(fromRank - toRank) > 2;
+                // must be on squares 0 through 63
                 boolean validSquare = BoardUtil.checkValidSquare(toSquare);
+                // must be either not pinned, or pinned and in the pinned direction
                 boolean validPinDirection = BoardUtil.isValidPinDirection(fromSquare, displacement, pinnedPieces);
+                // must have no masks, or in either mask
                 boolean validInCaptureAndPushMasks = BoardUtil.squareValidInCaptureAndPushMasks(toSquare, captureMask, pushMask);
 
                 boolean validPrereqs = !overflowed && validSquare && validPinDirection && validInCaptureAndPushMasks;
                 
-                if(capturesOnly){
+                if(allPawnMoves){
                     if( (absDisplacement%2 != 0) && !overflowed && validSquare){
-                        pawnMoves.add(new Move(fromSquare, toSquare, pieceType, BoardUtil.getPieceTypeAtSquare(board, toSquare), PieceType.EMPTY, MoveType.DEFAULT));
+                        PieceType capturedPieceType = BoardUtil.getPieceTypeAtSquare(board, toSquare);
+                        // if(BoardUtil.isSameTeam(capturedPieceType, pieceType)){
+                        //     capturedPieceType = PieceType.EMPTY;
+                        // }
+                        pawnMoves.add(new Move(fromSquare, toSquare, pieceType, capturedPieceType, PieceType.EMPTY, MoveType.CAPTURE));
                     }
-                    continue;
+                }               
+                // when only looking for captures, immediately return attacking move if not overflowing and valid square
+                else if(capturesOnly)
+                {
+                    if( (absDisplacement%2 != 0) && !overflowed && validSquare){
+                        PieceType capturedPieceType = BoardUtil.getPieceTypeAtSquare(board, toSquare);
+                        // if(BoardUtil.isSameTeam(capturedPieceType, pieceType)){
+                        //     capturedPieceType = PieceType.EMPTY;
+                        // }
+                        pawnMoves.add(new Move(fromSquare, toSquare, pieceType, capturedPieceType, PieceType.EMPTY, MoveType.CAPTURE));
+                    }
                 }
-
-                if(validPrereqs){
+                else if(validPrereqs){
                     
                     PieceType jumpedOver = BoardUtil.getPieceTypeAtSquare(board, toSquare + (isWhite ? 8 : -8));
                     PieceType enpassantCapturedPieceType = BoardUtil.getPieceTypeAtSquare(board, board.ENPASSANT_SQUARE + (isWhite ? 8 : -8));
@@ -280,8 +317,8 @@ public class MoveGenerator{
         return pawnMoves;
     }
 
-    public static HashSet<Move> getKnightMoves(Board board, long knights, long teamBoard, boolean isWhite, boolean kingRemoved,  int captureMask, long pushMask, HashMap<Integer, Integer> pinnedPieces){
-        HashSet<Move> knightMoves = new HashSet<>();
+    public static List<Move> getKnightMoves(Board board, long knights, long teamBoard, boolean isWhite, boolean lookingForDangerSquares,  int captureMask, long pushMask, HashMap<Integer, Integer> pinnedPieces){
+        List<Move> knightMoves = new ArrayList<>();
 
         while(knights != 0){
 
@@ -297,14 +334,14 @@ public class MoveGenerator{
 
                 PieceType pieceType = isWhite ? PieceType.WHITE_KNIGHT : PieceType.BLACK_KNIGHT;
                 PieceType capturedPieceType = BoardUtil.getPieceTypeAtSquare(board, toSquare);
-                if(kingRemoved && (capturedPieceType == PieceType.BLACK_KING || capturedPieceType == PieceType.WHITE_KING)){
-                    capturedPieceType = PieceType.EMPTY;
-                }
+                // if(lookingForDangerSquares && BoardUtil.isSameTeam(capturedPieceType, pieceType)){
+                //     capturedPieceType = PieceType.EMPTY;
+                // }
                 MoveType moveType = capturedPieceType == PieceType.EMPTY ? MoveType.DEFAULT : MoveType.CAPTURE;
 
                 boolean overflowed = Math.abs(fromFile - toFile) > 2 || Math.abs(fromRank - toRank) > 2;
                 boolean validSquare = BoardUtil.checkValidSquare(toSquare);
-                boolean validEnemy = kingRemoved || !BoardUtil.isOccupiedByFriendly(toSquare, teamBoard);
+                boolean validEnemy = lookingForDangerSquares || !BoardUtil.isOccupiedByFriendly(toSquare, teamBoard);
                 boolean validPinDirection = BoardUtil.isValidPinDirection(fromSquare, displacement, pinnedPieces);
                 boolean validInCaptureAndPushMasks = BoardUtil.squareValidInCaptureAndPushMasks(toSquare, captureMask, pushMask);
 
@@ -321,8 +358,8 @@ public class MoveGenerator{
         return knightMoves;
     }
 
-    public static HashSet<Move> getSlidingPieceMoves(Board board, PieceType pieceType, long slidingPiece, long teamBoard, long enemyBoard, boolean isWhite, boolean kingRemoved, int captureMask, long pushMask, HashMap<Integer, Integer> pinnedPieces){
-        HashSet<Move> moves = new HashSet<>();
+    public static List<Move> getSlidingPieceMoves(Board board, PieceType pieceType, long slidingPiece, long teamBoard, long enemyBoard, boolean isWhite, boolean lookingForDangerSquares, int captureMask, long pushMask, HashMap<Integer, Integer> pinnedPieces){
+        List<Move> moves = new ArrayList<>();
         
         int[] displacements = BoardUtil.SLIDING_DISPLACEMENTS.get(pieceType);
 
@@ -339,7 +376,7 @@ public class MoveGenerator{
                         toSquare += displacement;
 
                         PieceType capturedPieceType = BoardUtil.getPieceTypeAtSquare(board, toSquare);
-                        if(kingRemoved && (capturedPieceType == PieceType.WHITE_KING || capturedPieceType == PieceType.BLACK_KING)){
+                        if(lookingForDangerSquares && (capturedPieceType == PieceType.WHITE_KING || capturedPieceType == PieceType.BLACK_KING)){
                             capturedPieceType = PieceType.EMPTY;
                         }
                         MoveType moveType = capturedPieceType == PieceType.EMPTY ? MoveType.DEFAULT : MoveType.CAPTURE;
@@ -350,7 +387,13 @@ public class MoveGenerator{
                         boolean containsEnemy = BoardUtil.isOccupiedByEnemy(toSquare,enemyBoard);
                         boolean validInCaptureAndPushMasks = BoardUtil.squareValidInCaptureAndPushMasks(toSquare, captureMask, pushMask);
 
-                        if(validSquare && validOverflow && (emptySquare || containsEnemy || (containsFriendly && kingRemoved)) && validInCaptureAndPushMasks){
+                        // make sure we don't capture friendlies
+                        // this must be after checking that we aren't capturing a king and empty square
+                        if(BoardUtil.isSameTeam(capturedPieceType, pieceType)){
+                            capturedPieceType = PieceType.EMPTY;
+                        }
+
+                        if(validSquare && validOverflow && validInCaptureAndPushMasks && (emptySquare || containsEnemy || (containsFriendly && lookingForDangerSquares))){
                             moves.add(new Move(fromSquare, toSquare, pieceType, capturedPieceType, PieceType.EMPTY, moveType));
                         }
 
@@ -367,8 +410,8 @@ public class MoveGenerator{
         return moves;
     }
 
-    public static HashSet<Move> getKingMoves(Board board, int kingPosition, long teamBoard, HashSet<Integer> dangerSquares, boolean isWhite){
-        HashSet<Move> kingMoves = new HashSet<>();
+    public static List<Move> getKingMoves(Board board, int kingPosition, long teamBoard, HashSet<Integer> dangerSquares, boolean isWhite){
+        List<Move> kingMoves = new ArrayList<>();
         PieceType pieceType = isWhite ? PieceType.WHITE_KING : PieceType.BLACK_KING;
 
         boolean inCheck = dangerSquares.contains(kingPosition);
@@ -385,11 +428,11 @@ public class MoveGenerator{
 
             PieceType capturedPieceType = BoardUtil.getPieceTypeAtSquare(board, toSquare);
             MoveType moveType = capturedPieceType == PieceType.EMPTY ? MoveType.DEFAULT : MoveType.CAPTURE;
-
+            boolean toSquareInCheck = dangerSquares.contains(toSquare);
             boolean overflowed = Math.abs(fromFile - toFile) > 2 || Math.abs(fromRank - toRank) > 2;
             boolean validSquare = BoardUtil.checkValidSquare(toSquare);
-            boolean validEnemy = !BoardUtil.isOccupiedByFriendly(toSquare, teamBoard) && !dangerSquares.contains(toSquare);
-            boolean validPrereqs = !overflowed && validSquare && validEnemy;
+            boolean validEnemy = !BoardUtil.isOccupiedByFriendly(toSquare, teamBoard);
+            boolean validPrereqs = !overflowed && validSquare && validEnemy && !toSquareInCheck;
 
             if(validPrereqs){
                 kingMoves.add(new Move(fromSquare, toSquare, pieceType, capturedPieceType, PieceType.EMPTY, moveType));

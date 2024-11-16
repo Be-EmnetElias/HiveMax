@@ -22,7 +22,7 @@ def compare_files(expected_file, actual_file):
 
 
 # Example usage
-expected_file = 'src\\test\\python\\expectedOutput.txt'
-actual_file = 'src\\test\\python\\actualOutput.txt'
+expected_file = 'src\\tests\\python\\expectedOutput.txt'
+actual_file = 'src\\tests\\python\\actualOutput.txt'
 
 compare_files(expected_file, actual_file)

@@ -1,9 +1,12 @@
-package main.java;
+package main.java.board;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import main.java.move.Move;
+import main.java.move.MoveType;
+
 import java.io.*;
-import main.java.utilities.*;
 
 
 public class Board implements Serializable{
@@ -22,8 +25,10 @@ public class Board implements Serializable{
 
     public boolean WHITE_CASTLED, BLACK_CASTLED;
 
+    public int TURNS;
 
-    
+
+    // todo: make board class only fields? refactor to move the below methods to BoardUtil
 
     public Board(){
         setBoard(this, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 0");
@@ -85,8 +90,11 @@ public class Board implements Serializable{
         this.IS_WHITE_TURN = other.IS_WHITE_TURN;   
     }
 
+    public void incr(){
+        this.TURNS += 1;
+    }
     public void setBoard(Board board, String fenposition){
-
+        this.TURNS = 0;
         if(fenposition.equals("")){
             setBoard(board, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 0");
             return;
@@ -210,7 +218,7 @@ public class Board implements Serializable{
         int toSquare = move.toSquare();
         PieceType pieceType = move.pieceType();
         PieceType capturedPieceType = move.capturedPieceType();
-        PieceType promotedPieceType = move.promotionName();
+        PieceType promotedPieceType = move.promotionPieceType();
         MoveType moveType = move.moveType();
 
         HashMap<PieceType, Long> boardsMap = makeBoardMap();
@@ -380,12 +388,13 @@ public class Board implements Serializable{
         int toSquare = move.toSquare();
         PieceType pieceType = move.pieceType();
         PieceType capturedPieceType = move.capturedPieceType();
-        PieceType promotedPieceType = move.promotionName();
+        PieceType promotedPieceType = move.promotionPieceType();
         MoveType moveType = move.moveType();
 
         HashMap<PieceType, Long> boardsMap = makeBoardMap();
 
         ENPASSANT_SQUARE = -1;
+        
         // move the piece type
         long pieceBoard = boardsMap.get(pieceType);
         pieceBoard = BoardUtil.clearBit(pieceBoard, toSquare);
@@ -452,6 +461,9 @@ public class Board implements Serializable{
 
         // update enpassant
         //todo: idk
+        if(moveType == MoveType.ENPASSANT){
+
+        }
 
         // update piece boards
         for(Map.Entry<PieceType, Long> entry : boardsMap.entrySet()){

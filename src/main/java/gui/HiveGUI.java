@@ -5,7 +5,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import main.java.utilities.*;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,29 +15,34 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-
-
-import main.java.Board;
+import main.java.board.Board;
+import main.java.board.BoardUtil;
+import main.java.board.PieceType;
+import main.java.hive.HiveEvaluator;
+import main.java.hive.HiveHash;
 import main.java.hive.HiveSearch;
+import main.java.hive.HiveTournament;
+import main.java.hive.HiveWeights;
+import main.java.move.Move;
 import main.java.network.Client;
 import main.java.network.GameState;
 
 
 public class HiveGUI extends JPanel {
 
-
     Client client;
     boolean playingOnline = false;
     SinglePlayerServer singlePlayerServer;
 
     public static void main(String[] args) throws IOException{
-        new HiveGUI();        
+        new HiveGUI();   
+        new HiveHash();
+        
     }
 
     public HiveGUI() throws IOException {
@@ -126,9 +130,34 @@ public class HiveGUI extends JPanel {
         
         customButton.setBounds(0, 200, 100, 100);
 
+        JButton TournamentButton = new JButton("Run Tournament");
+        ExecutorService executorService = Executors.newCachedThreadPool();
+
+        TournamentButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setSize(1300, 840);
+                frame.remove(chessPanel);
+                executorService.execute(() -> {
+                    try {
+                        HiveTournament tournament = new HiveTournament(10);
+                        tournament.Start();
+                    } catch (Exception ee) {
+                        
+                    }
+                });
+                revalidate();
+            }
+        });
+        
+        TournamentButton.setBounds(0, 300, 100, 100);
+
+
         frame.add(playOnlineButton);
         frame.add(singlePlayerButton);
         frame.add(customButton);
+        frame.add(TournamentButton);
+
 
 
         frame.setLayout(null);
@@ -139,6 +168,7 @@ public class HiveGUI extends JPanel {
 
         frame.setVisible(true);
     }
+
 }
 
 class SinglePlayerServer {
@@ -148,7 +178,6 @@ class SinglePlayerServer {
     boolean computerIsWhite;
     boolean isWhite;
     ExecutorService executorService;
-    int DEPTH = 3;
 
     public SinglePlayerServer(ChessPanel chessPanel){
         Random rand = new Random();
@@ -157,6 +186,8 @@ class SinglePlayerServer {
         this.gameState.isWhite = this.isWhite;
         this.computerIsWhite = !this.isWhite;
         this.chessPanel = chessPanel;
+
+
         chessPanel.updateChessPanel(gameState);
         executorService = Executors.newCachedThreadPool();
 
@@ -171,14 +202,17 @@ class SinglePlayerServer {
         if(this.gameState.board.IS_WHITE_TURN == this.computerIsWhite){
             makeComputerMove();
         }
+
     }
 
     public void makeComputerMove(){
+
+  
         Future<Move> bestMove = executorService.submit(() -> {
             return HiveSearch.bestMove(
                 new Board(this.gameState.board),
+                HiveEvaluator.SUBJECT_YMIR_WEIGHTS,
                 this.gameState.currentLegalMoves,
-                DEPTH,
                 this.computerIsWhite
             );
         });
@@ -186,6 +220,7 @@ class SinglePlayerServer {
         executorService.execute(() -> {
             try {
                 Move move = bestMove.get();
+                // System.out.println("Computer made move: " + move);
                 update(move);
             } catch (Exception e) {
                 
@@ -199,6 +234,7 @@ class SinglePlayerServer {
 class InfoPanel extends JPanel{
 
     Board board;
+    GameState gameState;
     ChessPanel chessPanel;
     JTextArea infoArea;
     JTextField fenInput;
@@ -206,6 +242,7 @@ class InfoPanel extends JPanel{
     public InfoPanel(Board board, ChessPanel chessPanel){
         this.board = board;
         this.chessPanel = chessPanel;
+        this.gameState = new GameState(null, null);
         this.setBackground(Color.LIGHT_GRAY);
         this.setPreferredSize(new Dimension(800, 400));
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -222,7 +259,9 @@ class InfoPanel extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 String fen = fenInput.getText();
                 board.setBoard(board, fen);
-                chessPanel.repaint();
+                gameState.isWhite = true;
+                gameState.update(board);
+                chessPanel.updateChessPanel(gameState);
             }
         });
 

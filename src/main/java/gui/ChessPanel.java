@@ -9,18 +9,26 @@ import java.util.*;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.JPanel;
-import main.java.Board;
+
+import main.java.board.Board;
+import main.java.board.BoardUtil;
+import main.java.board.PieceType;
+import main.java.move.Move;
+import main.java.move.MoveType;
 import main.java.network.Client;
 import main.java.network.GameState;
-import main.java.utilities.*;
+
+import java.util.List;
 
 public class ChessPanel extends JPanel{
 
     public boolean isWhite = true;
+    public boolean allowBothMoves = true;
     public boolean isMyTurn = false;
+    public boolean playSound = true;
     public Board board;
-    public HashSet<Move> legalMoves;
-    public HashSet<Move> psuedoLegalMoves;
+    public List<Move> legalMoves;
+    public List<Move> psuedoLegalMoves;
 
     public static Image boardImage;
     public static BufferedImage allPieces;
@@ -31,8 +39,8 @@ public class ChessPanel extends JPanel{
     public PieceType selectedPiece = PieceType.EMPTY;
     public int[] dragCoor = new int[]{-1, -1};
     public int[] recentMove = new int[]{-1, -1};
-    public HashSet<Move> moveHints = new HashSet<>();
-    public HashSet<Move> nextMoveHints = new HashSet<>();
+    public List<Move> moveHints = new ArrayList<>();
+    public List<Move> nextMoveHints = new ArrayList<>();
 
 
     public boolean sendMoveToClient = false;
@@ -49,8 +57,8 @@ public class ChessPanel extends JPanel{
 
     public ChessPanel(Board board) throws IOException{
         this.board = board;
-        this.legalMoves =  new HashSet<>(); 
-        this.psuedoLegalMoves = new HashSet<>();
+        this.legalMoves =  new ArrayList<>(); 
+        this.psuedoLegalMoves = new ArrayList<>();
 
         ClickListener clickListener = new ClickListener();
         DragListener dragListener = new DragListener();
@@ -102,18 +110,20 @@ public class ChessPanel extends JPanel{
     public void resetChessPanel(){
         fromSquare = -1;
         toSquare = -1;
-        moveHints = new HashSet<>();
-        nextMoveHints = new HashSet<>();
+        moveHints = new ArrayList<>();
+        nextMoveHints = new ArrayList<>();
     }
     
     public void playSound(MoveType moveType) {
-        try{
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(moveTypeSoundMap.get(moveType));
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioStream);
-            clip.start();
-        }catch(Exception e){
-            e.printStackTrace();
+        if(playSound){
+            try{
+                AudioInputStream audioStream = AudioSystem.getAudioInputStream(moveTypeSoundMap.get(moveType));
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioStream);
+                clip.start();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
     }
 
@@ -123,17 +133,17 @@ public class ChessPanel extends JPanel{
         public void mousePressed(MouseEvent e){
             fromSquare = BoardUtil.rowColToSquare(e.getY()/100, e.getX()/100, isWhite);
             selectedPiece = BoardUtil.getPieceTypeAtSquare(board, fromSquare);
-            HashSet<Move> hints = new HashSet<>();
+            List<Move> hints = new ArrayList<>();
             
 
-            if(isMyTurn){
+            if(isMyTurn || allowBothMoves){
                 for(Move move: legalMoves){
                     if(move.fromSquare() == fromSquare){
                         hints.add(move);
                     }
                 }
                 moveHints = hints;
-            }else{
+            }else if(!isMyTurn || allowBothMoves){
                 for(Move move: psuedoLegalMoves){
                     if(move.fromSquare() == fromSquare){
                         hints.add(move);
